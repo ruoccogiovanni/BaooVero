@@ -30,7 +30,7 @@
 
         <EditText
             android:id="@+id/signup_email"
-            android:hint="Inserisci la tua Email"
+            android:hint="Inserisci la tua E-mail"
             android:inputType="textCapWords"
             android:maxLines="1"
             android:layout_width="match_parent"
