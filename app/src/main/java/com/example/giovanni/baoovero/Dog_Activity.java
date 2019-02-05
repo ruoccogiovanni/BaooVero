@@ -16,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
-public class Dog_Activity extends AppCompatActivity {
+
+public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;
     private ImageView img, imag;
@@ -25,7 +28,7 @@ public class Dog_Activity extends AppCompatActivity {
     private ConstraintSet layout1, layout2;
     private ConstraintLayout constraintLayout;
     private ImageView imageViewPhoto;
-
+    private LikeButton likeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,8 @@ public class Dog_Activity extends AppCompatActivity {
         tvage = (TextView) findViewById(R.id.txtAge);
         img = (ImageView) findViewById(R.id.dogthumbnail);
         imag = (ImageView) findViewById(R.id.dogthumbnail2);
+        likeButton = findViewById(R.id.heart_button);
+        likeButton.setOnLikeListener(this);
 
         // Recieve data
         Intent intent = getIntent();
@@ -138,6 +143,16 @@ public class Dog_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void liked(LikeButton likeButton) {
+        Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void unLiked(LikeButton likeButton) {
+        Toast.makeText(this, "Tolto dai preferiti!", Toast.LENGTH_SHORT).show();
     }
 }
 
