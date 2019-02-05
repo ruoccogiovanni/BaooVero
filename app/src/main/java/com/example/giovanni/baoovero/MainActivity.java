@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intentadd);
                         break;
                         case R.id.about:
-                        Toast.makeText(MainActivity.this, "addupat't",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "addupattt't",Toast.LENGTH_SHORT).show();
                         startActivity(intentlogin);
                         break;
 
