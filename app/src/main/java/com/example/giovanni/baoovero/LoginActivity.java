@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,9 +20,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btnLogin;
     EditText input_email,input_password;
     TextView btnSignup,btnForgotPass;
-
     RelativeLayout activity_main;
-
     private FirebaseAuth auth;
 
     @Override
@@ -50,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(auth.getCurrentUser() != null)
             startActivity(new Intent(LoginActivity.this,DashBoard.class));
     }
-
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.login_btn_forgot_password)
@@ -76,11 +72,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful())
                         {
-                            if(password.length() < 6)
-                            {
-                                Snackbar snackBar = Snackbar.make(activity_main,"La password deve contenere almeno 6 caratteri.",Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main,"La password è errata.",Snackbar.LENGTH_SHORT);
                                 snackBar.show();
-                            }
                         }
                         else{
                             startActivity(new Intent(LoginActivity.this,DashBoard.class));

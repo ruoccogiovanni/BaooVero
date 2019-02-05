@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -47,6 +48,7 @@ public class Add_Activity extends AppCompatActivity {
     private EditText etphone;
     private EditText etcity;
     private EditText etdescription;
+    List<Dog> listacani;
 
 
 
@@ -54,7 +56,7 @@ public class Add_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
-
+        listacani=new ArrayList<>();
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
         addimmagine = findViewById(R.id.immaginepiuID);
         addimmagine.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +66,6 @@ public class Add_Activity extends AppCompatActivity {
                 //  Toast.makeText(this,"biagio", Toast.LENGTH_LONG).show();
             }
         });
-
         btnavanti = (Button) findViewById(R.id.add_button);
         btnindietro = (Button) findViewById(R.id.add_back);
         tvage = (TextView) findViewById(R.id.textAge);
@@ -74,10 +75,10 @@ public class Add_Activity extends AppCompatActivity {
         etphone = (EditText) findViewById(R.id.add_phone);
         etcity = (EditText) findViewById(R.id.add_city);
         etdescription = (EditText) findViewById(R.id.add_description);
-        String addname = etname.getText().toString().trim();
-        String addemail = etemail.getText().toString().trim();
-        String addphone = etphone.getText().toString().trim();
-        String adddescription = etdescription.getText().toString().trim();
+        //String addname = etname.getText().toString().trim();
+        //String addemail = etemail.getText().toString().trim();
+        //String addphone = etphone.getText().toString().trim();
+        //String adddescription = etdescription.getText().toString().trim();
         final int agemax = 20;
         sbage.setMax(agemax);
         tvage.setText("Età: " + sbage.getProgress());
@@ -103,7 +104,7 @@ public class Add_Activity extends AppCompatActivity {
                 }
         );
         fillDogList();
-        AutoCompleteTextView actvbreed = findViewById(R.id.cmpltbreed);
+        final AutoCompleteTextView actvbreed = findViewById(R.id.cmpltbreed);
         AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
         actvbreed.setAdapter(adapter);
         btnavanti.setOnClickListener(new View.OnClickListener() {
@@ -115,38 +116,33 @@ public class Add_Activity extends AppCompatActivity {
                 String addemail = etemail.getText().toString().trim();
                 String addphone = etphone.getText().toString().trim();
                 String adddescription = etdescription.getText().toString().trim();
+                String addbreed = actvbreed.getText().toString().trim();
+                int intage = sbage.getProgress();
+                String addage = String.valueOf(intage);
+                int idbutton=rgroup.getCheckedRadioButtonId();
+                rbutton= findViewById(idbutton);
+                String addgender=rbutton.getText().toString();
                 boolean provincia=false;
-                String provinciast = "";
-                String nomest = "";
-                String emailst ="";
                 boolean nome=true;
                 boolean email=true;
 
                 for (String provinciona:provincine)
                 {
                     if (addcity.equalsIgnoreCase(provinciona)) {
-                       Toast.makeText(Add_Activity.this, addcity, Toast.LENGTH_SHORT).show();
                         provincia = true;
-                        provinciast ="";
                         break;
                     }
-                    else
-                        provinciast = "Provincia errata ";
                 }
                 if (addname.isEmpty())
                 {
                     //Toast.makeText(Add_Activity.this, "Nome non inserito", Toast.LENGTH_SHORT).show();
                     nome=false;
-                    nomest = "Nome errato ";
                 }
                 if (addemail.isEmpty() || !addemail.contains("@"))
                 {
-                    Toast.makeText(Add_Activity.this, "Email non valida", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Add_Activity.this, "Email non valida", Toast.LENGTH_SHORT).show();
                     email=false;
-                    emailst = "Email errata ";
                 }
-
-               Toast.makeText(Add_Activity.this, provinciast + nomest+ emailst, Toast.LENGTH_SHORT).show();
             }
         });
         final Intent intentmain = new Intent(this, MainActivity.class);
@@ -227,14 +223,15 @@ public class Add_Activity extends AppCompatActivity {
                 immagineviewID.setImageURI(selectedImageUri);
             }
 
-        }
+}
     }
 
     public void rbclick(View v)
     {
         int idbutton=rgroup.getCheckedRadioButtonId();
         rbutton=(RadioButton)findViewById(idbutton);
-        Toast.makeText(getApplicationContext(),rbutton.getText(),Toast.LENGTH_SHORT).show();
+        String pressedbutton = rbutton.getText().toString();
+        Toast.makeText(getApplicationContext(),pressedbutton,Toast.LENGTH_SHORT).show();
     }
 }
 
