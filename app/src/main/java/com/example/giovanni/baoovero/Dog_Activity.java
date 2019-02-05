@@ -121,7 +121,7 @@ public class Dog_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(Dog_Activity.this, "Cliccato",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Dog_Activity.this, "Cliccato",Toast.LENGTH_SHORT).show();
 
                 if (!isOpen) {
                     TransitionManager.beginDelayedTransition(constraintLayout);
