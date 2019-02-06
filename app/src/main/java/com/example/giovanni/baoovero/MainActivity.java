@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_olivi));
         listacani.add(new Dog("Cico","Chihuahua","Sono un cane piccolino ma mi piace tanto giocare","Maschio","Salerno", "4","3347626298", "pepperaul@gmail.com", R.drawable.image_cico));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
-        listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "1", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
+        listacani.add(new Dog("Enya","Meticcio","Non sanno ancora che sono un gatto","Femmina","Caserta", "7","3665048238", "manfr_96@gmail.com", R.drawable.image_enya));
+        listacani.add(new Dog("Piccola","Meticcio","Sono vecchia e non cammino","Femmina", "Caserta", "14", "3292127611", "ottaviafalco@gmail.com", R.drawable.image_piccola));
+        listacani.add(new Dog("Nina","Meticcio","Come fanno a non capirlo","Femmina","Caserta", "9","3292127611", "ottaviafalco@gmail.com", R.drawable.image_nina));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
         listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));

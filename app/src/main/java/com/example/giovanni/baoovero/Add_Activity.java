@@ -1,7 +1,6 @@
 package com.example.giovanni.baoovero;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -9,11 +8,8 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.provider.MediaStore;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -27,8 +23,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.System.in;
 
 public class Add_Activity extends AppCompatActivity {
     ImageView immagineviewID;
@@ -170,6 +164,7 @@ public class Add_Activity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Dalmata", R.drawable.image_dalmata));
         dogList.add(new Portrait_Dog("Labrador Retriever", R.drawable.image_labrador));
         dogList.add(new Portrait_Dog("Maltese", R.drawable.image_maltese));
+        dogList.add(new Portrait_Dog("Meticcio", R.drawable.image_meticcio));
         dogList.add(new Portrait_Dog("Pastore Tedesco", R.drawable.image_pastoretedesco));
         dogList.add(new Portrait_Dog("American Pit Bull Terrier", R.drawable.image_pitbull));
         dogList.add(new Portrait_Dog("Golden Retriever", R.drawable.image_retriever));
