@@ -35,12 +35,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         getSupportActionBar().hide(); //<< this
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-
         setContentView(R.layout.activity_dog_);
-       // Window w = getWindow();
-        //w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-
 
         tvname = (TextView) findViewById(R.id.textName);
         tvdescription = (TextView) findViewById(R.id.txtDesc);

@@ -17,13 +17,7 @@ tools:context="com.example.giovanni.baoovero.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-
-    </RelativeLayout>
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
@@ -32,6 +26,7 @@ tools:context="com.example.giovanni.baoovero.MainActivity">
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         android:id="@+id/nv">
+        
 
     </android.support.design.widget.NavigationView>
 

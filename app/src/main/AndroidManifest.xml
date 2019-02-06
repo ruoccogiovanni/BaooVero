@@ -27,7 +27,7 @@
         </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".DashBoard" />
-        <activity android:name=".Add_Activity" />
+        <activity android:name=".Add_Activity" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
