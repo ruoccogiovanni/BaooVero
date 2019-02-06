@@ -15,7 +15,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Dog_Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ActivitySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
