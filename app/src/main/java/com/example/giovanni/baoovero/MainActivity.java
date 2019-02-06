@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         listacani = new ArrayList<>();
         listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_olivi));
+        listacani.add(new Dog("Cico","Chihuahua","Sono un cane piccolino ma mi piace tanto giocare","Maschio","Salerno", "4","3347626298", "pepperaul@gmail.com", R.drawable.image_cico));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
         listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "1", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
