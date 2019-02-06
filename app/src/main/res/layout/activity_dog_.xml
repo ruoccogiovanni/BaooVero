@@ -19,6 +19,17 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <View
+        android:id="@+id/lineaview"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/prova"
+        app:layout_constraintBottom_toBottomOf="@+id/dogthumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/dogthumbnail2"
@@ -35,8 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail"
         app:layout_constraintVertical_bias="0.45"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FFFFFF"/>
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/prova"/>
 
 
     <com.like.LikeButton
