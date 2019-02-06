@@ -64,7 +64,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         int image = intent.getExtras().getInt("Thumbnail");
-       // int imagge = intent.getExtras().getInt("Thumbnail");
 
         // Setting values
 
