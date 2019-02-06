@@ -11,7 +11,9 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUp"> </activity>
+        <activity android:name=".FilterActivity"></activity>
+        <activity android:name=".FilterRecyclerView" />
+        <activity android:name=".SignUp" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Dog_Activity" />
