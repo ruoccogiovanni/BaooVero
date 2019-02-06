@@ -36,6 +36,21 @@
         app:layout_constraintVertical_bias="0.45"
         />
 
+    <com.like.LikeButton
+        android:id="@+id/heart_button"
+        android:layout_width="92dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        app:anim_scale_factor="3"
+        app:icon_size="22dp"
+        app:icon_type="heart"
+        app:layout_constraintBottom_toBottomOf="@+id/textCity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toTopOf="@+id/dogthumbnail" />
+
     <TextView
         android:id="@+id/textName"
         android:layout_width="wrap_content"
@@ -116,11 +131,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCity" />
 
+
     <Button
         android:id="@+id/chiama"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="186dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
