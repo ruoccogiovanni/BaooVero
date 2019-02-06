@@ -53,6 +53,9 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         likeButton = findViewById(R.id.heart_button);
         likeButton.setOnLikeListener(this);
 
+
+            String annio=" anni";
+
         // Recieve data
         Intent intent = getIntent();
         String Name = intent.getExtras().getString("Name");
@@ -60,7 +63,12 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         String Description = intent.getExtras().getString("Description");
         String Gender = intent.getExtras().getString("Gender");
         String City = intent.getExtras().getString("City");
-        String Age = intent.getExtras().getString("Age");
+        String eig = intent.getExtras().getString("Age");
+        if(Integer.parseInt(eig)==1)
+        {
+            annio=" anno";
+        }
+        String Age = "Età: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         int image = intent.getExtras().getInt("Thumbnail");
