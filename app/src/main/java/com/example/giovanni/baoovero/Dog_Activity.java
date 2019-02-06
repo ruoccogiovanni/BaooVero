@@ -32,7 +32,13 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_dog_);
+       // Window w = getWindow();
+        //w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+
 
         tvname = (TextView) findViewById(R.id.textName);
         tvdescription = (TextView) findViewById(R.id.txtDesc);
@@ -48,9 +54,9 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         // Recieve data
         Intent intent = getIntent();
         String Name = intent.getExtras().getString("Name");
-        String Breed = "Razza: " + intent.getExtras().getString("Breed");
+        String Breed =  intent.getExtras().getString("Breed");
         String Description = intent.getExtras().getString("Description");
-        String Gender = "Sesso: " + intent.getExtras().getString("Gender");
+        String Gender = intent.getExtras().getString("Gender");
         String City = intent.getExtras().getString("City");
         String Age = intent.getExtras().getString("Age");
         final String Tel = intent.getExtras().getString("Tel");
@@ -113,8 +119,17 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
         });
 
-        //Window w = getWindow();
-        //w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+       // Window w = getWindow();
+      //  w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        //Remove title bar
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+//Remove notification bar
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+//set content view AFTER ABOVE sequence (to avoid crash)
+        //this.setContentView(R.layout.activity_dog_);
 
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
@@ -122,7 +137,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         layout2.clone(this, R.layout.activity_expandedprofile);
         layout1.clone(constraintLayout);
 
-        imag.setOnClickListener(new View.OnClickListener() {
+        img.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

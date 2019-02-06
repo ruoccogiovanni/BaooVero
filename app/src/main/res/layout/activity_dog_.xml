@@ -38,80 +38,75 @@
 
     <com.like.LikeButton
         android:id="@+id/heart_button"
-        android:layout_width="92dp"
-        android:layout_height="116dp"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="70dp"
         app:anim_scale_factor="3"
-        app:icon_size="22dp"
+        app:icon_size="16dp"
         app:icon_type="heart"
-        app:layout_constraintBottom_toBottomOf="@+id/textCity"
+        app:layout_constraintBottom_toBottomOf="@+id/textGend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textName"
-        app:layout_constraintTop_toTopOf="@+id/dogthumbnail" />
+        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
         android:text="Dog Name"
+
+        android:textSize="22dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
     <TextView
         android:id="@+id/textBreed"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
         android:text="Breed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        android:textSize="16dp"
+        android:textStyle="bold"
+
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
     <TextView
         android:id="@+id/textGend"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
         android:text="Gender"
+        android:textSize="16dp"
         android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
-        app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
     <TextView
         android:id="@+id/textCity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="following"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.732"
-        app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
-        app:layout_constraintTop_toBottomOf="@+id/textGend" />
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:text="City"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/dogthumbnail2"
+        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2" />
 
     <TextView
         android:id="@+id/txtDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="16dp"
         android:text="Description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,17 +114,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2"
-        app:layout_constraintVertical_bias="0.072" />
+        app:layout_constraintVertical_bias="0.256" />
+
     <TextView
         android:id="@+id/txtAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:text="Age"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCity" />
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/textBreed"
+        app:layout_constraintTop_toTopOf="@+id/textCity" />
 
 
     <Button
