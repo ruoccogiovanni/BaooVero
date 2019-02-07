@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/dogthumbnail"
         android:layout_width="0dp"
-        android:layout_height="460dp"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -67,8 +67,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:text="Breed"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
 
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
@@ -92,34 +92,35 @@
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         android:text="City"
-        android:textSize="18dp"
+        android:textSize="24dp"
         app:layout_constraintStart_toStartOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2" />
 
     <TextView
         android:id="@+id/txtDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:padding="16dp"
+        android:fitsSystemWindows="true"
+        android:scrollHorizontally="false"
         android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/chiama"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintStart_toStartOf="@+id/txtAge"
+        app:layout_constraintTop_toTopOf="@+id/txtAge" />
 
     <TextView
         android:id="@+id/txtAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Age"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/textBreed"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="@+id/textCity"
         app:layout_constraintTop_toTopOf="@+id/textCity" />
 
 
@@ -149,6 +150,22 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/chiama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/chiama" />
+
+
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:alpha="0.7"
+        android:text="Swipe verso l'alto per maggiori informazioni"
+        android:visibility="invisible"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/chiama"
+        app:layout_constraintTop_toBottomOf="@+id/textBreed" />
+
+    />
 
 </android.support.constraint.ConstraintLayout>
 
