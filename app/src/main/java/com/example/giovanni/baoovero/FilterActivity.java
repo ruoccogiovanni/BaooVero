@@ -37,7 +37,7 @@ public class FilterActivity extends AppCompatActivity {
         listacani.add(new Dog("Giselle", "Briard", "Patàààà", "Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
         listacani.add(new Dog("Oliver", "West Highland White Terrier", "Oliviiiiiiiero", "Maschio", "Napoli", "4", "3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
         listacani.add(new Dog("Giselle", "Briard", "Patàààà", "Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Oliverino", "West Highland White Terrier", "Oliviiiiiiiero", "Maschio", "Napoli", "4", "3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
+        listacani.add(new Dog("Oliverinoo", "West Highland White Terrier", "Oliviiiiiiiero", "Maschio", "Napoli", "4", "3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
         listacani.add(new Dog("Giselle", "Briard", "Patàààà", "Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
 
 
