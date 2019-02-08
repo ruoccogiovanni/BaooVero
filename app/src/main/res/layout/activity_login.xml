@@ -21,11 +21,11 @@
 
         <EditText
             android:id="@+id/login_email"
-            android:hint="Inserisci la tua email"
-            android:inputType="textCapWords"
-            android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="Inserisci la tua email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
 

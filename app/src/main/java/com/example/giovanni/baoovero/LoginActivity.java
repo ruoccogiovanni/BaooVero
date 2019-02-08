@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Check already session , if ok-> DashBoard
         if(auth.getCurrentUser() != null)
-            startActivity(new Intent(LoginActivity.this,DashBoard.class));
+            startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
     }
     @Override
     public void onClick(View view) {
