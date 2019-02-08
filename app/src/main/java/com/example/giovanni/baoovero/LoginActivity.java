@@ -1,11 +1,13 @@
 package com.example.giovanni.baoovero;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         else if(view.getId() == R.id.login_btn_login)
         {
+            closeKeyboard();
             loginUser(input_email.getText().toString(),input_password.getText().toString());
         }
     }
@@ -72,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful())
                         {
-                                Snackbar snackBar = Snackbar.make(activity_main,"La password è errata.",Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main,"L'email o la password sono errati.",Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                         }
                         else{
@@ -81,4 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
     }
+    private void closeKeyboard(){
+        View vista = this.getCurrentFocus();
+        if (vista!=null){
+            InputMethodManager inputt = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputt.hideSoftInputFromWindow(vista.getWindowToken(),0);
+        }
+    }
 }
+

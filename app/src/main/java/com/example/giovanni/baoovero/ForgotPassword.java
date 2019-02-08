@@ -1,11 +1,13 @@
 package com.example.giovanni.baoovero;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -53,6 +55,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         else  if(view.getId() == R.id.forgot_btn_reset)
         {
             resetPassword(input_email.getText().toString());
+            closeKeyboard();
         }
     }
 
@@ -63,14 +66,21 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"We have sent password to email: "+email,Snackbar.LENGTH_SHORT);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato la password all'email: "+email,Snackbar.LENGTH_SHORT);
                             snackBar.show();
                         }
                         else{
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Failed to send password",Snackbar.LENGTH_SHORT);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Riprova, la password non è stata resettata.",Snackbar.LENGTH_SHORT);
                             snackBar.show();
                         }
                     }
                 });
+    }
+    private void closeKeyboard(){
+        View vista = this.getCurrentFocus();
+        if (vista!=null){
+            InputMethodManager inputt = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputt.hideSoftInputFromWindow(vista.getWindowToken(),0);
+        }
     }
 }
