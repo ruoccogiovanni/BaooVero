@@ -25,7 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
         welcome=(TextView)findViewById(R.id.profile_welcome);
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null)
-            welcome.setText("Benvenuto, "+auth.getCurrentUser().getEmail());
+            welcome.setText("Benvenutoo, "+auth.getCurrentUser().getEmail());
         else
             startActivity(loginact);
         final Intent intentadd = new Intent(this, Add_Activity.class);
