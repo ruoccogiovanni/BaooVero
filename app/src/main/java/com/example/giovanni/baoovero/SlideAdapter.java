@@ -20,21 +20,21 @@ public class SlideAdapter extends PagerAdapter {
             R.drawable.ic_about,
             R.drawable.ic_icona_profilo,
             R.drawable.ic_icona_baoo,
-            R.drawable.ic_navigationdog
+            R.drawable.image_meticcio
     };
     // list of titles
     public String[] lst_title = {
-            "COSMONAUT",
-            "SATELITE",
-            "GALAXY",
-            "ROCKET"
+            "INCONTRARCI",
+            "SCOPARE",
+            "DEPRESSIONE",
+            "POST PARTO"
     }   ;
     // list of descriptions
     public String[] lst_description = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+            "Lo scopo della nostra applicazione è trovare compagni di gioco ai nostri cuccioli. E magar mettr a mazz o cavr.",
+            "Sti sfaccimm e chen stann tutt nfuchet. Ma mocc e mamm lor vulimm chiava pur ij e te? Chiamm'm ciaccarè <3",
+            "Si lor chiavn e nuj no stam nguajet auer.",
+            "Ij m pigl o chiu bell... nun m cacà o cazz."
     };
     // list of background colors
     public int[]  lst_backgroundcolor = {

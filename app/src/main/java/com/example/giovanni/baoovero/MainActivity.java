@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         
         final Intent intentprofile = new Intent(this, ProfileActivity.class);
         final Intent intentabout = new Intent(this, SliderActivity.class);
-        final Intent intentadd = new Intent(this, Add_Activity.class);
+        final Intent intentfilter = new Intent(this, FilterActivity.class);
 
 
         dl = (DrawerLayout)findViewById(R.id.dl);
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.profile:
+                    case R.id.profilo:
                         startActivity(intentprofile);
                         break;
-                    case R.id.settings:
-                        startActivity(intentadd);
+                    case R.id.filtra:
+                        startActivity(intentfilter);
                         break;
                     case R.id.about:
                         startActivity(intentabout);
@@ -95,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
