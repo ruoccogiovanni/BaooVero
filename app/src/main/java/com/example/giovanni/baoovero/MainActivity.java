@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         myrv.setLayoutManager(new GridLayoutManager(this,1));
         myrv.setAdapter(myAdapter);
         
-        final Intent intentprofile = new Intent(this, FilterActivity.class);
+        final Intent intentprofile = new Intent(this, ProfileActivity.class);
         final Intent intentlogin = new Intent(this, LoginActivity.class);
         final Intent intentadd = new Intent(this, Add_Activity.class);
 

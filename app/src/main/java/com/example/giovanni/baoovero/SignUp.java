@@ -73,8 +73,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             snackbar.show();
                         }
                         else{
-                            snackbar = Snackbar.make(activity_sign_up,"Registrazione avvenuta con successo.",Snackbar.LENGTH_SHORT);
-                            snackbar.show();
+                            startActivity(new Intent(SignUp.this,ProfileActivity.class));
                         }
                     }
                 });

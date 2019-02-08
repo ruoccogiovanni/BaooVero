@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="false"
-        android:background="@drawable/aggiungi_foto_cane" />
+        android:background="@drawable/ic_icona_profilo" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_below="@+id/icon"

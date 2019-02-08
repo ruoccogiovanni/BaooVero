@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 snackBar.show();
                         }
                         else{
-                            startActivity(new Intent(LoginActivity.this,DashBoard.class));
+                            startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
                         }
                     }
                 });

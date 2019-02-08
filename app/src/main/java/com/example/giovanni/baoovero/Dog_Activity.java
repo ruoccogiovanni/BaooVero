@@ -23,7 +23,6 @@ import com.like.OnLikeListener;
 
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     float x1,x2,y1,y2;
-
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;
     private ImageView img, imag;
     private boolean isOpen = false;

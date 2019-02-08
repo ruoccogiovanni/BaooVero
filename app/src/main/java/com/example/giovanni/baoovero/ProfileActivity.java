@@ -1,49 +1,56 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ProfileActivity extends AppCompatActivity {
-    private ImageView immaginevista;
-    private FloatingActionButton addimmagine;
+    private Button logout;
+    private Button adddog;
+    private FirebaseAuth auth;
+    private TextView welcome;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        addimmagine = findViewById(R.id.immaginepiuID);
-        addimmagine.setOnClickListener(new View.OnClickListener() {
+        auth = FirebaseAuth.getInstance();
+        logout=(Button)findViewById(R.id.profile_logout);
+        adddog=(Button)findViewById(R.id.profile_add);
+        welcome=(TextView)findViewById(R.id.profile_welcome);
+        final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
+        if(auth.getCurrentUser() != null)
+            welcome.setText("Benvenuto, "+auth.getCurrentUser().getEmail());
+        else
+            startActivity(loginact);
+        final Intent intentadd = new Intent(this, Add_Activity.class);
+        final Intent intentmain = new Intent(this, MainActivity.class);
+
+
+        adddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
-              //  Toast.makeText(this,"biagio", Toast.LENGTH_LONG).show();
+                startActivity(intentadd);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Cess non logoutare o frat",Toast.LENGTH_SHORT).show();
+                auth.signOut();
+                if(auth.getCurrentUser() == null)
+                {
+                    startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                    finish();
+                }
             }
         });
 
     }
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap immagine_catturata = (Bitmap) extras.get("data");
-            immaginevista= (ImageView)findViewById(R.id.immagineviewID);
-            immaginevista.setImageBitmap(immagine_catturata);
-        }
-    }
 }
