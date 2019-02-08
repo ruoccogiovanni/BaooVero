@@ -70,24 +70,16 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.profile:
-                        Toast.makeText(MainActivity.this, "Profile",Toast.LENGTH_SHORT).show();
                         startActivity(intentprofile);
-
                         break;
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();
                         startActivity(intentadd);
                         break;
-                        case R.id.about:
-                        Toast.makeText(MainActivity.this, "addupattt't",Toast.LENGTH_SHORT).show();
+                    case R.id.about:
                         startActivity(intentlogin);
                         break;
-
                 }
-
-
                 return true;
-
             }
         });
 
