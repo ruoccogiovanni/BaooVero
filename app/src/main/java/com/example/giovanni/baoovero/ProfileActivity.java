@@ -25,7 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
         welcome=(TextView)findViewById(R.id.profile_welcome);
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null)
-            welcome.setText("Benvenutoo, "+auth.getCurrentUser().getEmail());
+            welcome.setText("Benvenuto, "+auth.getCurrentUser().getEmail());
         else
             startActivity(loginact);
         final Intent intentadd = new Intent(this, Add_Activity.class);
@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Cess non logoutare o frat",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Cess non logouttare o frat",Toast.LENGTH_SHORT).show();
                 auth.signOut();
                 if(auth.getCurrentUser() == null)
                 {
