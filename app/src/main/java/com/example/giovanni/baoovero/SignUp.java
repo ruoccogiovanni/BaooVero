@@ -48,6 +48,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //Init Firebase
         auth = FirebaseAuth.getInstance();
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(SignUp.this,MainActivity.class));
+    }
+
 
     @Override
     public void onClick(View view) {

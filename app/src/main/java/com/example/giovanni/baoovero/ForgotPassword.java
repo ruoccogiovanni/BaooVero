@@ -44,6 +44,11 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         auth = FirebaseAuth.getInstance();
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ForgotPassword.this,MainActivity.class));
+    }
 
     @Override
     public void onClick(View view) {

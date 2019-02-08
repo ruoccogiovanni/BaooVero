@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,7 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //View
+
+            //View
         btnLogin = (Button)findViewById(R.id.login_btn_login);
         input_email = (EditText)findViewById(R.id.login_email);
         input_password = (EditText)findViewById(R.id.login_password);
@@ -45,10 +48,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Init Firebase Auth
         auth = FirebaseAuth.getInstance();
 
-        //Check already session , if ok-> DashBoard
+
         if(auth.getCurrentUser() != null)
             startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+    }
+
+
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.login_btn_forgot_password)
