@@ -3,7 +3,6 @@
     package="com.example.giovanni.baoovero">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -13,26 +12,33 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FilterActivity"></activity>
-        <activity android:name=".SignUp"
-                  android:parentActivityName=".MainActivity"/>
-        <activity android:name=".LoginActivity"
-                  android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ForgotPassword"
-                  android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SliderActivity"></activity>
+        <activity android:name=".FilterActivity" />
+        <activity
+            android:name=".SignUp"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ForgotPassword"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".Dog_Activity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".ActivitySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity"
-                  android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".DashBoard" />
-        <activity android:name=".Add_Activity"
-                  android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Add_Activity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

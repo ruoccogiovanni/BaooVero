@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         myrv.setAdapter(myAdapter);
         
         final Intent intentprofile = new Intent(this, ProfileActivity.class);
-        final Intent intentlogin = new Intent(this, LoginActivity.class);
+        final Intent intentabout = new Intent(this, SliderActivity.class);
         final Intent intentadd = new Intent(this, Add_Activity.class);
 
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intentadd);
                         break;
                     case R.id.about:
-                        startActivity(intentlogin);
+                        startActivity(intentabout);
                         break;
                 }
                 return true;

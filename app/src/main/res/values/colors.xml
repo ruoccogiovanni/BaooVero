@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="bianco">#FFFF</color>
     <color name="prova">#F4B558</color>
+    <color name="active_dots">#fffafa</color>
+    <color name="inactive_dots">#83878b</color>
 </resources>
