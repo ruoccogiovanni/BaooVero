@@ -22,7 +22,7 @@
         android:layout_below="@+id/icon"
         android:id="@+id/dashboard_welcome"
         android:layout_centerHorizontal="true"
-        android:text="Benvenuto, utente"
+        android:text="Benvenuto, utenteee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Borderless"
