@@ -39,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.tv_dog_name.setText(mData.get(position).getName());
+        holder.tv_dog_breed.setText(mData.get(position).getBreed());
         holder.img_dog_thumbnail.setImageResource(mData.get(position).getThumbnail());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_dog_name;
+        TextView tv_dog_breed;
         ImageView img_dog_thumbnail;
         CardView cardView ;
 
@@ -82,6 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
 
             tv_dog_name = (TextView) itemView.findViewById(R.id.dog_name_id) ;
+            tv_dog_breed=(TextView) itemView.findViewById(R.id.dog_breed_id);
             img_dog_thumbnail = (ImageView) itemView.findViewById(R.id.dog_img_id);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
 
