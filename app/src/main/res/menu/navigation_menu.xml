@@ -5,11 +5,7 @@
         android:title="Profilo"
         android:icon="@drawable/ic_icona_profilo">
     </item>
-    <item
-        android:id="@+id/filtra"
-        android:title="Filtra"
-        android:icon="@drawable/ic_filter">
-    </item>
+
     <item
         android:id="@+id/about"
         android:title="About"

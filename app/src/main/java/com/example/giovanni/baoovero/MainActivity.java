@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -86,13 +88,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflauto = getMenuInflater();
+        inflauto.inflate(R.menu.right_menu,menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(t.onOptionsItemSelected(item))
             return true;
-
+        switch (item.getItemId()){
+            case R.id.preferiti:
+            Toast.makeText(getApplicationContext(), "Preferitiii", Toast.LENGTH_SHORT).show();
+            return true;
+            case R.id.filtra:
+                startActivity(new Intent(MainActivity.this,FilterActivity.class));
+            return true;}
         return super.onOptionsItemSelected(item);
     }
 
