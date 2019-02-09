@@ -28,7 +28,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     private boolean isOpen = false;
     private ConstraintSet layout1, layout2, layout3;
     private ConstraintLayout constraintLayout;
-    private ImageView imageViewPhoto;
     private LikeButton likeButton;
     private Vibrator myVib;
     @Override
@@ -133,18 +132,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
 
 
-
-       // Window w = getWindow();
-      //  w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        //Remove title bar
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//Remove notification bar
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-//set content view AFTER ABOVE sequence (to avoid crash)
-        //this.setContentView(R.layout.activity_dog_);
 
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();

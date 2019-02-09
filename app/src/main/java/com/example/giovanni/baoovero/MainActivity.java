@@ -46,17 +46,12 @@ public class MainActivity extends AppCompatActivity {
         listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
         listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+        RecyclerView myrv = findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,listacani);
         myrv.setLayoutManager(new GridLayoutManager(this,1));
         myrv.setAdapter(myAdapter);
-        
-        final Intent intentprofile = new Intent(this, ProfileActivity.class);
-        final Intent intentabout = new Intent(this, SliderActivity.class);
-        final Intent intentfilter = new Intent(this, FilterActivity.class);
 
-
-        dl = (DrawerLayout)findViewById(R.id.dl);
+        dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         t.setDrawerIndicatorEnabled(true);
 
@@ -73,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.profilo:
-                        startActivity(intentprofile);
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
-                    case R.id.filtra:
-                        startActivity(intentfilter);
-                        break;
+                    //case R.id.sviluppatori:
+                    //    startActivity(...);
+                    //    break;
                     case R.id.about:
-                        startActivity(intentabout);
+                        startActivity(new Intent(MainActivity.this, SliderActivity.class));
                         break;
                 }
                 return true;
@@ -101,13 +96,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(t.onOptionsItemSelected(item))
             return true;
-        switch (item.getItemId()){
-            case R.id.preferiti:
-            Toast.makeText(getApplicationContext(), "Preferitiii", Toast.LENGTH_SHORT).show();
+        if (item.getItemId()==R.id.filtra)
+        {
+            startActivity(new Intent(MainActivity.this,FilterActivity.class));
             return true;
-            case R.id.filtra:
-                startActivity(new Intent(MainActivity.this,FilterActivity.class));
-            return true;}
+        }
         return super.onOptionsItemSelected(item);
     }
 
