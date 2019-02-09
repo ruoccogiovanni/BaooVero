@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#F4B558</color>
     <color name="colorPrimaryDark">#F4B558</color>
+    <color name="coloreprincipalescuro">#A77838</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="bianco">#FFFF</color>
+    <color name="bianco">#FBFF00</color>
     <color name="prova">#F4B558</color>
     <color name="active_dots">#fffafa</color>
     <color name="inactive_dots">#83878b</color>
