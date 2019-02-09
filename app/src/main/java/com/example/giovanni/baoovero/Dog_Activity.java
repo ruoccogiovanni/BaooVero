@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
@@ -30,9 +31,11 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     private ConstraintLayout constraintLayout;
     private LikeButton likeButton;
     private Vibrator myVib;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide(); //<< this
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
@@ -91,15 +94,15 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
 
-                Boolean PROVA = true;
-                if (PROVA) {
+
+                if (auth.getCurrentUser() != null) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + Tel));
                     startActivity(intent);
 
                 } else
-
-                    Toast.makeText(context, "STRUNZZ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_LONG).show();
+                   // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
         });
@@ -112,8 +115,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
 
-                Boolean PROVA = true;
-                if (PROVA) {
+                if (auth.getCurrentUser() != null) {
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setData(Uri.parse("mailto: "));
                     String[] contatto = {Email};
@@ -125,7 +127,8 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     startActivity(chooser);
                 } else
 
-                    Toast.makeText(context, "STRUNZZ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_LONG).show();
+                   // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
         });

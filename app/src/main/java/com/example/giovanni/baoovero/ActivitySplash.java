@@ -12,10 +12,10 @@ public class ActivitySplash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide(); //<< this
+        getSupportActionBar().hide();
 
 
-        //Code to start timer and take action after the timer ends
+        //Righe per far partire il timer della gif
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -23,11 +23,6 @@ public class ActivitySplash extends AppCompatActivity {
                 Intent mySuperIntent = new Intent(ActivitySplash.this, MainActivity.class);
                 startActivity(mySuperIntent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-
-
-                /* This 'finish()' is for exiting the app when back button pressed
-                *  from Home page which is ActivityHome
-                */
                 finish();
             }
         }, SPLASH_TIME);

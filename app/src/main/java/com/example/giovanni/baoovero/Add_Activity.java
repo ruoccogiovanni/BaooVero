@@ -57,7 +57,6 @@ public class Add_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SelectImage();
-                //  Toast.makeText(this,"biagio", Toast.LENGTH_LONG).show();
             }
         });
         btnavanti = (Button) findViewById(R.id.add_button);
@@ -69,10 +68,6 @@ public class Add_Activity extends AppCompatActivity {
         etphone = (EditText) findViewById(R.id.add_phone);
         etcity = (EditText) findViewById(R.id.add_city);
         etdescription = (EditText) findViewById(R.id.add_description);
-        //String addname = etname.getText().toString().trim();
-        //String addemail = etemail.getText().toString().trim();
-        //String addphone = etphone.getText().toString().trim();
-        //String adddescription = etdescription.getText().toString().trim();
         final int agemax = 20;
         sbage.setMax(agemax);
         tvage.setText("Età: " + sbage.getProgress());
@@ -129,12 +124,10 @@ public class Add_Activity extends AppCompatActivity {
                 }
                 if (addname.isEmpty())
                 {
-                    //Toast.makeText(Add_Activity.this, "Nome non inserito", Toast.LENGTH_SHORT).show();
                     nome=false;
                 }
                 if (addemail.isEmpty() || !addemail.contains("@"))
                 {
-                    //Toast.makeText(Add_Activity.this, "Email non valida", Toast.LENGTH_SHORT).show();
                     email=false;
                 }
             }
@@ -203,21 +196,15 @@ public class Add_Activity extends AppCompatActivity {
     @Override
     public  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
-
         if(resultCode== Activity.RESULT_OK){
-
             if(requestCode==REQUEST_CAMERA){
-
                 Bundle bundle = data.getExtras();
                 final Bitmap bmp = (Bitmap) bundle.get("data");
                 immagineviewID.setImageBitmap(bmp);
-
             }else if(requestCode==SELECT_FILE){
-
                 Uri selectedImageUri = data.getData();
                 immagineviewID.setImageURI(selectedImageUri);
             }
-
 }
     }
 
