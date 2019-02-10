@@ -39,12 +39,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intentadd);
+                Toast.makeText(ProfileActivity.this, "Clicca sull'immagine (molto carina a dirla tutta) per inserire una foto.", Toast.LENGTH_LONG).show();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Cess non logouttare o frat",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Torna presto!",Toast.LENGTH_SHORT).show();
                 auth.signOut();
                 if(auth.getCurrentUser() == null)
                 {
@@ -67,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (item.getItemId()==R.id.preferiti)
         {
-            Toast.makeText(getApplicationContext(),"Fevorit",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Questa è la pagina dei tuoi preferiti.",Toast.LENGTH_SHORT).show();
             //startActivity(new Intent(ProfileActivity.this,FilterActivity.class));
             return true;
         }

@@ -1,9 +1,12 @@
 package com.example.giovanni.baoovero;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -20,6 +23,9 @@ public class FilterSearchActivity extends AppCompatActivity {
     private RadioGroup groupgender;
     private RadioButton genderbutton;
     private TextView fttextage;
+    private EditText ftcity;
+    private Button ftback;
+    private Button ftbutton;
     List<Dog> listacani;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,9 @@ public class FilterSearchActivity extends AppCompatActivity {
         listacani=new ArrayList<>();
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
+        ftback = (Button) findViewById(R.id.ft_back);
+        ftbutton = (Button)findViewById(R.id.ft_button);
+        ftcity = (EditText) findViewById(R.id.ft_citta);
         final int agemax = 20;
         ftage.setMax(agemax);
         fttextage.setText("Età: " + ftage.getProgress());
@@ -44,7 +53,6 @@ public class FilterSearchActivity extends AppCompatActivity {
 
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
-
                     }
 
                     @Override
@@ -57,7 +65,33 @@ public class FilterSearchActivity extends AppCompatActivity {
         final AutoCompleteTextView ftcmpltbreed = findViewById(R.id.ft_cmplt_breed);
         AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
         ftcmpltbreed.setAdapter(adapter);
-
+        ftback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent (FilterSearchActivity.this,MainActivity.class));
+            }
+        });
+        ftbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String [] provincine = {"Agrigento","Alessandria","Ancona","Aosta","L'Aquila","Arezzo","Ascoli-Piceno","Asti","Avellino","Bari","Barletta-Andria-Trani","Belluno","Benevento","Bergamo","Biella","Bologna","Bolzano","Brescia","Brindisi","Cagliari","Caltanissetta","Campobasso","Carbonia Iglesias","Caserta","Catania","Catanzaro","Chieti","Como","Cosenza","Cremona","Crotone","Cuneo","Enna","Fermo","Ferrara","Firenze","Foggia","Forli-Cesena","Frosinone","Genova","Gorizia","Grosseto","Imperia","Isernia","La-Spezia","Latina","Lecce","Lecco","Livorno","Lodi","Lucca","Macerata","Mantova","Massa-Carrara","Matera","Medio Campidano","Messina","Milano","Modena","Monza-Brianza","Napoli","Novara","Nuoro","Ogliastra","Olbia Tempio","Oristano","Padova","Palermo","Parma","Pavia","Perugia","Pesaro-Urbino","Pescara","Piacenza","Pisa","Pistoia","Pordenone","Potenza","Prato","Ragusa","Ravenna","Reggio-Calabria","Reggio-Emilia","Rieti","Rimini","Roma","Rovigo","Salerno","Sassari","Savona","Siena","Siracusa","Sondrio","Taranto","Teramo","Terni","Torino","Trapani","Trento","Treviso","Trieste","Udine","Varese","Venezia","Verbania","Vercelli","Verona","Vibo-Valentia","Vicenza","Viterbo"};
+                String provincia = ftcity.toString().trim();
+                boolean boolprovincia=false;
+                for (String provinciona:provincine)
+                {
+                    if (provincia.equalsIgnoreCase(provinciona)) {
+                        boolprovincia = true;
+                        break;
+                    }
+                }
+                Toast.makeText(FilterSearchActivity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_SHORT).show();
+                if (boolprovincia)
+                {
+                    Toast.makeText(FilterSearchActivity.this, "Ecco i cani cercati.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FilterSearchActivity.this, FilterActivity.class));
+                }
+            }
+        });
     }
 
     private void fillDogList() {
@@ -87,12 +121,11 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_westie));
         dogList.add(new Portrait_Dog("Yorkshire", R.drawable.image_yorkshire));
     }
-    //filtro
+
     public void ftclick(View v)
     {
         int idbutton=groupgender.getCheckedRadioButtonId();
         genderbutton=(RadioButton)findViewById(idbutton);
-        String pressedbutton = genderbutton.getText().toString();
-        Toast.makeText(getApplicationContext(),pressedbutton,Toast.LENGTH_SHORT).show();
+
     }
 }

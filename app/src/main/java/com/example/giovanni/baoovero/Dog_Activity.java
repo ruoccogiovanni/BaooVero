@@ -101,7 +101,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     startActivity(intent);
 
                 } else
-                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
                    // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
@@ -127,7 +127,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     startActivity(chooser);
                 } else
 
-                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
                    // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 

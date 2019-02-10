@@ -110,7 +110,14 @@ public class Add_Activity extends AppCompatActivity {
                 String addage = String.valueOf(intage);
                 int idbutton=rgroup.getCheckedRadioButtonId();
                 rbutton= findViewById(idbutton);
-                String addgender=rbutton.getText().toString();
+                String addgender="Maschio";
+                try {
+                     addgender= rbutton.getText().toString();
+                }
+                catch (NullPointerException e)
+                {
+                    Toast.makeText(Add_Activity.this, "Il tuo cane non ha sesso?", Toast.LENGTH_SHORT).show();
+                }
                 boolean provincia=false;
                 boolean nome=true;
                 boolean email=true;
@@ -130,14 +137,18 @@ public class Add_Activity extends AppCompatActivity {
                 {
                     email=false;
                 }
+                if (provincia&&nome&&email)
+                {
+                    Toast.makeText(Add_Activity.this, "Hai aggiunto il tuo cane.", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
             }
         });
-        final Intent intentmain = new Intent(this, MainActivity.class);
         btnindietro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Add_Activity.this,"Aggiunta fallita",Toast.LENGTH_SHORT).show();
-                startActivity(intentmain);
+                startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
             }
         });
     }
@@ -199,21 +210,19 @@ public class Add_Activity extends AppCompatActivity {
         if(resultCode== Activity.RESULT_OK){
             if(requestCode==REQUEST_CAMERA){
                 Bundle bundle = data.getExtras();
-                final Bitmap bmp = (Bitmap) bundle.get("data");
+                final Bitmap bmp = (Bitmap) bundle.get("d9ata");
                 immagineviewID.setImageBitmap(bmp);
             }else if(requestCode==SELECT_FILE){
                 Uri selectedImageUri = data.getData();
                 immagineviewID.setImageURI(selectedImageUri);
             }
-}
+            }
     }
 
     public void rbclick(View v)
     {
         int idbutton=rgroup.getCheckedRadioButtonId();
         rbutton=(RadioButton)findViewById(idbutton);
-        String pressedbutton = rbutton.getText().toString();
-        Toast.makeText(getApplicationContext(),pressedbutton,Toast.LENGTH_SHORT).show();
     }
 }
 

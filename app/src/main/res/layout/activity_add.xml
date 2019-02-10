@@ -59,7 +59,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="380dp"
         android:layout_marginEnd="16dp"
-        android:hint="Inserire Numero di Telefono           "
+        android:hint="Inserire Numero di Telefono"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="430dp"
         android:layout_marginEnd="16dp"
-        android:hint="Inserire provincia                  "
+        android:hint="Inserire provincia"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,9 +109,9 @@
         android:layout_marginEnd="16dp"
         android:hint="Scrivi qui una breve descrizione.\n\n"
         android:inputType="textLongMessage|textMultiLine|textCapSentences"
-        android:lines="8"
-        android:maxLines="10"
-        android:minLines="3"
+        android:lines="3"
+        android:maxLines="6"
+        android:minLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textdescr" />
@@ -160,8 +160,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="250dp"
-        android:text="Eta"
-        android:textStyle="bold"
+        android:text="Età"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -209,7 +209,6 @@
         android:hint="Selezionare razza                  "
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
