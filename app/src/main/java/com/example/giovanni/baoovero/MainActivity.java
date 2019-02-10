@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         if (item.getItemId()==R.id.filtra)
         {
-            startActivity(new Intent(MainActivity.this,FilterActivity.class));
+            startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
