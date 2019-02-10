@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <EditText
         android:id="@+id/add_dog_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
         android:layout_marginTop="20dp"
-        android:hint="Inserire nome                        "
+        android:layout_marginEnd="16dp"
+        android:hint="Inserire nome"
         android:inputType="textShortMessage|textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,17 +24,20 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="320dp"
         android:text="Email*"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_email"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="330dp"
-        android:hint="Inserire Email valida                  "
+        android:layout_marginEnd="16dp"
+        android:hint="Inserire Email valida"
         android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,17 +48,20 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="370dp"
         android:text="Telefono"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="380dp"
+        android:layout_marginEnd="16dp"
         android:hint="Inserire Numero di Telefono           "
         android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,21 +72,22 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="420dp"
         android:text="Provincia*"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_city"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="430dp"
+        android:layout_marginEnd="16dp"
         android:hint="Inserire provincia                  "
         android:inputType="textShortMessage|textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textdescr"
@@ -88,19 +96,25 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="470dp"
         android:text="Descrizione"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="480dp"
-        android:hint="Inserire breve descrizione"
-        android:inputType="textLongMessage|textCapWords"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Scrivi qui una breve descrizione.\n\n"
+        android:inputType="textLongMessage|textMultiLine|textCapSentences"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textdescr" />
 
 
     <ImageView
@@ -109,7 +123,7 @@
         android:layout_height="226dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/ic_dogquattroterzi"
+        android:background="@drawable/ic_adddog"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -131,11 +145,11 @@
 
     <SeekBar
         android:id="@+id/seekAge"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="33dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="61dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAge" />
@@ -147,6 +161,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="250dp"
         android:text="Eta"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -184,20 +199,19 @@
     </RadioGroup>
 
 
-
     <AutoCompleteTextView
         android:id="@+id/cmpltbreed"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
         android:layout_marginTop="60dp"
-        android:inputType="textShortMessage|textCapWords"
+        android:layout_marginEnd="16dp"
         android:hint="Selezionare razza                  "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="393dp"
+        android:inputType="textShortMessage|textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/add_button"
@@ -225,7 +239,7 @@
         android:text="INDIETRO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_button"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

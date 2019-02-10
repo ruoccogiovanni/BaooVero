@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SliderActivity"></activity>
+        <activity android:name=".SliderActivity" />
         <activity android:name=".FilterActivity" />
         <activity
             android:name=".SignUp"
@@ -38,7 +38,8 @@
         <activity android:name=".DashBoard" />
         <activity
             android:name=".Add_Activity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ProfileActivity" />
     </application>
+
 
 </manifest>
