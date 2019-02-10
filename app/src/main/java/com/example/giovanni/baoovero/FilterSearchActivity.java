@@ -87,6 +87,7 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_westie));
         dogList.add(new Portrait_Dog("Yorkshire", R.drawable.image_yorkshire));
     }
+    //filtro
     public void ftclick(View v)
     {
         int idbutton=groupgender.getCheckedRadioButtonId();
