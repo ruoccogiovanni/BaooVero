@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,6 +50,8 @@ public class Add_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        View v = findViewById(android.R.id.content);
+        Snackbar.make(v,"Clicca sull'immagine (molto carina, a dirla tutta) per inserire una foto.",Snackbar.LENGTH_LONG).show();
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         listacani=new ArrayList<>();
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
@@ -224,5 +227,10 @@ public class Add_Activity extends AppCompatActivity {
         int idbutton=rgroup.getCheckedRadioButtonId();
         rbutton=(RadioButton)findViewById(idbutton);
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
+    }
 }
+
 

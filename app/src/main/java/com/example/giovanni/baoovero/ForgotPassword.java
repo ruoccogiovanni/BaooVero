@@ -2,6 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     private Button btnResetPass;
     private TextView btnBack;
     private RelativeLayout activity_forgot;
-
+    private Vibrator myVib;
     private FirebaseAuth auth;
 
     @Override
@@ -36,7 +37,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         btnResetPass = (Button)findViewById(R.id.forgot_btn_reset);
         btnBack = (TextView)findViewById(R.id.forgot_btn_back);
         activity_forgot = (RelativeLayout)findViewById(R.id.activity_forgot_password);
-
+        myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         btnResetPass.setOnClickListener(this);
         btnBack.setOnClickListener(this);
 
@@ -54,13 +55,22 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view.getId() == R.id.forgot_btn_back)
         {
-            startActivity(new Intent(this,MainActivity.class));
+            myVib.vibrate(25);
+            startActivity(new Intent(this,LoginActivity.class));
             finish();
         }
         else  if(view.getId() == R.id.forgot_btn_reset)
         {
-            resetPassword(input_email.getText().toString());
+            myVib.vibrate(25);
             closeKeyboard();
+            if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@"))
+            {
+                Snackbar snackBar = Snackbar.make(activity_forgot,"C'è qualcosa che non va. Sicuro di aver inserito correttamente la tua email?",Snackbar.LENGTH_LONG);
+                snackBar.show();
+            }
+            else
+            resetPassword(input_email.getText().toString());
+
         }
     }
 
@@ -71,7 +81,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato la password all'email: "+email,Snackbar.LENGTH_SHORT);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato la password all'email: "+email,Snackbar.LENGTH_LONG);
                             snackBar.show();
                         }
                         else{

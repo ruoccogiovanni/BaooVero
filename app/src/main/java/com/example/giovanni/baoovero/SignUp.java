@@ -2,6 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     TextView btnLogin,btnForgotPass;
     EditText input_email,input_pass;
     RelativeLayout activity_sign_up;
-
+    private Vibrator myVib;
     private FirebaseAuth auth;
     Snackbar snackbar;
 
@@ -40,7 +41,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         input_email = (EditText)findViewById(R.id.signup_email);
         input_pass = (EditText)findViewById(R.id.signup_password);
         activity_sign_up = (RelativeLayout)findViewById(R.id.activity_sign_up);
-
+        myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         btnSignup.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnForgotPass.setOnClickListener(this);
@@ -58,16 +59,26 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.signup_btn_login){
-            startActivity(new Intent(SignUp.this,MainActivity.class));
+            myVib.vibrate(25);
+            startActivity(new Intent(SignUp.this,LoginActivity.class));
             finish();
         }
         else if(view.getId() == R.id.signup_btn_forgot_pass){
+            myVib.vibrate(25);
             startActivity(new Intent(SignUp.this,ForgotPassword.class));
             finish();
         }
         else if(view.getId() == R.id.signup_btn_register){
-            signUpUser(input_email.getText().toString(),input_pass.getText().toString());
+            myVib.vibrate(25);
             closeKeyboard();
+            if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_pass.getText().toString().isEmpty())
+            {
+                Snackbar snackBar = Snackbar.make(activity_sign_up, "C'è qualcosa che non va. Sicuro di aver inserito correttamente email e password?", Snackbar.LENGTH_LONG);
+                snackBar.show();
+            }
+            else
+            signUpUser(input_email.getText().toString(),input_pass.getText().toString());
+
         }
     }
 

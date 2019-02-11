@@ -2,6 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     private TextView[] mDots;
     private ImageView[] dots;
     private Button BnNext;
+    private Vibrator myVib;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide(); //<< this
@@ -41,7 +43,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
         addDotsIndicator(0);
         BnNext = (Button) findViewById(R.id.iniziamoButton);
         BnNext.setOnClickListener(this);
-
+        myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -89,6 +91,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iniziamoButton:
+                myVib.vibrate(25);
                 startActivity(new Intent((this),MainActivity.class));
                 break;
         }

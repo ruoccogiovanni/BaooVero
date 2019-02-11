@@ -2,6 +2,8 @@ package com.example.giovanni.baoovero;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button adddog;
     private FirebaseAuth auth;
     private TextView welcome;
-
+    private Vibrator myVib;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -26,25 +28,26 @@ public class ProfileActivity extends AppCompatActivity {
         logout=(Button)findViewById(R.id.profile_logout);
         adddog=(Button)findViewById(R.id.profile_add);
         welcome=(TextView)findViewById(R.id.profile_welcome);
+        myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null)
             welcome.setText("Benvenuto, "+auth.getCurrentUser().getEmail());
         else
             startActivity(loginact);
-        final Intent intentadd = new Intent(this, Add_Activity.class);
         final Intent intentmain = new Intent(this, MainActivity.class);
 
 
         adddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intentadd);
-                Toast.makeText(ProfileActivity.this, "Clicca sull'immagine (molto carina a dirla tutta) per inserire una foto.", Toast.LENGTH_LONG).show();
+                myVib.vibrate(25);
+                startActivity(new Intent(ProfileActivity.this,Add_Activity.class));
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myVib.vibrate(100);
                 Toast.makeText(getApplicationContext(),"Torna presto!",Toast.LENGTH_SHORT).show();
                 auth.signOut();
                 if(auth.getCurrentUser() == null)
@@ -73,5 +76,9 @@ public class ProfileActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ProfileActivity.this,MainActivity.class));
     }
 }

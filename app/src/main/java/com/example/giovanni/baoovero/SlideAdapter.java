@@ -25,16 +25,20 @@ public class SlideAdapter extends PagerAdapter {
     // list of titles
     public String[] lst_title = {
             "INCONTRARCI",
-            "SCOPARE",
+            "COSE SCONCE", //QUI C'ERA SCOPARE
             "DEPRESSIONE",
             "POST PARTO"
     }   ;
     // list of descriptions
     public String[] lst_description = {
-            "Lo scopo della nostra applicazione è trovare compagni di gioco ai nostri cuccioli. E magar mettr a mazz o cavr.",
-            "Sti sfaccimm e chen stann tutt nfuchet. Ma mocc e mamm lor vulimm chiava pur ij e te? Chiamm'm ciaccarè <3",
-            "Si lor chiavn e nuj no stam nguajet auer.",
-            "Ij m pigl o chiu bell... nun m cacà o cazz."
+            "Lo scopo della nostra applicazione è trovare compagni di gioco ai nostri cuccioli.",
+            "Questi cagnolini hanno l'aria da furfanti, un po' come noi.",
+            "Qui arriva il momento di pensare che loro hanno trovato l'amore, e noi no.",
+            "Finalmente un easter egg, e che diamine."
+            //E magar mettr a mazz o cavr.",
+            //"Sti sfaccimm e chen stann tutt nfuchet. Ma mocc e mamm lor vulimm chiava pur ij e te? Chiamm'm ciaccarè <3",
+            //"Si lor chiavn e nuj no stam nguajet auer.",
+            //"Ij m pigl o chiu bell... nun m cacà o cazz."
     };
     // list of background colors
     public int[]  lst_backgroundcolor = {
