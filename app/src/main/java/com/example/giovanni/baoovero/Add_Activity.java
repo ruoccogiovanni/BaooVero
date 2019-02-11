@@ -1,6 +1,7 @@
 package com.example.giovanni.baoovero;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,9 +9,11 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -22,11 +25,19 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Add_Activity extends AppCompatActivity {
     ImageView immagineviewID;
@@ -48,14 +59,20 @@ public class Add_Activity extends AppCompatActivity {
     private EditText etdescription;
     List<Dog> listacani;
     private DatabaseReference mDatabase;
-  
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    private Uri selectedImageUri;
+    private View v;
+    private String urlimmagine;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        View v = findViewById(android.R.id.content);
-        Snackbar.make(v,"Clicca sull'immagine (molto carina, a dirla tutta) per inserire una foto.",Snackbar.LENGTH_LONG).show();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        v = findViewById(android.R.id.content);
+        Snackbar.make(v,"Clicca sull'immagine per inserire una foto.",Snackbar.LENGTH_LONG).show();
         mDatabase= FirebaseDatabase.getInstance().getReference();
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         listacani=new ArrayList<>();
@@ -147,9 +164,10 @@ public class Add_Activity extends AppCompatActivity {
                 }
                 if (provincia&&nome&&email)
                 {
-                    Toast.makeText(Add_Activity.this, "Hai aggiunto il tuo cane.", Toast.LENGTH_SHORT).show();
-                    Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,1);
+                    DogProva cane = new DogProva(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail);
                     mDatabase.child("Cani").push().setValue(cane);
+                    uploadImage();
+                    System.out.println(urlimmagine);
                 }
                 else
                 Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
@@ -224,7 +242,7 @@ public class Add_Activity extends AppCompatActivity {
                 final Bitmap bmp = (Bitmap) bundle.get("d9ata");
                 immagineviewID.setImageBitmap(bmp);
             }else if(requestCode==SELECT_FILE){
-                Uri selectedImageUri = data.getData();
+                 selectedImageUri = data.getData();
                 immagineviewID.setImageURI(selectedImageUri);
             }
             }
@@ -239,6 +257,50 @@ public class Add_Activity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
     }
+
+    private void uploadImage() {
+
+        if(selectedImageUri != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Caricamento in corso ");
+            progressDialog.setCancelable(false);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.show();
+
+
+            StorageReference ref = storageReference.child("Foto/"+ UUID.randomUUID().toString());
+            ref.putFile(selectedImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!urlTask.isSuccessful());
+                            Uri downloadUrl = urlTask.getResult();
+                            urlimmagine=downloadUrl.toString();
+                            mDatabase.child("Cani").child().child("url").setValue(urlimmagine);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Caricamento in corso: "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+
 }
 
 
