@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "740390149429-4tda34fghtuc5pinber9t8ihv4euphs0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.giovanni.baoovero",
+            "certificate_hash": "9e1b60b35b5f344785199090e73f73b86ad2fc4f"
+          }
+        },
+        {
           "client_id": "740390149429-pue23ksj2d4pdse2dk9o2k4voibt40qv.apps.googleusercontent.com",
           "client_type": 3
         }
