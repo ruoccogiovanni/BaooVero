@@ -22,6 +22,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,8 @@ public class Add_Activity extends AppCompatActivity {
     private EditText etcity;
     private EditText etdescription;
     List<Dog> listacani;
-
+    private DatabaseReference mDatabase;
+  
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class Add_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         View v = findViewById(android.R.id.content);
         Snackbar.make(v,"Clicca sull'immagine (molto carina, a dirla tutta) per inserire una foto.",Snackbar.LENGTH_LONG).show();
+        mDatabase= FirebaseDatabase.getInstance().getReference();
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         listacani=new ArrayList<>();
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
@@ -143,7 +148,10 @@ public class Add_Activity extends AppCompatActivity {
                 if (provincia&&nome&&email)
                 {
                     Toast.makeText(Add_Activity.this, "Hai aggiunto il tuo cane.", Toast.LENGTH_SHORT).show();
+                    Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,1);
+                    mDatabase.child("Cani").push().setValue(cane);
                 }
+                else
                 Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
             }
         });

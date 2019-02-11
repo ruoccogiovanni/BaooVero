@@ -13,8 +13,7 @@ package com.example.giovanni.baoovero;
         private String Age ;
         private int Thumbnail ;
 
-        public Dog() {
-        }
+        public Dog() { }
 
         public Dog(String name, String breed, String description,String gender, String city, String age, String tel, String email, int thumbnail) {
             Name = name;
