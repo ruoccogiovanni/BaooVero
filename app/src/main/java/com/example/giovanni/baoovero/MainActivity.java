@@ -27,8 +27,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private  RecyclerView myrv;
-    private List<DogProva> listacani;
-    private RecyclerViewAdapterProva myAdapter;
+    private List<Dog> listacani;
+    private RecyclerViewAdapter myAdapter;
     private DatabaseReference myRef;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                    DogProva cane = posSnapshot.getValue(DogProva.class);
+                    Dog cane = posSnapshot.getValue(Dog.class);
                     listacani.add(cane);
                 }
-                myAdapter=new RecyclerViewAdapterProva( MainActivity.this,listacani);
+                myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
 
             }

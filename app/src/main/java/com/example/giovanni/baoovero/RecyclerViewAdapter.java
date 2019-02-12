@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,9 +39,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
+        Dog currentdog= mData.get(position);
         holder.tv_dog_name.setText(mData.get(position).getName());
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
-        holder.img_dog_thumbnail.setImageResource(mData.get(position).getThumbnail());
+        Picasso.get()
+                .load(currentdog.getThumbnail())
+                .placeholder(R.drawable.speriamo)
+                .fit()
+                .centerCrop()
+                .into(holder.img_dog_thumbnail);
+
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

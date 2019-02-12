@@ -160,7 +160,7 @@ public class Add_Activity extends AppCompatActivity {
                 if (provincia&&nome&&email)
                 {
                     getUrlimmagine();
-                    DogProva cane = new DogProva(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,urlimmagine);
+                    Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,urlimmagine);
                     mDatabase.child("Cani").push().setValue(cane);
                     Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Add_Activity.this,ProfileActivity.class));

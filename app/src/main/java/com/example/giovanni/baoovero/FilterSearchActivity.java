@@ -26,13 +26,12 @@ public class FilterSearchActivity extends AppCompatActivity {
     private EditText ftcity;
     private Button ftback;
     private Button ftbutton;
-    List<Dog> listacani;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_search);
         groupgender=(RadioGroup)findViewById(R.id.filter_gender);
-        listacani=new ArrayList<>();
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
         ftback = (Button) findViewById(R.id.ft_back);
