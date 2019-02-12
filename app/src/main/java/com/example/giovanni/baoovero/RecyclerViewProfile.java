@@ -40,7 +40,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
         Picasso.get()
                 .load(currentdog.getThumbnail())
-                .placeholder(R.drawable.loading_dog)
+                .placeholder(R.drawable.loading_prova)
                 .fit()
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);

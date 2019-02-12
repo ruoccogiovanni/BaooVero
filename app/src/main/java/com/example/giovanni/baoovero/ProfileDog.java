@@ -76,13 +76,13 @@ public class ProfileDog extends AppCompatActivity {
         tvage.setText(Age);
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_dog)
+                .placeholder(R.drawable.loading_prova)
                 .fit()
                 .centerCrop()
                 .into(img);
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_dog)
+                .placeholder(R.drawable.loading_prova)
                 .fit()
                 .centerCrop()
                 .into(imag);
