@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
+import com.squareup.picasso.Picasso;
 
 
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
@@ -52,10 +53,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         likeButton = findViewById(R.id.heart_button);
         likeButton.setOnLikeListener(this);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-
-
-            String annio=" anni";
-
+        String annio=" anni";
         // Recieve data
         Intent intent = getIntent();
         String Name = intent.getExtras().getString("Name");
@@ -64,14 +62,11 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         String Gender = intent.getExtras().getString("Gender");
         String City = "Città: " + intent.getExtras().getString("City");
         String eig = intent.getExtras().getString("Age");
-        if(Integer.parseInt(eig)==1)
-        {
-            annio=" anno";
-        }
+        if(Integer.parseInt(eig)==1)  annio=" anno";
         String Age = "Età: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
-        int image = intent.getExtras().getInt("Thumbnail");
+        final String image = intent.getExtras().getString("Thumbnail");
 
         // Setting values
 
@@ -81,20 +76,25 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         tvgender.setText(Gender);
         tvcity.setText(City);
         tvage.setText(Age);
-        img.setImageResource(image);
-        imag.setImageResource(image);
+        Picasso.get()
+                .load(image)
+                .placeholder(R.drawable.speriamo)
+                .fit()
+                .centerCrop()
+                .into(img);
+        Picasso.get()
+                .load(image)
+                .placeholder(R.drawable.speriamo)
+                .fit()
+                .centerCrop()
+                .into(imag);
 
         Button btcall = (Button) findViewById(R.id.chiama);
-
-
-
         btcall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-
-
                 if (auth.getCurrentUser() != null) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + Tel));
@@ -126,14 +126,11 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     Intent chooser = Intent.createChooser(intent, "Send email");
                     startActivity(chooser);
                 } else
-
                     Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
                    // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
         });
-
-
 
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
@@ -145,8 +142,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
-
-
 
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -169,7 +164,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         }
         return false;
     }
-
 
     @Override
     public void liked(LikeButton likeButton) {
