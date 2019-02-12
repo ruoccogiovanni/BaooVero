@@ -12,6 +12,7 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfileDog"></activity>
         <activity
             android:name=".FavouriteActivity"
             android:parentActivityName=".ProfileActivity" />

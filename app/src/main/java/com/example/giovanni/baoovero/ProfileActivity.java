@@ -36,13 +36,21 @@ public class ProfileActivity extends AppCompatActivity {
     private List<Dog> listacani;
     private RecyclerViewProfile myAdapter;
     private DatabaseReference myRef;
+    private String utente;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        welcome=(TextView)findViewById(R.id.profile_welcome);
         auth = FirebaseAuth.getInstance();
+        final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
+        if(auth.getCurrentUser() != null) {
+            welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail());
+            utente = auth.getCurrentUser().getUid();
+        }
+        else
+            startActivity(loginact);
         logout=(Button)findViewById(R.id.profile_logout);
         adddog=(Button)findViewById(R.id.profile_add);
-        welcome=(TextView)findViewById(R.id.profile_welcome);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
@@ -52,9 +60,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                    Dog cane = posSnapshot.getValue(Dog.class);
-                    listacani.add(cane);
-                }
+                    if (posSnapshot.child("utente").getValue().toString()==utente)
+                    {
+                        Dog cane = posSnapshot.getValue(Dog.class);
+                        listacani.add(cane);
+                    }
+                    }
                 myAdapter=new RecyclerViewProfile( ProfileActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
 
@@ -66,11 +77,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
-        if(auth.getCurrentUser() != null)
-            welcome.setText("Benvenuto, "+auth.getCurrentUser().getEmail());
-        else
-            startActivity(loginact);
         final Intent intentmain = new Intent(this, MainActivity.class);
 
 

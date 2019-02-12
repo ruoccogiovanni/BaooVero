@@ -40,7 +40,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
         Picasso.get()
                 .load(currentdog.getThumbnail())
-                .placeholder(R.drawable.speriamo)
+                .placeholder(R.drawable.loading_dog)
                 .fit()
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);
@@ -50,7 +50,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext,Dog_Activity.class);
+                Intent intent = new Intent(mContext,ProfileDog.class);
 
                 // passing data to the dog activity
                 intent.putExtra("Name",mData.get(position).getName());

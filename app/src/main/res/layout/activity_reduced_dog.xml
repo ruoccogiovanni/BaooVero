@@ -7,9 +7,9 @@
     tools:context="com.example.giovanni.baoovero.Dog_Activity">
 
     <ImageView
-        android:id="@+id/dogthumbnail"
+        android:id="@+id/profiledogimg"
         android:layout_width="0dp"
-        android:layout_height="460dp"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
     <ImageView
-        android:id="@+id/dogthumbnail2"
+        android:id="@+id/profiledogimg2"
         android:layout_width="112dp"
         android:layout_height="112dp"
         android:layout_marginStart="8dp"
@@ -25,56 +25,41 @@
         android:layout_marginEnd="8dp"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/dogthumbnail"
+        app:layout_constraintBottom_toBottomOf="@+id/profiledogimg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/profiledogimg"
         app:layout_constraintVertical_bias="0.45"
         />
 
-    <com.like.LikeButton
-        android:id="@+id/heart_button"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginBottom="70dp"
-        app:anim_scale_factor="3"
-        app:icon_size="16dp"
-        app:icon_type="heart"
-        app:layout_constraintBottom_toBottomOf="@+id/textGend"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textName"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
     <TextView
-        android:id="@+id/textName"
+        android:id="@+id/profile_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:text="Dog Name"
-
         android:textSize="22dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
+        app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
+        app:layout_constraintTop_toBottomOf="@+id/profiledogimg" />
 
     <TextView
-        android:id="@+id/textBreed"
+        android:id="@+id/profile_breed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:text="Breed"
-        android:textSize="16dp"
-        android:textStyle="bold"
-
-        app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
     <TextView
-        android:id="@+id/textGend"
+        android:id="@+id/profile_gender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -82,49 +67,48 @@
         android:text="Gender"
         android:textSize="16dp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
+        app:layout_constraintTop_toBottomOf="@+id/profiledogimg" />
 
     <TextView
-        android:id="@+id/textCity"
+        android:id="@+id/profile_city"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         android:text="City"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/dogthumbnail2"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2" />
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="@+id/profiledogimg2"
+        app:layout_constraintTop_toBottomOf="@+id/profiledogimg2" />
 
     <TextView
-        android:id="@+id/txtDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/profile_desc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:padding="16dp"
+        android:fitsSystemWindows="true"
+        android:scrollHorizontally="false"
         android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintStart_toStartOf="@+id/profile_age"
+        app:layout_constraintTop_toTopOf="@+id/profile_age" />
 
     <TextView
-        android:id="@+id/txtAge"
+        android:id="@+id/profile_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Age"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/textBreed"
-        app:layout_constraintTop_toTopOf="@+id/textCity" />
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="@+id/profile_city"
+        app:layout_constraintTop_toTopOf="@+id/profile_city" />
 
 
     <Button
-        android:id="@+id/chiama"
+        android:id="@+id/modifica"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="186dp"
         android:layout_height="48dp"
@@ -132,23 +116,37 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="15dp"
         android:background="#49b675"
-        android:text="Chiama"
+        android:text="Modifica"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/contatta"
+        app:layout_constraintEnd_toStartOf="@+id/elimina"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/contatta"
+        android:id="@+id/elimina"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
-        android:text="Contatta"
-        app:layout_constraintBaseline_toBaselineOf="@+id/chiama"
+        android:text="Elimina"
+        app:layout_constraintBaseline_toBaselineOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chiama" />
+        app:layout_constraintStart_toEndOf="@+id/modifica" />
 
+
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:alpha="0.7"
+        android:text="Swipe verso l'alto per maggiori informazioni"
+        android:visibility="invisible"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/modifica"
+        app:layout_constraintTop_toBottomOf="@+id/profile_breed" />
+    />
 </android.support.constraint.ConstraintLayout>
 

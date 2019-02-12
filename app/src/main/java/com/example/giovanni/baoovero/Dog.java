@@ -12,6 +12,7 @@ public class Dog {
     private String City;
     private String Age ;
     private String Thumbnail ;
+    private String utente;
 
     public Dog() { }
 
@@ -35,6 +36,14 @@ public class Dog {
 
     public String getBreed() {
         return Breed;
+    }
+
+    public String getUtente() {
+        return utente;
+    }
+
+    public void setUtente(String utente) {
+        this.utente = utente;
     }
 
     public String getDescription() {

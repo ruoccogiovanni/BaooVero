@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -56,8 +58,9 @@ public class Add_Activity extends AppCompatActivity {
     private EditText etcity;
     private EditText etdescription;
     private DatabaseReference mDatabase;
-    FirebaseStorage storage;
-    StorageReference storageReference;
+    private FirebaseAuth auth;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
     private Uri selectedImageUri;
     private View v;
     private String urlimmagine;
@@ -71,6 +74,9 @@ public class Add_Activity extends AppCompatActivity {
         v = findViewById(android.R.id.content);
         Snackbar.make(v,"Clicca sull'immagine per inserire una foto.",Snackbar.LENGTH_LONG).show();
         mDatabase= FirebaseDatabase.getInstance().getReference();
+       //serve a prendere l'uid utente
+        auth = FirebaseAuth.getInstance();
+        final String utente = FirebaseAuth.getInstance().getCurrentUser().getUid() ;
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
         addimmagine = findViewById(R.id.immaginepiuID);
@@ -161,6 +167,7 @@ public class Add_Activity extends AppCompatActivity {
                 {
                     getUrlimmagine();
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,urlimmagine);
+                    cane.setUtente(utente);
                     mDatabase.child("Cani").push().setValue(cane);
                     Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Add_Activity.this,ProfileActivity.class));

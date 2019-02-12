@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -17,39 +16,40 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.like.LikeButton;
-import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
 
-public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
+public class ProfileDog extends AppCompatActivity {
     float x1,x2,y1,y2;
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;
     private ImageView img, imag;
     private boolean isOpen = false;
     private ConstraintSet layout1, layout2, layout3;
     private ConstraintLayout constraintLayout;
-    private LikeButton likeButton;
     private Vibrator myVib;
     private FirebaseAuth auth;
+    private Button btmodifica;
+    private Button btelimina;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide(); //<< this
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        setContentView(R.layout.activity_dog_);
-        tvname = (TextView) findViewById(R.id.textName);
-        tvdescription = (TextView) findViewById(R.id.txtDesc);
-        tvbreed = (TextView) findViewById(R.id.textBreed);
-        tvgender = (TextView) findViewById(R.id.textGend);
-        tvcity = (TextView) findViewById(R.id.textCity);
-        tvage = (TextView) findViewById(R.id.txtAge);
-        img = (ImageView) findViewById(R.id.dogthumbnail);
-        imag = (ImageView) findViewById(R.id.dogthumbnail2);
-        likeButton = findViewById(R.id.heart_button);
-        likeButton.setOnLikeListener(this);
+
+        setContentView(R.layout.activity_profile_dog);
+
+        tvname = (TextView) findViewById(R.id.profile_name);
+        tvdescription = (TextView) findViewById(R.id.profile_desc);
+        tvbreed = (TextView) findViewById(R.id.profile_breed);
+        tvgender = (TextView) findViewById(R.id.profile_gender);
+        tvcity = (TextView) findViewById(R.id.profile_city);
+        tvage = (TextView) findViewById(R.id.profile_age);
+        img = (ImageView) findViewById(R.id.profiledogimg);
+        imag = (ImageView) findViewById(R.id.profiledogimg2);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         String annio=" anni";
         // Recieve data
@@ -65,7 +65,9 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         final String image = intent.getExtras().getString("Thumbnail");
+
         // Setting values
+
         tvname.setText(Name);
         tvbreed.setText(Breed);
         tvdescription.setText(Description);
@@ -85,45 +87,32 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                 .centerCrop()
                 .into(imag);
 
-        Button btcall = (Button) findViewById(R.id.chiama);
-        btcall.setOnClickListener(new View.OnClickListener() {
+        btmodifica = (Button) findViewById(R.id.modifica);
+        btmodifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-                if (auth.getCurrentUser() != null) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + Tel));
-                    startActivity(intent);
+               //
 
-                } else
-                    Snackbar.make(v,"Devi prima aver effettuato il login",Snackbar.LENGTH_SHORT);
-                                       // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
+                Toast.makeText(ProfileDog.this, "Modificato", Toast.LENGTH_SHORT).show();
+                
+                //
             }
 
         });
 
-        Button btcontact = (Button) findViewById(R.id.contatta);
+        btelimina = (Button) findViewById(R.id.elimina);
 
-        btcontact.setOnClickListener(new View.OnClickListener() {
+        btelimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
 
-                if (auth.getCurrentUser() != null) {
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setData(Uri.parse("mailto: "));
-                    String[] contatto = {Email};
-                    intent.putExtra(Intent.EXTRA_EMAIL, contatto);
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Incontriamoci!");
-                    intent.putExtra(Intent.EXTRA_TEXT, "Il mio cane è interessato a farsela con il tuo. Vediamoci e facciamoli divertire. Bacini :**");
-                    intent.setType("message/rfc822");
-                    Intent chooser = Intent.createChooser(intent, "Send email");
-                    startActivity(chooser);
-                } else
-                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
-                   // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
+                //
+                Toast.makeText(ProfileDog.this, "Eliminato", Toast.LENGTH_SHORT).show();
+                //
             }
 
         });
@@ -131,10 +120,10 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
         layout3 = new ConstraintSet();
-        constraintLayout = findViewById(R.id.constraint_layout);
-        layout2.clone(this, R.layout.activity_reducedprofile);
+        constraintLayout = findViewById(R.id.constraint_profile);
+        layout2.clone(this, R.layout.activity_reduced_dog);
         layout1.clone(constraintLayout);
-        layout3.clone(this, R.layout.activity_dog_);
+        layout3.clone(this, R.layout.activity_profile_dog);
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
@@ -155,20 +144,11 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     TransitionManager.beginDelayedTransition(constraintLayout);
                     layout3.applyTo(constraintLayout);
                     isOpen = !isOpen;
-            }
-            break;
+                }
+                break;
         }
         return false;
     }
-
-    @Override
-    public void liked(LikeButton likeButton) {
-        Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void unLiked(LikeButton likeButton) {
-        Toast.makeText(this, "Tolto dai preferiti!", Toast.LENGTH_SHORT).show();
-    }
+    
 }
 

@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
-
             }
 
             @Override
