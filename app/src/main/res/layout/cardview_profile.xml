@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview_id_profile"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardCornerRadius="4dp">
+
+    <android.support.constraint.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="242dp">
+
+        <TextView
+            android:id="@+id/dog_breed_id_profile2"
+            android:layout_width="205dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center|start"
+            android:text="Età:"
+            android:textColor="#2d2d2d"
+            android:textSize="19dp"
+            android:textStyle="bold|italic"
+            cardview:layout_constraintBottom_toTopOf="@+id/dog_breed_id_profile"
+            cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"
+            cardview:layout_constraintTop_toBottomOf="@+id/dog_name_id_profile" />
+
+        <ImageView
+            android:id="@+id/dog_img_id_profile"
+            android:layout_width="168dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:background="#2d2d2d"
+            android:scaleType="centerCrop"
+            cardview:layout_constraintStart_toStartOf="parent"
+            cardview:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dog_name_id_profile"
+            android:layout_width="204dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center|start|center_horizontal"
+            android:text="Dog Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="19dp"
+            android:textStyle="normal|bold|italic"
+            cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"
+            cardview:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dog_breed_id_profile"
+            android:layout_width="205dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center|start"
+            android:text="Breed"
+            android:textColor="#2d2d2d"
+            android:textSize="19dp"
+            android:textStyle="normal|bold|italic"
+            cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintHorizontal_bias="0.0"
+            cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"
+            cardview:layout_constraintTop_toBottomOf="@+id/dog_breed_id_profile2" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

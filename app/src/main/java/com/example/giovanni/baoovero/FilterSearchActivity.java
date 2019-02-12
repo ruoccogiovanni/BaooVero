@@ -24,7 +24,6 @@ public class FilterSearchActivity extends AppCompatActivity {
     private RadioButton genderbutton;
     private TextView fttextage;
     private EditText ftcity;
-    private Button ftback;
     private Button ftbutton;
 
     @Override
@@ -34,7 +33,6 @@ public class FilterSearchActivity extends AppCompatActivity {
         groupgender=(RadioGroup)findViewById(R.id.filter_gender);
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
-        ftback = (Button) findViewById(R.id.ft_back);
         ftbutton = (Button)findViewById(R.id.ft_button);
         ftcity = (EditText) findViewById(R.id.ft_citta);
         final int agemax = 20;
@@ -64,12 +62,7 @@ public class FilterSearchActivity extends AppCompatActivity {
         final AutoCompleteTextView ftcmpltbreed = findViewById(R.id.ft_cmplt_breed);
         AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
         ftcmpltbreed.setAdapter(adapter);
-        ftback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent (FilterSearchActivity.this,MainActivity.class));
-            }
-        });
+
         ftbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

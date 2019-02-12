@@ -12,12 +12,16 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FavouriteActivity"></activity>
+        <activity
+            android:name=".FavouriteActivity"
+            android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".FilterSearchActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".SliderActivity" />
-        <activity android:name=".FilterActivity" />
+        <activity
+            android:name=".FilterActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignUp"
             android:parentActivityName=".MainActivity" />
