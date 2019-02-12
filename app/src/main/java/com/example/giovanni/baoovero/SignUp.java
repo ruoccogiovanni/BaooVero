@@ -78,7 +78,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             closeKeyboard();
             if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_pass.getText().toString().isEmpty())
             {
-                Snackbar snackBar = Snackbar.make(activity_sign_up, "C'è qualcosa che non va. Sicuro di aver inserito correttamente email e password?", Snackbar.LENGTH_LONG);
+                Snackbar snackBar = Snackbar.make(activity_sign_up, "C'è qualcosa che non va. Sei sicuro di aver inserito correttamente email e password?", Snackbar.LENGTH_LONG);
                 snackBar.show();
             }
             else {
