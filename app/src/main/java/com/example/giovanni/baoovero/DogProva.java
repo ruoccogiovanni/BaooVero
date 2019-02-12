@@ -15,7 +15,7 @@ public class DogProva {
 
     public DogProva() { }
 
-    public DogProva(String name, String breed, String description,String gender, String city, String age, String tel, String email) {
+    public DogProva(String name, String breed, String description,String gender, String city, String age, String tel, String email,String thumbnail) {
         Name = name;
         Breed = breed;
         Description = description;
@@ -24,6 +24,7 @@ public class DogProva {
         Age = age;
         Tel = tel;
         Email = email;
+        Thumbnail=thumbnail;
 
     }
 

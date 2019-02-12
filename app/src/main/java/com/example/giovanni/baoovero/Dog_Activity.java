@@ -135,7 +135,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
 
 
-
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
         layout3 = new ConstraintSet();
@@ -143,8 +142,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         layout2.clone(this, R.layout.activity_reducedprofile);
         layout1.clone(constraintLayout);
         layout3.clone(this, R.layout.activity_dog_);
-
-
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){

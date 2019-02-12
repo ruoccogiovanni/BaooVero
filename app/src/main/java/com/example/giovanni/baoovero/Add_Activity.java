@@ -8,12 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.provider.MediaStore;
-
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -24,7 +22,6 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +32,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,7 +62,7 @@ public class Add_Activity extends AppCompatActivity {
     private Uri selectedImageUri;
     private View v;
     private String urlimmagine;
-
+    private  Bitmap bmp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +106,6 @@ public class Add_Activity extends AppCompatActivity {
 
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
-
                     }
 
                     @Override
@@ -164,10 +161,11 @@ public class Add_Activity extends AppCompatActivity {
                 }
                 if (provincia&&nome&&email)
                 {
-                    DogProva cane = new DogProva(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail);
+                    getUrlimmagine();
+                    DogProva cane = new DogProva(addname,addbreed,adddescription,addgender,addcity,addage,addphone,addemail,urlimmagine);
                     mDatabase.child("Cani").push().setValue(cane);
-                    uploadImage();
-                    System.out.println(urlimmagine);
+                    Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
                 }
                 else
                 Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
@@ -239,10 +237,12 @@ public class Add_Activity extends AppCompatActivity {
         if(resultCode== Activity.RESULT_OK){
             if(requestCode==REQUEST_CAMERA){
                 Bundle bundle = data.getExtras();
-                final Bitmap bmp = (Bitmap) bundle.get("d9ata");
+                bmp = (Bitmap) bundle.get("data");
+                uploadCamera();
                 immagineviewID.setImageBitmap(bmp);
             }else if(requestCode==SELECT_FILE){
                  selectedImageUri = data.getData();
+                uploadImage();
                 immagineviewID.setImageURI(selectedImageUri);
             }
             }
@@ -259,17 +259,13 @@ public class Add_Activity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-
-        if(selectedImageUri != null)
-        {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Caricamento in corso ");
-            progressDialog.setCancelable(false);
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.show();
-
-
-            StorageReference ref = storageReference.child("Foto/"+ UUID.randomUUID().toString());
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Caricamento in corso ");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+        StorageReference ref = storageReference.child("Foto/" + UUID.randomUUID().toString());
+        if (selectedImageUri != null) {
             ref.putFile(selectedImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -277,10 +273,9 @@ public class Add_Activity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                            while (!urlTask.isSuccessful());
+                            while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
-                            urlimmagine=downloadUrl.toString();
-                            mDatabase.child("Cani").child().child("url").setValue(urlimmagine);
+                            setUrlimmagine(downloadUrl);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -293,12 +288,60 @@ public class Add_Activity extends AppCompatActivity {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Caricamento in corso: "+(int)progress+"%");
+                            progressDialog.setMessage("Caricamento in corso: " + (int) progress + "%");
                         }
                     });
         }
+    }
+private void uploadCamera(){
+    final ProgressDialog progressDialog = new ProgressDialog(this);
+    progressDialog.setTitle("Caricamento in corso ");
+    progressDialog.setCancelable(false);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    progressDialog.show();
+    StorageReference ref = storageReference.child("Foto/" + UUID.randomUUID().toString());
+                     if (bmp!=null){
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] data = baos.toByteArray();
+                        ref.putBytes(data)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                progressDialog.dismiss();
+                                Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                                Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                                while (!urlTask.isSuccessful());
+                                Uri downloadUrl = urlTask.getResult();
+                                setUrlimmagine(downloadUrl);
+                           }
+                      })
+                            .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                           }
+                      })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                        .getTotalByteCount());
+                                progressDialog.setMessage("Caricamento in corso: "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+    public void setUrlimmagine(Uri prova)
+    {
+        urlimmagine=new String(prova.toString());
+    }
+    public String getUrlimmagine()
+    {
+        return urlimmagine;
     }
 
 }
