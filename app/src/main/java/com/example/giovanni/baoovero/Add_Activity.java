@@ -55,7 +55,6 @@ public class Add_Activity extends AppCompatActivity {
     private EditText etphone;
     private EditText etcity;
     private EditText etdescription;
-    List<Dog> listacani;
     private DatabaseReference mDatabase;
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -73,7 +72,6 @@ public class Add_Activity extends AppCompatActivity {
         Snackbar.make(v,"Clicca sull'immagine per inserire una foto.",Snackbar.LENGTH_LONG).show();
         mDatabase= FirebaseDatabase.getInstance().getReference();
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
-        listacani=new ArrayList<>();
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
         addimmagine = findViewById(R.id.immaginepiuID);
         addimmagine.setOnClickListener(new View.OnClickListener() {

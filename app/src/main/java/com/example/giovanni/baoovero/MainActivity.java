@@ -15,15 +15,21 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Dog> listacani;
-
-
+    private  RecyclerView myrv;
+    private List<DogProva> listacani;
+    private RecyclerViewAdapterProva myAdapter;
+    private DatabaseReference myRef;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -34,22 +40,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listacani = new ArrayList<>();
-        listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_olivi));
-        listacani.add(new Dog("Cico","Chihuahua","Sono un cane piccolino ma mi piace tanto giocare","Maschio","Salerno", "4","3347626298", "pepperaul@gmail.com", R.drawable.image_cico));
-        listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Enya","Meticcio","Non sanno ancora che sono un gatto","Femmina","Caserta", "7","3665048238", "manfr_96@gmail.com", R.drawable.image_enya));
-        listacani.add(new Dog("Piccola","Meticcio","Sono vecchia e non cammino","Femmina", "Caserta", "14", "3292127611", "ottaviafalco@gmail.com", R.drawable.image_piccola));
-        listacani.add(new Dog("Nina","Meticcio","Come fanno a non capirlo","Femmina","Caserta", "9","3292127611", "ottaviafalco@gmail.com", R.drawable.image_nina));
-        listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
-        listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
-        listacani.add(new Dog("Oliver","West Highland White Terrier","Oliviiiiiiiero","Maschio","Napoli", "4","3463919107", "gionni0797@gmail.com", R.drawable.image_westie));
-        listacani.add(new Dog("Giselle","Briard","Patàààà","Femmina", "Caserta", "8", "3932791138", "ivanorefix3@yahoo.com", R.drawable.image_gisy));
+        myRef= FirebaseDatabase.getInstance().getReference("Cani");
+        myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+        myrv.setLayoutManager(new GridLayoutManager(this, 1));
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
+                    DogProva cane = posSnapshot.getValue(DogProva.class);
+                    listacani.add(cane);
+                }
+                myAdapter=new RecyclerViewAdapterProva( MainActivity.this,listacani);
+                myrv.setAdapter(myAdapter);
 
-        RecyclerView myrv = findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,listacani);
-        myrv.setLayoutManager(new GridLayoutManager(this,1));
-        myrv.setAdapter(myAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
