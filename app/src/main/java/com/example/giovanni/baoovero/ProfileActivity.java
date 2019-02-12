@@ -60,11 +60,9 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                    if (posSnapshot.child("utente").getValue().toString()==utente)
-                    {
-                        Dog cane = posSnapshot.getValue(Dog.class);
-                        listacani.add(cane);
-                    }
+                    Dog cane = posSnapshot.getValue(Dog.class);
+                    listacani.add(cane);
+
                     }
                 myAdapter=new RecyclerViewProfile( ProfileActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
@@ -78,8 +76,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         final Intent intentmain = new Intent(this, MainActivity.class);
-
-
         adddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
