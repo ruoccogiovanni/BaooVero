@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myVib.vibrate(100);
+                myVib.vibrate(250);
                 Toast.makeText(getApplicationContext(),"Torna presto!",Toast.LENGTH_SHORT).show();
                 auth.signOut();
                 if(auth.getCurrentUser() == null)
@@ -103,13 +103,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         }
     };
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
