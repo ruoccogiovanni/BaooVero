@@ -70,10 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
         android:text="Dog Name"
-
         android:textSize="22dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textBreed"
+        app:layout_constraintEnd_toStartOf="@+id/textGend"
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
@@ -83,11 +85,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+
         android:fitsSystemWindows="true"
         android:text="Breed"
-
         android:textSize="20dp"
         android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 

@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -47,33 +48,17 @@ public class ProfileActivity extends AppCompatActivity {
             welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail());
             utente = auth.getCurrentUser().getUid();
         }
-        else
-            startActivity(loginact);
+        else startActivity(loginact);
         logout=(Button)findViewById(R.id.profile_logout);
         adddog=(Button)findViewById(R.id.profile_add);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
+        Query query=myRef.orderByChild("utente").equalTo(utente);
+        query.addListenerForSingleValueEvent(valueEventListener);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                    Dog cane = posSnapshot.getValue(Dog.class);
-                    listacani.add(cane);
 
-                    }
-                myAdapter=new RecyclerViewProfile( ProfileActivity.this,listacani);
-                myrv.setAdapter(myAdapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ProfileActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         final Intent intentmain = new Intent(this, MainActivity.class);
         adddog.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +83,34 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            listacani.clear();
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Dog cane = snapshot.getValue(Dog.class);
+                    listacani.add(cane);
+                }
+                myAdapter=new RecyclerViewProfile( ProfileActivity.this,listacani);
+                myrv.setAdapter(myAdapter);
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+
+
+
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

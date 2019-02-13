@@ -1,5 +1,6 @@
 package com.example.giovanni.baoovero;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,11 @@ public class FilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-
+        Intent intent = getIntent();
+        String ftgender=intent.getExtras().getString("Gender");
+        String ftbreed=intent.getExtras().getString("Breed");
+        String ftage=intent.getExtras().getString("Age");
+        String ftcity=intent.getExtras().getString("City");
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_filter);
