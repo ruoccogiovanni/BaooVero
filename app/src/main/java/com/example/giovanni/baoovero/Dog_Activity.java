@@ -22,7 +22,6 @@ import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
-
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     float x1,x2,y1,y2;
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;

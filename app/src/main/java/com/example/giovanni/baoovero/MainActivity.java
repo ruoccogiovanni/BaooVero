@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private ListView searchdog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listacani = new ArrayList<>();
+        searchdog=(ListView)findViewById(R.id.search_dog);
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -105,11 +108,15 @@ public class MainActivity extends AppCompatActivity {
 
         if(t.onOptionsItemSelected(item))
             return true;
-        if (item.getItemId()==R.id.filtra)
+        switch (item.getItemId())
         {
-            startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
-            return true;
+            case R.id.filtra:
+                startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
+                return true;
+            case R.id.app_bar_search:
+
         }
+
         return super.onOptionsItemSelected(item);
     }
     public void onBackPressed() {

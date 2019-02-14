@@ -92,7 +92,6 @@ public class Add_Activity extends AppCompatActivity {
         tvage = (TextView) findViewById(R.id.textAge);
         sbage = (SeekBar) findViewById(R.id.seekAge);
         etname = (EditText) findViewById(R.id.add_dog_name);
-        etemail =(EditText) findViewById(R.id.add_email);
         etphone = (EditText) findViewById(R.id.add_phone);
         etcity = (EditText) findViewById(R.id.add_city);
         etdescription = (EditText) findViewById(R.id.add_description);
