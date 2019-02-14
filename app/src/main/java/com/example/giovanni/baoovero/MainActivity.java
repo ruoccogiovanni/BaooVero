@@ -12,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -20,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private ListView searchdog;
+    private ArrayAdapter<String> adattatore;
+    private ArrayList<String> nomicani;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listacani = new ArrayList<>();
+        nomicani=new ArrayList<String>();
+
         searchdog=(ListView)findViewById(R.id.search_dog);
+
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
                     Dog cane = posSnapshot.getValue(Dog.class);
                     listacani.add(cane);
+                    nomicani.add(posSnapshot.child("name").getValue().toString());
                 }
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
@@ -62,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
             }
         });
+        adattatore=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,nomicani);
+        searchdog.setAdapter(adattatore);
 
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
@@ -95,26 +106,43 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onCreateOptionsMenu(final Menu menu)
     {
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
-        return true;
+        MenuItem cerca=menu.findItem(R.id.app_bar_search);
+        SearchView searchView = (SearchView)cerca.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                menu.findItem(R.id.app_bar_search).collapseActionView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                for (Dog cane:listacani){
+                    if (cane.getName().equalsIgnoreCase(newText)){
+                    myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+                    myrv.setAdapter(myAdapter);
+                    }
+                }
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if(t.onOptionsItemSelected(item))
             return true;
-        switch (item.getItemId())
+        if (item.getItemId()==R.id.filtra)
         {
-            case R.id.filtra:
                 startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
                 return true;
-            case R.id.app_bar_search:
-
         }
 
         return super.onOptionsItemSelected(item);

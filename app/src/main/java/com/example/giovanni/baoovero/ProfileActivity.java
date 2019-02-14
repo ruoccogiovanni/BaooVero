@@ -45,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {
-            welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail());
+            welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail() + "\nQuesti sono i tuoi cani.");
             utente = auth.getCurrentUser().getUid();
         }
         else startActivity(loginact);

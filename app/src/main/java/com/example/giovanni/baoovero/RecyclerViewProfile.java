@@ -40,6 +40,11 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         Dog currentdog= mData.get(position);
         holder.tv_dog_name.setText(mData.get(position).getName());
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
+        String eig="anni";
+        String eta="Età: ";
+        if (Integer.parseInt(mData.get(position).getAge())==1)
+            eig="anno";
+        holder.tv_dog_age.setText(eta+mData.get(position).getAge()+" " + eig);
         Picasso.get()
                 .load(currentdog.getThumbnail())
                 .placeholder(R.drawable.loading_prova)
@@ -93,6 +98,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
         TextView tv_dog_name;
         TextView tv_dog_breed;
+        TextView tv_dog_age;
         ImageView img_dog_thumbnail;
         CardView cardView ;
 
@@ -101,6 +107,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
             tv_dog_name = (TextView) itemView.findViewById(R.id.dog_name_id_profile) ;
             tv_dog_breed=(TextView) itemView.findViewById(R.id.dog_breed_id_profile);
+            tv_dog_age=(TextView)itemView.findViewById(R.id.dog_age_profile);
             img_dog_thumbnail = (ImageView) itemView.findViewById(R.id.dog_img_id_profile);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id_profile);
 
