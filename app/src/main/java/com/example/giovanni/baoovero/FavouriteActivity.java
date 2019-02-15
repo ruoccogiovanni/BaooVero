@@ -44,6 +44,7 @@ public class FavouriteActivity extends AppCompatActivity {
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                uid.add(dataSnapshot.child(utente).child("Preferiti").getValue(String.class));
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -64,7 +65,7 @@ public class FavouriteActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-                uid.add(dataSnapshot.child(utente).child("Preferiti").getValue(String.class));
+
 
             }
 
