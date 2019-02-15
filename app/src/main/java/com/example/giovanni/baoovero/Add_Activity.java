@@ -163,7 +163,9 @@ public class Add_Activity extends AppCompatActivity {
                     getUrlimmagine();
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
                     cane.setUtente(utente);
-                    mDatabase.child("Cani").push().setValue(cane);
+                    String uid=mDatabase.child("Cani").push().getKey();
+                    cane.setUid(uid);
+                    mDatabase.child("Cani").child(uid).setValue(cane);
 
                     Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Add_Activity.this,ProfileActivity.class));

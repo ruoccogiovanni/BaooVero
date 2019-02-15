@@ -18,9 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
+
 
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     float x1,x2,y1,y2;
@@ -32,11 +35,18 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     private LikeButton likeButton;
     private Vibrator myVib;
     private FirebaseAuth auth;
+    private String utentecorrente;
+    private DatabaseReference myRef;
+    private String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null) {
+            utentecorrente = auth.getCurrentUser().getUid();
+        }
         getSupportActionBar().hide(); //<< this
+        myRef= FirebaseDatabase.getInstance().getReference();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_dog_);
         tvname = (TextView) findViewById(R.id.textName);
@@ -59,6 +69,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         String Gender = intent.getExtras().getString("Gender");
         String City = "Città: " + intent.getExtras().getString("City");
         String eig = intent.getExtras().getString("Age");
+        uid = intent.getExtras().getString("Uid");
         if(Integer.parseInt(eig)==1)  annio=" anno";
         String Age = "Età: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
@@ -162,6 +173,8 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
     @Override
     public void liked(LikeButton likeButton) {
+
+        myRef.child("Utenti").child(utentecorrente).child("Preferiti").setValue(uid);
         Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
     }
 

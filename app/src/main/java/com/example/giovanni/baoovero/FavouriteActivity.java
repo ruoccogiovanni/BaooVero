@@ -29,7 +29,7 @@ public class FavouriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favourite);
 
         listacani=new ArrayList<>();
-        myRef= FirebaseDatabase.getInstance().getReference("Cani");
+        myRef= FirebaseDatabase.getInstance().getReference();
         myrv = (RecyclerView) findViewById(R.id.favourite_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
 
@@ -37,8 +37,10 @@ public class FavouriteActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
               for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                  Dog cane = posSnapshot.getValue(Dog.class);
-                  listacani.add(cane);
+                  String uid = posSnapshot.child("Utenti").child("Preferiti").getValue().toString();
+                  Dog cane = posSnapshot.child("Cani").getValue(Dog.class);
+                  if(cane.getUid()==uid) listacani.add(cane);
+
               }
                 myAdapter=new RecyclerViewAdapter(FavouriteActivity.this,listacani);
                 myrv.setAdapter(myAdapter);

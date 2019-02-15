@@ -66,6 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("Tel",mData.get(position).getTel());
                 intent.putExtra("Email",mData.get(position).getEmail());
                 intent.putExtra("Thumbnail",mData.get(position).getThumbnail());
+                intent.putExtra("Uid",mData.get(position).getUid());
                 // start the activity
                 mContext.startActivity(intent);
 

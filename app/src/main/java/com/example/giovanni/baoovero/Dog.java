@@ -14,6 +14,8 @@ public class Dog {
     private String Thumbnail ;
     private String utente;
 
+    private String uid;
+
     public Dog() { }
 
     public Dog(String name, String breed, String description, String gender, String city, String age, String tel, String email, String thumbnail) {
@@ -43,7 +45,7 @@ public class Dog {
     }
 
     public void setUtente(String utente) {
-        this.utente = utente;
+        this.utente = utente ;
     }
 
     public String getDescription() {
@@ -102,6 +104,15 @@ public class Dog {
     public void setThumbnail(String thumbnail) {
         Thumbnail = thumbnail;
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
 }
 
 
