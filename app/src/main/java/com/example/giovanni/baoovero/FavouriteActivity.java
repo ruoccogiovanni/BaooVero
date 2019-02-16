@@ -1,10 +1,12 @@
 package com.example.giovanni.baoovero;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -33,6 +35,7 @@ public class FavouriteActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private String utente;
     private Map <String,String> uid;
+    private String[] preferiti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +53,20 @@ public class FavouriteActivity extends AppCompatActivity {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             Utente match = dataSnapshot.child(utente).getValue(Utente.class);
             uid=match.getPreferiti();
-            int grandezza= uid.values().size();
-            final String[]preferiti= new String[grandezza];
-            uid.values().toArray(preferiti);
-            System.out.println(preferiti[grandezza-1]);
+            try{
+                int grandezza= uid.values().size();
+                preferiti= new String[grandezza];
+                uid.values().toArray(preferiti);
+                System.out.println(preferiti[grandezza-1]);}
+
+                catch (NullPointerException e)
+                {
+                    View v = findViewById(android.R.id.content);
+                    Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

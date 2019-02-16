@@ -117,7 +117,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.preferiti)
         {
             startActivity(new Intent(ProfileActivity.this,FavouriteActivity.class));
-            Toast.makeText(getApplicationContext(),"Questa è la pagina dei tuoi preferiti.",Toast.LENGTH_SHORT).show();
             //startActivity(new Intent(ProfileActivity.this,FilterActivity.class));
             return true;
         }
