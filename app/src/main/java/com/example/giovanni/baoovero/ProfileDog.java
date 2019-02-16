@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 
@@ -32,6 +35,8 @@ public class ProfileDog extends AppCompatActivity {
     private FirebaseAuth auth;
     private Button btmodifica;
     private Button btelimina;
+    private DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class ProfileDog extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         setContentView(R.layout.activity_profile_dog);
+        myRef= FirebaseDatabase.getInstance().getReference("Cani");
 
         tvname = (TextView) findViewById(R.id.profile_name);
         tvdescription = (TextView) findViewById(R.id.profile_desc);
@@ -54,25 +60,27 @@ public class ProfileDog extends AppCompatActivity {
         String annio=" anni";
         // Recieve data
         Intent intent = getIntent();
-        String Name = intent.getExtras().getString("Name");
-        String Breed =  intent.getExtras().getString("Breed");
-        String Description = "Descrizione di " + Name + ": \n" + intent.getExtras().getString("Description");
-        String Gender = intent.getExtras().getString("Gender");
-        String City = "Città: " + intent.getExtras().getString("City");
-        String eig = intent.getExtras().getString("Age");
+        final String Name = intent.getExtras().getString("Name");
+        final String Breed =  intent.getExtras().getString("Breed");
+        final String Description = intent.getExtras().getString("Description");
+        String descrizione="Descrizione di " + Name + ": \n" + Description;
+        final String Gender = intent.getExtras().getString("Gender");
+        final String City = intent.getExtras().getString("City");
+        String citta= "Città: " + City;
+        final String eig = intent.getExtras().getString("Age");
         if(Integer.parseInt(eig)==1)  annio=" anno";
-        String Age = "Età: " + eig + annio;
+        final String Age = "Età: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         final String image = intent.getExtras().getString("Thumbnail");
-
+        final String Uid = intent.getExtras().getString("Uid");
+        final String utente=auth.getCurrentUser().getUid();
         // Setting values
-
         tvname.setText(Name);
         tvbreed.setText(Breed);
-        tvdescription.setText(Description);
+        tvdescription.setText(descrizione);
         tvgender.setText(Gender);
-        tvcity.setText(City);
+        tvcity.setText(citta);
         tvage.setText(Age);
         Picasso.get()
                 .load(image)
@@ -93,26 +101,30 @@ public class ProfileDog extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-               //
-
                 Toast.makeText(ProfileDog.this, "Modificato", Toast.LENGTH_SHORT).show();
-                
-                //
+
             }
 
         });
 
         btelimina = (Button) findViewById(R.id.elimina);
-
         btelimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-
-                //
-                Toast.makeText(ProfileDog.this, "Eliminato", Toast.LENGTH_SHORT).show();
-                //
+                myRef.child(Uid).setValue(null);
+                Snackbar snack = Snackbar.make(v,"Hai eliminato il cane",Snackbar.LENGTH_INDEFINITE).setAction("ANNULLA", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar.make(v,"Il cane è stato riaggiunto con successo.",Snackbar.LENGTH_SHORT).show();
+                        Dog cane = new Dog(Name,Breed,Description,Gender,City,eig,Tel,Email,image);
+                        cane.setUid(Uid);
+                        cane.setUtente(utente);
+                        myRef.child(Uid).setValue(cane);
+                    }
+                });
+                snack.show();
             }
 
         });
@@ -127,7 +139,6 @@ public class ProfileDog extends AppCompatActivity {
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
-
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent.getX();
