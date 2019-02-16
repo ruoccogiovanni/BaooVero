@@ -24,6 +24,9 @@ import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     float x1,x2,y1,y2;
@@ -173,8 +176,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
     @Override
     public void liked(LikeButton likeButton) {
-
-        myRef.child("Utenti").child(utentecorrente).child("Preferiti").setValue(uid);
+        myRef.child("Utenti").child(utentecorrente).child("Preferiti").push().setValue(uid);
         Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
     }
 
