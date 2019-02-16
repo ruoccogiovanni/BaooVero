@@ -12,23 +12,26 @@
         android:id="@+id/sliderimg"/>
 
     <TextView
-        android:padding="16dp"
         android:id="@+id/txttitle"
-        android:textStyle="bold"
-        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubunturegular"
+        android:padding="16dp"
         android:text="Title Here"
         android:textColor="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <TextView
-        android:padding="16dp"
         android:id="@+id/txtdescription"
-        android:textAlignment="center"
-        android:textSize="17sp"
-        android:text="Description is Here"
-        android:textColor="#fff"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntulight"
+        android:padding="16dp"
+        android:text="Description is Here"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="17sp" />
 
 
 

@@ -23,16 +23,17 @@
         />
 
     <Button
+        android:id="@+id/iniziamoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniziamo"
-        android:textSize="16sp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@null"
-        android:id="@+id/iniziamoButton"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
-        android:textColor="@android:color/white"/>
+        android:background="@null"
+        android:fontFamily="@font/poppinsregular"
+        android:text="Iniziamo"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
 
 

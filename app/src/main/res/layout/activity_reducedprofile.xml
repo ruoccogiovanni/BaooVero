@@ -53,11 +53,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:text="Dog Name"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
 
+        android:fontFamily="@font/ubunturegular"
+        android:text="Dog Name"
         android:textSize="22dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textGend"
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
@@ -67,10 +70,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/ubuntumedium"
         android:text="Breed"
+
         android:textSize="20dp"
         android:textStyle="bold|italic"
-
+        app:layout_constraintEnd_toEndOf="@+id/textName"
         app:layout_constraintStart_toEndOf="@+id/dogthumbnail2"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
@@ -80,10 +86,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ubunturegular"
         android:text="Gender"
         android:textSize="16dp"
-        android:textStyle="bold"
 
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogthumbnail" />
 
@@ -91,38 +98,41 @@
         android:id="@+id/textCity"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="City"
-        android:textSize="24dp"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="@+id/dogthumbnail2"
-        app:layout_constraintTop_toBottomOf="@+id/dogthumbnail2" />
+        app:layout_constraintTop_toBottomOf="@+id/textBreed" />
 
     <TextView
         android:id="@+id/txtDesc"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
 
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:fitsSystemWindows="true"
+        android:fontFamily="@font/ubuntulight"
         android:scrollHorizontally="false"
         android:text="Description"
-        android:textSize="24dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/chiama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtAge"
-        app:layout_constraintTop_toTopOf="@+id/txtAge" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAge" />
 
     <TextView
         android:id="@+id/txtAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="Age"
-        android:textSize="24dp"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="@+id/textCity"
-        app:layout_constraintTop_toTopOf="@+id/textCity" />
+        app:layout_constraintTop_toBottomOf="@+id/textCity" />
 
 
     <Button
@@ -134,6 +144,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="15dp"
         android:background="#49b675"
+        android:fontFamily="@font/poppinsregular"
         android:text="Chiama"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/contatta"
@@ -147,6 +158,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/poppinsregular"
         android:text="Contatta"
         app:layout_constraintBaseline_toBaselineOf="@+id/chiama"
         app:layout_constraintEnd_toEndOf="parent"

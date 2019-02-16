@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:fontFamily="@font/ubunturegular"
         android:text="Dog Name"
         android:textSize="22dp"
         android:textStyle="bold"
@@ -52,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:fontFamily="@font/ubuntumedium"
         android:text="Breed"
         android:textSize="20dp"
         android:textStyle="bold|italic"
@@ -64,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Gender"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -74,7 +77,8 @@
         android:id="@+id/profile_city"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="City"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="@+id/profiledogimg2"
@@ -84,27 +88,29 @@
         android:id="@+id/profile_desc"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:fitsSystemWindows="true"
+        android:fontFamily="@font/ubuntulight"
         android:scrollHorizontally="false"
         android:text="Description"
         android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/profile_age"
-        app:layout_constraintTop_toTopOf="@+id/profile_age" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_age" />
 
     <TextView
         android:id="@+id/profile_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="Age"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="@+id/profile_city"
-        app:layout_constraintTop_toTopOf="@+id/profile_city" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_city" />
 
 
     <Button

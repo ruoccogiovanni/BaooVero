@@ -56,8 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
-        android:text="Dog Name"
+        android:fontFamily="@font/ubunturegular"
 
+        android:text="Dog Name"
         android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
@@ -70,8 +71,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:fitsSystemWindows="true"
-        android:text="Breed"
+        android:fontFamily="@font/ubuntumedium"
 
+        android:text="Breed"
         android:textSize="20dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
@@ -83,10 +85,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ubunturegular"
         android:text="Gender"
         android:textSize="16dp"
-        android:textStyle="bold"
 
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profiledogimg" />
 
@@ -95,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="City"
         android:textSize="24dp"
         android:visibility="invisible"
@@ -108,6 +112,7 @@
         android:layout_marginTop="365dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/ubuntulight"
         android:scrollHorizontally="false"
         android:text="Description"
         android:textSize="24dp"
@@ -116,14 +121,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/profile_age"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/profile_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/ubuntulight"
         android:text="Age"
-        android:visibility="invisible"
         android:textSize="24dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/profile_city"
         app:layout_constraintTop_toTopOf="@+id/profile_city" />
 
@@ -138,12 +145,12 @@
         android:layout_marginBottom="15dp"
         android:background="#49b675"
 
+        android:fontFamily="@font/poppinsregular"
         android:text="Modifica"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/elimina"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/elimina"
@@ -153,12 +160,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/poppinsregular"
         android:text="Elimina"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/modifica"
-        />
+        app:layout_constraintStart_toEndOf="@+id/modifica" />
 
     <TextView
         android:id="@+id/textInfo"

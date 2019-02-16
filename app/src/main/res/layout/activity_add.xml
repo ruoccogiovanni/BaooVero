@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <EditText
         android:id="@+id/add_dog_name"
         android:layout_width="0dp"
@@ -11,6 +12,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubunturegular"
         android:hint="Inserire nome"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="320dp"
+        android:fontFamily="@font/ubuntumedium"
         android:text="Telefono*"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +38,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="330dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubunturegular"
         android:hint="Inserire numero di telefono"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="380dp"
+        android:fontFamily="@font/ubuntumedium"
         android:text="Provincia*"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +64,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="390dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubunturegular"
         android:hint="Inserire provincia"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="440dp"
+        android:fontFamily="@font/ubuntumedium"
         android:text="Descrizione"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +90,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="450dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubunturegular"
         android:hint="Scrivi qui una breve descrizione."
         android:inputType="textLongMessage|textMultiLine|textCapSentences"
         android:lines="3"
@@ -136,6 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="250dp"
+        android:fontFamily="@font/ubunturegular"
         android:text="Età"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,19 +168,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Maschio"
+            android:checked="false"
+            android:fontFamily="@font/ubuntumedium"
             android:onClick="rbclick"
-            android:checked="false"/>
+            android:text="Maschio" />
 
         <RadioButton
             android:id="@+id/button_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="rbclick"
             android:checked="false"
-            android:text="Femmina"
-            />
+            android:fontFamily="@font/ubuntumedium"
+            android:onClick="rbclick"
+            android:text="Femmina" />
     </RadioGroup>
 
 
@@ -182,6 +192,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubunturegular"
         android:hint="Selezionare razza"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
@@ -223,11 +234,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
         android:layout_marginTop="215dp"
+        android:fontFamily="@font/ubunturegular"
         android:text="* (Campi obbligatori)"
-        tools:layout_editor_absoluteX="255dp"
-        tools:layout_editor_absoluteY="189dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 
