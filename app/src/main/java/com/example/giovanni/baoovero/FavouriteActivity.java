@@ -57,7 +57,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 int grandezza= uid.values().size();
                 preferiti= new String[grandezza];
                 uid.values().toArray(preferiti);
-                System.out.println(preferiti[grandezza-1]);}
+                }
 
                 catch (NullPointerException e)
                 {
@@ -73,7 +73,6 @@ public class FavouriteActivity extends AppCompatActivity {
                     for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
                         Dog cane = posSnapshot.getValue(Dog.class);
                         for (String s: preferiti) {
-                            System.out.println(cane.getUid() + "ooooooooooooooooooooo " + s);
                             if (cane.getUid().equals(s)) {
                                 listacani.add(cane);
                             }
@@ -95,14 +94,6 @@ public class FavouriteActivity extends AppCompatActivity {
         }
         };
         myRef2.addValueEventListener(listener);
-/*
-
-
-
-
- */
-
-
     }
 
 

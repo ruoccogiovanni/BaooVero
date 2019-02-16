@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.design.widget.Snackbar;
@@ -18,14 +19,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
@@ -40,7 +47,12 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     private FirebaseAuth auth;
     private String utentecorrente;
     private DatabaseReference myRef;
+    private DatabaseReference myRef2;
     private String uid;
+    private Map<String,String> cani;
+    private String[] preferiti;
+    private List<String> chiavi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +62,10 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         }
         getSupportActionBar().hide(); //<< this
         myRef= FirebaseDatabase.getInstance().getReference();
+        myRef2 = FirebaseDatabase.getInstance().getReference("Utenti");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_dog_);
+        cani=new HashMap<>();
         tvname = (TextView) findViewById(R.id.textName);
         tvdescription = (TextView) findViewById(R.id.txtDesc);
         tvbreed = (TextView) findViewById(R.id.textBreed);
@@ -99,6 +113,35 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                 .into(imag);
 
         Button btcall = (Button) findViewById(R.id.chiama);
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Utente match = dataSnapshot.child(utentecorrente).getValue(Utente.class);
+                cani=match.getPreferiti();
+                try{
+                    int grandezza= cani.values().size();
+                    preferiti= new String[grandezza];
+                    cani.values().toArray(preferiti);
+                    for (String s:preferiti)
+                    {
+                        if (uid.equals(s)) {
+                            likeButton.setLiked(true);
+                            break;
+                        }
+                    }}
+                catch (NullPointerException e)
+                {
+                    return;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        };
+        myRef2.addValueEventListener(listener);
+
         btcall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,16 +216,55 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         }
         return false;
     }
-
+        String chiavecorrente;
     @Override
     public void liked(LikeButton likeButton) {
-        myRef.child("Utenti").child(utentecorrente).child("Preferiti").push().setValue(uid);
-        Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
+       chiavecorrente =myRef.child("Utenti").child(utentecorrente).child("Preferiti").push().getKey();
+       setChiavecorrente(chiavecorrente);
+        myRef.child("Utenti").child(utentecorrente).child("Preferiti").child(chiavecorrente).setValue(uid);
+       Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void unLiked(LikeButton likeButton) {
+        chiavecorrente = getChiavecorrente();
         Toast.makeText(this, "Tolto dai preferiti!", Toast.LENGTH_SHORT).show();
+        //Ci prendiamo tutti i preferiti e li mettiamo nell'array preferiti
+        myRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    Utente match = dataSnapshot.child(utentecorrente).getValue(Utente.class);
+                    cani = match.getPreferiti();
+                }
+                try {
+                    int grandezza = cani.values().size();
+                    preferiti = new String[grandezza];
+                    cani.values().toArray(preferiti);
+                } catch (NullPointerException e) {
+                    return;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        for (String chiave : cani.keySet()){
+                if (uid.equals(cani.get(chiave))){
+                    myRef2.child(utentecorrente).child("Preferiti").child(chiave).setValue(null);
+
+                }
+
+            }
+
+
+
+
     }
+public void setChiavecorrente (String s){chiavecorrente=s;}
+public String getChiavecorrente(){return chiavecorrente;}
 }
 
