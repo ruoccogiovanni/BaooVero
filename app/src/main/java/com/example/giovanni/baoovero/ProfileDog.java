@@ -58,7 +58,7 @@ public class ProfileDog extends AppCompatActivity {
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         String annio=" anni";
         // Recieve data
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String Name = intent.getExtras().getString("Name");
         final String Breed =  intent.getExtras().getString("Breed");
         final String Description = intent.getExtras().getString("Description");
@@ -100,8 +100,18 @@ public class ProfileDog extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-                Toast.makeText(ProfileDog.this, "Modificato", Toast.LENGTH_SHORT).show();
-
+               Intent intento = new Intent(ProfileDog.this,EditActivity.class);
+               intento.putExtra("Name",Name);
+               intento.putExtra("Breed",Breed);
+               intento.putExtra("Description",Description);
+               intento.putExtra("Gender",Gender);
+               intento.putExtra("City",City);
+               intento.putExtra("Age",eig);
+               intento.putExtra("Tel",Tel);
+               intento.putExtra("Image",image);
+               intento.putExtra("Uid",Uid);
+               intento.putExtra("Utente",utente);
+               startActivity(intento);
             }
 
         });
