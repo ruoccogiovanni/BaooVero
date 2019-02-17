@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -84,9 +85,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext,ProfileDog.class);
-
                 // passing data to the dog activity
                 intent.putExtra("Name",mData.get(position).getName());
                 intent.putExtra("Breed",mData.get(position).getBreed());
@@ -100,8 +99,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 intent.putExtra("Uid",mData.get(position).getUid());
                 // start the activity
                 mContext.startActivity(intent);
-
-
             }
         });
 
@@ -109,10 +106,63 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v) {
-                SelectEditProfile();
+                    final CharSequence[] items={"Modifica il tuo cane", "Elimina il tuo cane","Torna indietro"};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("Cosa vuoi fare?");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (items[i].equals("Modifica il tuo cane")) {
+                                Intent intento = new Intent(mContext,EditActivity.class);
+                                // passing data to the dog activity
+                                intento.putExtra("Name",mData.get(position).getName());
+                                intento.putExtra("Breed",mData.get(position).getBreed());
+                                intento.putExtra("Description",mData.get(position).getDescription());
+                                intento.putExtra("Gender",mData.get(position).getGender());
+                                intento.putExtra("City",mData.get(position).getCity());
+                                intento.putExtra("Age",mData.get(position).getAge());
+                                intento.putExtra("Tel",mData.get(position).getTel());
+                                intento.putExtra("Email",mData.get(position).getEmail());
+                                intento.putExtra("Image",mData.get(position).getThumbnail());
+                                intento.putExtra("Uid",mData.get(position).getUid());
+                                // start the activity
+                                mContext.startActivity(intento);
+                                dialogInterface.dismiss();
+                            }else if (items[i].equals("Indietro")) {
+                                dialogInterface.dismiss();
+                            }
+                            else if (items[i].equals("Elimina il tuo cane"))
+                            {
+                                dialogInterface.dismiss();
+
+                                    final CharSequence[] items={"Confermo", "Annulla"};
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                                    builder.setTitle("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?");
+                                    builder.setItems(items, new DialogInterface.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            if (items[i].equals("Annulla")) {
+                                                dialogInterface.dismiss();
+                                            }
+                                            else if (items[i].equals("Confermo"))
+                                            {
+                                                myVib.vibrate(25);
+                                                myRef.child(mData.get(position).getUid()).setValue(null);
+                                                dialogInterface.dismiss();
+                                                mContext.startActivity(new Intent(mContext,ProfileActivity.class));
+                                            }
+                                        }
+                                    });
+                                    builder.show();
+
+                            }
+                        }
+                    });
+                    builder.show();
+
                 myVib=(Vibrator) mContext.getSystemService(VIBRATOR_SERVICE);
-
-
                 return true;
             }
         });
@@ -147,54 +197,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         }
     }
 
-
-    private void SelectEditProfile(){
-        final CharSequence[] items={"Modifica il tuo cane", "Elimina il tuo cane","Torna indietro"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Cosa vuoi fare?");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (items[i].equals("Modifica il tuo cane")) {
-                    dialogInterface.dismiss();
-                }else if (items[i].equals("Indietro")) {
-                    dialogInterface.dismiss();
-                }
-                else if (items[i].equals("Elimina il tuo cane"))
-                {
-                    dialogInterface.dismiss();
-                    SelectConfirm();
-                }
-            }
-        });
-        builder.show();
-    }
-
-
-
-    private void SelectConfirm(){
-        final CharSequence[] items={"Confermo", "Annulla"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Sei sicuro di voler eliminare " + Name +"?");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (items[i].equals("Annulla")) {
-                    dialogInterface.dismiss();
-                }
-                else if (items[i].equals("Confermo"))
-                {
-                    myVib.vibrate(25);
-                    myRef.child(uid).setValue(null);
-                    dialogInterface.dismiss();
-                    mContext.startActivity(new Intent(mContext,ProfileActivity.class));
-                }
-            }
-        });
-        builder.show();
-    }
 
 
 

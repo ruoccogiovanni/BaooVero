@@ -23,7 +23,7 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ubunturegular"
+            android:fontFamily="@font/productsansregular"
             android:hint="Inserisci la tua email"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
@@ -41,7 +41,7 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ubunturegular"
+            android:fontFamily="@font/productsansregular"
             android:hint="Inserisci la tua password"
             android:inputType="textPassword"
             android:maxLines="1" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_input_password"
         android:background="#263238"
-        android:fontFamily="@font/poppinsregular"
+        android:fontFamily="@font/productsansbold"
         android:text="Login" />
 
     <TextView
@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/productsansbold"
             android:padding="5dp"
             android:text="oppure" />
         <View

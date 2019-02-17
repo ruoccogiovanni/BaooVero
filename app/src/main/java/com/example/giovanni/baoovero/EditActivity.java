@@ -50,7 +50,7 @@ public class EditActivity extends AppCompatActivity {
     private AutoCompleteTextView actvbreed;
     private List<Portrait_Dog> dogList;
     private RadioGroup rgroup;
-    private RadioButton rbutton;
+    private RadioButton rbutton, rmaschio,rfemmina;
     static final int REQUEST_CAMERA = 1;
     Integer SELECT_FILE=0;
     private EditText etname;
@@ -73,12 +73,14 @@ public class EditActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         v = findViewById(android.R.id.content);
-        Snackbar.make(v,"Qui puoi modificare il tuo cane.",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(v,"Qui puoi modificare il tuo cane.",Snackbar.LENGTH_SHORT).show();
         mDatabase= FirebaseDatabase.getInstance().getReference();
         //serve a prendere l'uid utente
         auth = FirebaseAuth.getInstance();
         final String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         rgroup=(RadioGroup)findViewById(R.id.edit_group_gender);
+        rmaschio=(RadioButton)findViewById(R.id.edit_button_male);
+        rfemmina=(RadioButton)findViewById(R.id.edit_button_female);
         immagineviewID = (ImageView) findViewById(R.id.editimmagineviewID);
         addimmagine = findViewById(R.id.editimmaginepiuID);
         addimmagine.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +112,13 @@ public class EditActivity extends AppCompatActivity {
         final String Age = "Età: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
-        final String image = intent.getExtras().getString("Thumbnail");
+        final String image = intent.getExtras().getString("Image");
         final String Uid = intent.getExtras().getString("Uid");
         final String utente=auth.getCurrentUser().getUid();
+        if(Gender.equals("Maschio"))
+            rmaschio.setChecked(true);
+        else
+            rfemmina.setChecked(true);
         // Setting values
         etname.setText(Name);
         etdescription.setText(Description);
@@ -192,6 +198,10 @@ public class EditActivity extends AppCompatActivity {
                 if (provincia&&nome)
                 {
                     getUrlimmagine();
+                    if (getUrlimmagine()==null)
+                    {
+                        urlimmagine=image;
+                    }
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
                     cane.setUtente(utente);
                     cane.setUid(Uid);

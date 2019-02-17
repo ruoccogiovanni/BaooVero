@@ -30,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
         android:background="@null"
-        android:fontFamily="@font/poppinsregular"
+        android:fontFamily="@font/productsansbold"
         android:text="Iniziamo"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
