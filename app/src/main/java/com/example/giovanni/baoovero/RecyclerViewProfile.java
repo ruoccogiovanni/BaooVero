@@ -3,6 +3,8 @@ package com.example.giovanni.baoovero;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Vibrator;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import java.util.List;
+
+
+import static android.content.Context.VIBRATOR_SERVICE;
 
 public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfile.MyViewHolder> {
 
     private Context mContext ;
     private List<Dog> mData ;
-
+    private String uid;
+    private Vibrator myVib;
+    private DatabaseReference myRef;
+    private String Name,Breed,Description,Gender,Age,Tel,Email,City,Thumbnail,Utente;
+    private FirebaseAuth auth;
 
     public RecyclerViewProfile(Context mContext, List<Dog> mData) {
         this.mContext = mContext;
@@ -36,12 +49,18 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-
+        myRef= FirebaseDatabase.getInstance().getReference("Cani");
         Dog currentdog= mData.get(position);
         holder.tv_dog_name.setText(mData.get(position).getName());
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
         String eig="anni";
         String eta="Età: ";
+        uid=mData.get(position).getUid();
+        auth=FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null) {
+            Utente = auth.getCurrentUser().getUid();
+        }
+
         if (Integer.parseInt(mData.get(position).getAge())==1)
             eig="anno";
         holder.tv_dog_age.setText(eta+mData.get(position).getAge()+" " + eig);
@@ -52,6 +71,15 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);
 
+        Name=mData.get(position).getName();
+        Breed=mData.get(position).getBreed();
+        Description=mData.get(position).getDescription();
+        Gender=mData.get(position).getGender();
+        City=mData.get(position).getCity();
+        Age=mData.get(position).getAge();
+        Tel=mData.get(position).getTel();
+        Email=mData.get(position).getEmail();
+        Thumbnail=mData.get(position).getThumbnail();
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +110,9 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
             @Override
             public boolean onLongClick(View v) {
                 SelectEditProfile();
+                myVib=(Vibrator) mContext.getSystemService(VIBRATOR_SERVICE);
+
+
                 return true;
             }
         });
@@ -131,12 +162,40 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                     dialogInterface.dismiss();
                 }
                 else if (items[i].equals("Elimina il tuo cane"))
-                {dialogInterface.dismiss();
+                {
+                    dialogInterface.dismiss();
+                    SelectConfirm();
                 }
             }
         });
         builder.show();
     }
+
+
+
+    private void SelectConfirm(){
+        final CharSequence[] items={"Confermo", "Annulla"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Sei sicuro di voler eliminare " + Name +"?");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (items[i].equals("Annulla")) {
+                    dialogInterface.dismiss();
+                }
+                else if (items[i].equals("Confermo"))
+                {
+                    myVib.vibrate(25);
+                    myRef.child(uid).setValue(null);
+                    dialogInterface.dismiss();
+                    mContext.startActivity(new Intent(mContext,ProfileActivity.class));
+                }
+            }
+        });
+        builder.show();
+    }
+
 
 
 }
