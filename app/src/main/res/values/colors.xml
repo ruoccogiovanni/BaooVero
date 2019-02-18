@@ -8,4 +8,5 @@
     <color name="prova">#F4B558</color>
     <color name="active_dots">#fffafa</color>
     <color name="inactive_dots">#83878b</color>
+    <color name="error_color">#FF1100</color>
 </resources>

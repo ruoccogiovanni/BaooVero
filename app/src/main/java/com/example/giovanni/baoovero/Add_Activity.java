@@ -126,6 +126,14 @@ public class Add_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String [] provincine = {"Agrigento","Alessandria","Ancona","Aosta","L'Aquila","Arezzo","Ascoli-Piceno","Asti","Avellino","Bari","Barletta-Andria-Trani","Belluno","Benevento","Bergamo","Biella","Bologna","Bolzano","Brescia","Brindisi","Cagliari","Caltanissetta","Campobasso","Carbonia Iglesias","Caserta","Catania","Catanzaro","Chieti","Como","Cosenza","Cremona","Crotone","Cuneo","Enna","Fermo","Ferrara","Firenze","Foggia","Forli-Cesena","Frosinone","Genova","Gorizia","Grosseto","Imperia","Isernia","La-Spezia","Latina","Lecce","Lecco","Livorno","Lodi","Lucca","Macerata","Mantova","Massa-Carrara","Matera","Medio Campidano","Messina","Milano","Modena","Monza-Brianza","Napoli","Novara","Nuoro","Ogliastra","Olbia Tempio","Oristano","Padova","Palermo","Parma","Pavia","Perugia","Pesaro-Urbino","Pescara","Piacenza","Pisa","Pistoia","Pordenone","Potenza","Prato","Ragusa","Ravenna","Reggio-Calabria","Reggio-Emilia","Rieti","Rimini","Roma","Rovigo","Salerno","Sassari","Savona","Siena","Siracusa","Sondrio","Taranto","Teramo","Terni","Torino","Trapani","Trento","Treviso","Trieste","Udine","Varese","Venezia","Verbania","Vercelli","Verona","Vibo-Valentia","Vicenza","Viterbo"};
+                int grandezza = dogList.size();
+                Portrait_Dog[] a = new Portrait_Dog[grandezza];
+                dogList.toArray(a);
+                List<String> razze = new ArrayList<>();
+                for (Portrait_Dog s : a)
+                {
+                    razze.add(s.getDogName());
+                }
                 String addcity = etcity.getText().toString().trim();
                 String addname = etname.getText().toString().trim();
                 String addphone = etphone.getText().toString().trim();
@@ -145,7 +153,10 @@ public class Add_Activity extends AppCompatActivity {
                 }
                 boolean provincia=false;
                 boolean nome=true;
-
+                boolean razza=false;
+                boolean phone=true;
+                etcity.setHintTextColor(getResources().getColor(R.color.error_color));
+                actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
                 for (String provinciona:provincine)
                 {
                     if (addcity.equalsIgnoreCase(provinciona)) {
@@ -153,20 +164,36 @@ public class Add_Activity extends AppCompatActivity {
                         break;
                     }
                 }
+                for (String s:razze)
+                {
+                    if (addbreed.equalsIgnoreCase(s)) {
+                        razza = true;
+                        break;
+                    }
+                }
                 if (addname.isEmpty())
                 {
                     nome=false;
+                    etname.setHintTextColor(getResources().getColor(R.color.error_color));
                 }
-
-                if (provincia&&nome)
+                if (addphone.isEmpty())
+                {
+                    phone=false;
+                    etphone.setHintTextColor(getResources().getColor(R.color.error_color));
+                }
+                if (adddescription.isEmpty())
+                {
+                    adddescription="Il mio padroncino non vuole la mia descrizione :(";
+                }
+                if (provincia&&nome&&phone&&razza)
                 {
                     getUrlimmagine();
+
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
                     cane.setUtente(utente);
                     String uid=mDatabase.child("Cani").push().getKey();
                     cane.setUid(uid);
                     mDatabase.child("Cani").child(uid).setValue(cane);
-
                     Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
                 }
@@ -189,9 +216,30 @@ public class Add_Activity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Alano", R.drawable.image_alano));
         dogList.add(new Portrait_Dog("Bassotto", R.drawable.image_bassotto));
         dogList.add(new Portrait_Dog("Beagle", R.drawable.image_beagle));
+        dogList.add(new Portrait_Dog("Bearded Collie", R.drawable.beardedcollie));
+        dogList.add(new Portrait_Dog("Border Collie", R.drawable.bordercollie));
         dogList.add(new Portrait_Dog("Boxer", R.drawable.image_boxer));
-        dogList.add(new Portrait_Dog("Briard", R.drawable.image_gisy));
-        dogList.add(new Portrait_Dog("Bulldog", R.drawable.image_bulldog));
+        dogList.add(new Portrait_Dog("Pastore della Brie", R.drawable.image_gisy));
+        dogList.add(new Portrait_Dog("Bulldog", R.drawable.bulldog));
+        dogList.add(new Portrait_Dog("Cane Corso",R.drawable.canecorso));
+        dogList.add(new Portrait_Dog("Lupo Cecoslovacco",R.drawable.lupocecoslovacco));
+        dogList.add(new Portrait_Dog("Cane da montagna dei Pirenei", R.drawable.montagnapirenei));
+        dogList.add(new Portrait_Dog("Cane dei Faraoni",R.drawable.canedeifaraoni ));
+        dogList.add(new Portrait_Dog("Cocker Americano", R.drawable.cockeramericano));
+        dogList.add(new Portrait_Dog("Greyhound", R.drawable.greyhound));
+        dogList.add(new Portrait_Dog("Levriero Afgano", R.drawable.levrieroafgano));
+        dogList.add(new Portrait_Dog("Levriero Spagnolo",R.drawable.levrierospagnolo ));
+        dogList.add(new Portrait_Dog("Mastino Napoletano",R.drawable.mastinonapoletano ));
+        dogList.add(new Portrait_Dog("Pastore Bergamasco", R.drawable.pastorebergamasco));
+        dogList.add(new Portrait_Dog("Pastore Olandese", R.drawable.pastoreolandese));
+        dogList.add(new Portrait_Dog("Pechinese", R.drawable.pechinese));
+        dogList.add(new Portrait_Dog("San Bernardo", R.drawable.sanbernardo));
+        dogList.add(new Portrait_Dog("Segugio Serbo",R.drawable.segugioserbo ));
+        dogList.add(new Portrait_Dog("Segugio Spagnolo", R.drawable.segugiospagnolo));
+        dogList.add(new Portrait_Dog("Setter Inglese", R.drawable.setteringlese));
+        dogList.add(new Portrait_Dog("Shar Pei", R.drawable.sharpei));
+        dogList.add(new Portrait_Dog("Siberian Husky", R.drawable.siberianhusky));
+        dogList.add(new Portrait_Dog("Bulldog Francese", R.drawable.image_bulldog));
         dogList.add(new Portrait_Dog("Carlino", R.drawable.image_carlino));
         dogList.add(new Portrait_Dog("Chihuahua", R.drawable.image_chiuaua));
         dogList.add(new Portrait_Dog("Chow chow", R.drawable.image_chowchow));
@@ -206,9 +254,9 @@ public class Add_Activity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Jack Russell Terrier", R.drawable.image_russel));
         dogList.add(new Portrait_Dog("Schnauzer Nano", R.drawable.image_shnauzer));
         dogList.add(new Portrait_Dog("Shiba Inu", R.drawable.image_shiba));
-        dogList.add(new Portrait_Dog("Volpino", R.drawable.image_volpino));
+        dogList.add(new Portrait_Dog("Volpino Italiano", R.drawable.image_volpino));
         dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_westie));
-        dogList.add(new Portrait_Dog("Yorkshire", R.drawable.image_yorkshire));
+        dogList.add(new Portrait_Dog("Yorkshire Terrier", R.drawable.image_yorkshire));
     }
 
     private void SelectImage(){

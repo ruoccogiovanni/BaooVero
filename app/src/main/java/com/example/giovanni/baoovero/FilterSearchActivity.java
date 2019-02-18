@@ -116,9 +116,30 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Alano", R.drawable.image_alano));
         dogList.add(new Portrait_Dog("Bassotto", R.drawable.image_bassotto));
         dogList.add(new Portrait_Dog("Beagle", R.drawable.image_beagle));
+        dogList.add(new Portrait_Dog("Bearded Collie", R.drawable.beardedcollie));
+        dogList.add(new Portrait_Dog("Border Collie", R.drawable.bordercollie));
         dogList.add(new Portrait_Dog("Boxer", R.drawable.image_boxer));
-        dogList.add(new Portrait_Dog("Briard", R.drawable.image_gisy));
-        dogList.add(new Portrait_Dog("Bulldog", R.drawable.image_bulldog));
+        dogList.add(new Portrait_Dog("Pastore della Brie", R.drawable.image_gisy));
+        dogList.add(new Portrait_Dog("Bulldog", R.drawable.bulldog));
+        dogList.add(new Portrait_Dog("Cane Corso",R.drawable.canecorso));
+        dogList.add(new Portrait_Dog("Lupo Cecoslovacco",R.drawable.lupocecoslovacco));
+        dogList.add(new Portrait_Dog("Cane da montagna dei Pirenei", R.drawable.montagnapirenei));
+        dogList.add(new Portrait_Dog("Cane dei Faraoni",R.drawable.canedeifaraoni ));
+        dogList.add(new Portrait_Dog("Cocker Americano", R.drawable.cockeramericano));
+        dogList.add(new Portrait_Dog("Greyhound", R.drawable.greyhound));
+        dogList.add(new Portrait_Dog("Levriero Afgano", R.drawable.levrieroafgano));
+        dogList.add(new Portrait_Dog("Levriero Spagnolo",R.drawable.levrierospagnolo ));
+        dogList.add(new Portrait_Dog("Mastino Napoletano",R.drawable.mastinonapoletano ));
+        dogList.add(new Portrait_Dog("Pastore Bergamasco", R.drawable.pastorebergamasco));
+        dogList.add(new Portrait_Dog("Pastore Olandese", R.drawable.pastoreolandese));
+        dogList.add(new Portrait_Dog("Pechinese", R.drawable.pechinese));
+        dogList.add(new Portrait_Dog("San Bernardo", R.drawable.sanbernardo));
+        dogList.add(new Portrait_Dog("Segugio Serbo",R.drawable.segugioserbo ));
+        dogList.add(new Portrait_Dog("Segugio Spagnolo", R.drawable.segugiospagnolo));
+        dogList.add(new Portrait_Dog("Setter Inglese", R.drawable.setteringlese));
+        dogList.add(new Portrait_Dog("Shar Pei", R.drawable.sharpei));
+        dogList.add(new Portrait_Dog("Siberian Husky", R.drawable.siberianhusky));
+        dogList.add(new Portrait_Dog("Bulldog Francese", R.drawable.image_bulldog));
         dogList.add(new Portrait_Dog("Carlino", R.drawable.image_carlino));
         dogList.add(new Portrait_Dog("Chihuahua", R.drawable.image_chiuaua));
         dogList.add(new Portrait_Dog("Chow chow", R.drawable.image_chowchow));
@@ -133,9 +154,9 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Jack Russell Terrier", R.drawable.image_russel));
         dogList.add(new Portrait_Dog("Schnauzer Nano", R.drawable.image_shnauzer));
         dogList.add(new Portrait_Dog("Shiba Inu", R.drawable.image_shiba));
-        dogList.add(new Portrait_Dog("Volpino", R.drawable.image_volpino));
+        dogList.add(new Portrait_Dog("Volpino Italiano", R.drawable.image_volpino));
         dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_westie));
-        dogList.add(new Portrait_Dog("Yorkshire", R.drawable.image_yorkshire));
+        dogList.add(new Portrait_Dog("Yorkshire Terrier", R.drawable.image_yorkshire));
     }
 
     public void ftclick(View v)

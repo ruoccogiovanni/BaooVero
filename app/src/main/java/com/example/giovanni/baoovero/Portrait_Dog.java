@@ -4,6 +4,9 @@ public class Portrait_Dog {
     private String dogName;
     private int dogImage;
 
+
+    public Portrait_Dog() {
+    }
     public Portrait_Dog(String dogName, int dogImage) {
         this.dogName = dogName;
         this.dogImage = dogImage;
