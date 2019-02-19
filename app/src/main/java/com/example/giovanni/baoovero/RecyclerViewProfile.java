@@ -155,7 +155,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                                         }
                                     });
                                     builder.show();
-
                             }
                         }
                     });
@@ -165,9 +164,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 return true;
             }
         });
-
-
-
     }
 
     @Override
@@ -195,8 +191,4 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
         }
     }
-
-
-
-
 }

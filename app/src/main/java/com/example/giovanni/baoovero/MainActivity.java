@@ -12,8 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView searchdog;
     private ArrayAdapter<String> adattatore;
     private ArrayList<String> nomicani;
+    private ProgressBar caricamento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         nomicani=new ArrayList<String>();
 
         searchdog=(ListView)findViewById(R.id.search_dog);
-
+        caricamento = (ProgressBar) findViewById(R.id.caricamento);
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     Dog cane = posSnapshot.getValue(Dog.class);
                     listacani.add(cane);
                     nomicani.add(posSnapshot.child("name").getValue().toString());
+                    caricamento.setVisibility(View.INVISIBLE);
                 }
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                caricamento.setVisibility(View.INVISIBLE);
                 Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
             }
         });

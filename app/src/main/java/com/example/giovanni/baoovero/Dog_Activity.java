@@ -101,13 +101,13 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         tvage.setText(Age);
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_prova)
+                .placeholder(R.drawable.roundloading)
                 .fit()
                 .centerCrop()
                 .into(img);
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_prova)
+                .placeholder(R.drawable.roundloading)
                 .fit()
                 .centerCrop()
                 .into(imag);
