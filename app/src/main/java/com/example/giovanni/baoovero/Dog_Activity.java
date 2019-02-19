@@ -152,7 +152,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     startActivity(intent);
 
                 } else
-                    Snackbar.make(v,"Devi prima aver effettuato il login",Snackbar.LENGTH_SHORT);
+                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
                                        // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 

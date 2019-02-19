@@ -69,13 +69,31 @@ public class FilterSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String [] provincine = {"Agrigento","Alessandria","Ancona","Aosta","L'Aquila","Arezzo","Ascoli-Piceno","Asti","Avellino","Bari","Barletta-Andria-Trani","Belluno","Benevento","Bergamo","Biella","Bologna","Bolzano","Brescia","Brindisi","Cagliari","Caltanissetta","Campobasso","Carbonia Iglesias","Caserta","Catania","Catanzaro","Chieti","Como","Cosenza","Cremona","Crotone","Cuneo","Enna","Fermo","Ferrara","Firenze","Foggia","Forli-Cesena","Frosinone","Genova","Gorizia","Grosseto","Imperia","Isernia","La-Spezia","Latina","Lecce","Lecco","Livorno","Lodi","Lucca","Macerata","Mantova","Massa-Carrara","Matera","Medio Campidano","Messina","Milano","Modena","Monza-Brianza","Napoli","Novara","Nuoro","Ogliastra","Olbia Tempio","Oristano","Padova","Palermo","Parma","Pavia","Perugia","Pesaro-Urbino","Pescara","Piacenza","Pisa","Pistoia","Pordenone","Potenza","Prato","Ragusa","Ravenna","Reggio-Calabria","Reggio-Emilia","Rieti","Rimini","Roma","Rovigo","Salerno","Sassari","Savona","Siena","Siracusa","Sondrio","Taranto","Teramo","Terni","Torino","Trapani","Trento","Treviso","Trieste","Udine","Varese","Venezia","Verbania","Vercelli","Verona","Vibo-Valentia","Vicenza","Viterbo"};
                 String provincia = ftcity.getText().toString().trim();
+                int grandezza = dogList.size();
+                Portrait_Dog[] a = new Portrait_Dog[grandezza];
+                dogList.toArray(a);
+                List<String> razze = new ArrayList<>();
+                for (Portrait_Dog s : a)
+                {
+                    razze.add(s.getDogName());
+                }
+                boolean razza = false;
                 int intage = ftage.getProgress();
                 String filterage = String.valueOf(intage);
                 int idbutton=groupgender.getCheckedRadioButtonId();
                 genderbutton= findViewById(idbutton);
                 boolean sesso=false;
                 String filterbreed = ftcmpltbreed.getText().toString().trim();
-
+                if (!filterbreed.isEmpty()) {
+                    for (String s : razze) {
+                        if (filterbreed.equalsIgnoreCase(s)) {
+                            razza = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                    razza = true;
                 String ftgender="Maschio";
                 try {
                     ftgender= genderbutton.getText().toString();
@@ -85,9 +103,8 @@ public class FilterSearchActivity extends AppCompatActivity {
                 {
                     Toast.makeText(FilterSearchActivity.this, "Il tuo cane non ha sesso?", Toast.LENGTH_SHORT).show();
                 }
-                boolean boolprovincia=true;
+                boolean boolprovincia=false;
                 if (!provincia.isEmpty()) {
-                    boolprovincia=false;
                     for (String provinciona : provincine) {
                         if (provincia.equalsIgnoreCase(provinciona)) {
                             boolprovincia = true;
@@ -95,7 +112,9 @@ public class FilterSearchActivity extends AppCompatActivity {
                         }
                     }
                 }
-                if (boolprovincia&&sesso)
+                else
+                    boolprovincia=true;
+                if (boolprovincia&&sesso&&razza)
                 {
                     Intent intent = new Intent(FilterSearchActivity.this,FilterActivity.class);
                     intent.putExtra("Gender",ftgender);
@@ -105,7 +124,7 @@ public class FilterSearchActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else
-                    Snackbar.make(v,"C'è qualcosa che non va. Sei sicuro di aver inserito tutti i dati?",Snackbar.LENGTH_SHORT);
+                    Toast.makeText(FilterSearchActivity.this, "C'è qualcosa che non va. Sei sicuro di aver inserito almeno il sesso?", Toast.LENGTH_SHORT).show();;
             }
         });
     }

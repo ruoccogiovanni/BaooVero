@@ -132,10 +132,9 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                             }else if (items[i].equals("Indietro")) {
                                 dialogInterface.dismiss();
                             }
-                            else if (items[i].equals("Elimina il tuo cane "))
+                            else if (items[i].equals("Elimina il tuo cane"))
                             {
                                 dialogInterface.dismiss();
-
                                     final CharSequence[] items={"Confermo", "Annulla"};
                                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                                     builder.setTitle("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?");

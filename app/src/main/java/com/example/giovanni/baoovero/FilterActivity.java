@@ -22,31 +22,19 @@ public class FilterActivity extends AppCompatActivity {
     private List<Dog> listacani;
     private RecyclerViewAdapter myAdapter;
     private DatabaseReference myRef;
-
+    private String ftbreed,ftage,ftcity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
         Intent intent = getIntent();
         String ftgender=intent.getExtras().getString("Gender");
-        String ftbreed=intent.getExtras().getString("Breed");
-        String ftage=intent.getExtras().getString("Age");
-        String ftcity=intent.getExtras().getString("City");
+        ftbreed=intent.getExtras().getString("Breed");
+        ftage=intent.getExtras().getString("Age");
+        ftcity=intent.getExtras().getString("City");
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         Query query = myRef.orderByChild("gender").equalTo(ftgender);
-      /*  if (!ftbreed.isEmpty())
-        {
-            query1=myRef.orderByChild("breed").equalTo(ftbreed);
-        }
-        if (!ftage.isEmpty())
-        {
-            query2=myRef.orderByChild("age").equalTo(ftage);
-        }
-        if (!ftcity.isEmpty())
-        {
-            query3=myRef.orderByChild("city").equalTo(ftcity);
-        }*/
         query.addListenerForSingleValueEvent(valueEventListener);
         myrv = (RecyclerView) findViewById(R.id.recyclerview_filter);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -59,6 +47,13 @@ public class FilterActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Dog cane = snapshot.getValue(Dog.class);
                     listacani.add(cane);
+                    if (!ftbreed.isEmpty())
+                    listacani.removeIf(n -> !(n.getBreed().equalsIgnoreCase(ftbreed)));
+                    if (!ftcity.isEmpty())
+                        listacani.removeIf(n -> !(n.getCity().equalsIgnoreCase(ftcity)));
+                    if (!ftage.isEmpty()){
+                        listacani.removeIf(n -> (Integer.parseInt(n.getAge())<= Integer.parseInt(ftage)));
+                    }
                 }
                 myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
