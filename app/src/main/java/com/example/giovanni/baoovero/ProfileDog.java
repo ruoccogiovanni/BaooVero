@@ -123,7 +123,8 @@ public class ProfileDog extends AppCompatActivity {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
                 myRef.child(Uid).setValue(null);
-                Snackbar snack = Snackbar.make(v,"Hai eliminato il cane",Snackbar.LENGTH_INDEFINITE).setAction("ANNULLA", new View.OnClickListener() {
+
+                Snackbar snack = Snackbar.make(v,"Hai eliminato il cane",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.Rosso)).setAction("ANNULLA", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Snackbar.make(v,"Il cane è stato riaggiunto con successo.",Snackbar.LENGTH_SHORT).show();
@@ -134,6 +135,7 @@ public class ProfileDog extends AppCompatActivity {
                     }
                 });
                 snack.show();
+
             }
 
         });

@@ -21,13 +21,15 @@
 
     <TextView
         android:id="@+id/txttel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="320dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Telefono*"
         android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,13 +49,15 @@
 
     <TextView
         android:id="@+id/textcitta"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="380dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Provincia*"
         android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,13 +77,15 @@
 
     <TextView
         android:id="@+id/textdescr"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="440dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Descrizione"
         android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

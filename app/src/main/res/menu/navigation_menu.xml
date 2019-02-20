@@ -5,7 +5,11 @@
         android:title="Profilo"
         android:icon="@drawable/ic_profileicondog">
     </item>
-
+    <item
+        android:id="@+id/navpreferiti"
+        android:title="Preferiti"
+        android:icon="@drawable/ic_heart">
+    </item>
     <item
         android:id="@+id/about"
         android:title="About"

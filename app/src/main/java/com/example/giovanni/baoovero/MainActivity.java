@@ -1,9 +1,11 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    private ListView searchdog;
     private ArrayAdapter<String> adattatore;
-    private ArrayList<String> nomicani;
+    private List<Dog> nomicani;
     private ProgressBar caricamento;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,20 +54,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listacani = new ArrayList<>();
-        nomicani=new ArrayList<String>();
-
-        searchdog=(ListView)findViewById(R.id.search_dog);
+        nomicani=new ArrayList<>();
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
+
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listacani.clear();
                 for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
                     Dog cane = posSnapshot.getValue(Dog.class);
                     listacani.add(cane);
-                    nomicani.add(posSnapshot.child("name").getValue().toString());
                     caricamento.setVisibility(View.INVISIBLE);
                 }
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
@@ -77,9 +79,41 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
             }
         });
-        adattatore=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,nomicani);
-        searchdog.setAdapter(adattatore);
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.prova,R.color.Rosso,R.color.verde);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
 
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                listacani.clear();
+                                for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
+                                    Dog cane = posSnapshot.getValue(Dog.class);
+                                    listacani.add(cane);
+                                    caricamento.setVisibility(View.INVISIBLE);
+                                }
+                                myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+                                myrv.setAdapter(myAdapter);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                caricamento.setVisibility(View.INVISIBLE);
+                                Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                },2000);
+            }
+        });
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         t.setDrawerIndicatorEnabled(true);
@@ -99,9 +133,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.profilo:
                         startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
-                    //case R.id.sviluppatori:
-                    //    startActivity(...);
-                    //    break;
+                    case R.id.navpreferiti:
+                        auth = FirebaseAuth.getInstance();
+                        if(auth.getCurrentUser() != null)
+                            startActivity(new Intent(MainActivity.this,FavouriteActivity.class));
+                        else
+                            Toast.makeText(MainActivity.this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.about:
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
                         break;
@@ -110,12 +148,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+        nomicani=listacani;
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
@@ -124,17 +162,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 menu.findItem(R.id.app_bar_search).collapseActionView();
+                nomicani.removeIf(n ->!(n.getName().equalsIgnoreCase(query)));
+                myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
+                myrv.setAdapter(myAdapter);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                for (Dog cane:listacani){
-                    if (cane.getName().equalsIgnoreCase(newText)){
-                    myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
-                    myrv.setAdapter(myAdapter);
-                    }
-                }
+                nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(newText.toLowerCase())));
+                myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
+                myrv.setAdapter(myAdapter);
                 return false;
             }
         });

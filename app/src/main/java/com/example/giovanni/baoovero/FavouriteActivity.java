@@ -70,6 +70,7 @@ public class FavouriteActivity extends AppCompatActivity {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    listacani.clear();
                     for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
                         Dog cane = posSnapshot.getValue(Dog.class);
                         for (String s: preferiti) {
