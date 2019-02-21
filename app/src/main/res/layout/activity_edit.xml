@@ -9,14 +9,14 @@
         android:id="@+id/edit_dog_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Inserire nome"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editimmaginepiuID"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -24,77 +24,77 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Telefono*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Age" />
 
     <EditText
         android:id="@+id/edit_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Inserire numero di telefono"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/txttel" />
 
     <TextView
         android:id="@+id/textcitta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Provincia*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
 
     <EditText
         android:id="@+id/edit_city"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Inserire provincia"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textcitta" />
 
     <TextView
         android:id="@+id/textdescr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Descrizione"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_city" />
 
     <EditText
         android:id="@+id/edit_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Scrivi qui una breve descrizione."
@@ -104,7 +104,7 @@
         android:minLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textdescr" />
 
 
     <ImageView
@@ -138,7 +138,7 @@
         android:layout_width="0dp"
         android:layout_height="33dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,27 +149,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/productsansregular"
         android:text="Età"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editimmaginepiuID" />
 
 
     <RadioGroup
         android:id="@+id/edit_group_gender"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="61dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="120dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
 
-        >
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editimmaginepiuID"
+        app:layout_constraintTop_toBottomOf="@+id/editcmpltbreed">
 
         <RadioButton
             android:id="@+id/edit_button_male"
@@ -197,15 +197,15 @@
         android:id="@+id/editcmpltbreed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Selezionare razza"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/editimmaginepiuID"
+        app:layout_constraintTop_toBottomOf="@+id/edit_dog_name" />
 
     <Button
         android:id="@+id/edit_button"
@@ -240,14 +240,16 @@
 
     <TextView
         android:id="@+id/editcampiobbligatori"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
         android:fontFamily="@font/productsansregular"
         android:text="* (Campi obbligatori)"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editimmaginepiuID"
+        app:layout_constraintTop_toBottomOf="@+id/edit_group_gender" />
 
 </android.support.constraint.ConstraintLayout>
 

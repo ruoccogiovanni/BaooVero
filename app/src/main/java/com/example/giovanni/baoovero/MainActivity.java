@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        menu.findItem(R.id.app_bar_search).collapseActionView();
         return super.onCreateOptionsMenu(menu);
     }
 
