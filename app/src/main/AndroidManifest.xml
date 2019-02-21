@@ -15,34 +15,43 @@
         <activity android:name=".ProfileDog" />
         <activity
             android:name=".FavouriteActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".FilterSearchActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".SliderActivity" />
         <activity
             android:name=".FilterActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".FilterSearchActivity" />
         <activity
             android:name=".SignUp"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ForgotPassword"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".Dog_Activity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ActivitySplash">
+        <activity android:name=".Dog_Activity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ActivitySplash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ProfileActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".DashBoard" />
         <activity
@@ -50,6 +59,7 @@
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".EditActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ProfileActivity" />
     </application>
 
