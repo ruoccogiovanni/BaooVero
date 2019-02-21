@@ -27,14 +27,15 @@
             android:fontFamily="@font/productsansregular"
             android:gravity="center|start"
             android:text="Età:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="#2d2d2d"
             android:textSize="18dp"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             cardview:layout_constraintBottom_toTopOf="@+id/dog_breed_id_profile"
             cardview:layout_constraintEnd_toEndOf="parent"
             cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"
             cardview:layout_constraintTop_toBottomOf="@+id/dog_name_id_profile"
-            cardview:layout_constraintVertical_chainStyle="spread_inside" />
+            cardview:layout_constraintVertical_chainStyle="spread" />
 
         <ImageView
             android:id="@+id/dog_img_id_profile"
@@ -59,7 +60,7 @@
             android:text="Dog Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="18dp"
-            android:textStyle="normal|bold|italic"
+            android:textStyle="normal|bold"
             cardview:layout_constraintEnd_toEndOf="parent"
             cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"
             cardview:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +77,7 @@
             android:text="Breed"
             android:textColor="#2d2d2d"
             android:textSize="18dp"
-            android:textStyle="normal|bold|italic"
+            android:textStyle="normal|bold"
             cardview:layout_constraintEnd_toEndOf="parent"
             cardview:layout_constraintHorizontal_bias="0.0"
             cardview:layout_constraintStart_toEndOf="@+id/dog_img_id_profile"

@@ -1,15 +1,22 @@
 package com.example.giovanni.baoovero;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,7 +43,11 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,7 +76,11 @@ public class EditActivity extends AppCompatActivity {
     private Uri selectedImageUri;
     private View v;
     private String urlimmagine;
-    private  Bitmap bmp;
+    private Bitmap bmp;
+    File photoFile = null;
+    private String mCurrentPhotoPath;
+    private static final String IMAGE_DIRECTORY_NAME = "BAOO";
+    static final int CAPTURE_IMAGE_REQUEST = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -311,8 +326,9 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (items[i].equals("Fotocamera")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, REQUEST_CAMERA);
+                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    //startActivityForResult(intent, REQUEST_CAMERA);
+                    captureimage();
                 } else if (items[i].equals("Galleria")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
@@ -324,14 +340,52 @@ public class EditActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    private void captureimage()
+    {
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+        }
+        else
+        {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                try {
+
+                    photoFile = createImageFile();
+                    Toast.makeText(this, photoFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(this,
+                                "com.example.giovanni.baoovero.fileprovider",
+                                photoFile);
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST);
+                    }
+                } catch (Exception ex) {
+                    // Error occurred while creating the File
+                }
+
+
+            }else
+            {
+                Toast.makeText(this, "ERRORE", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+
+    }
     @Override
     public  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
         if(resultCode== Activity.RESULT_OK){
             if(requestCode==REQUEST_CAMERA){
-                Bundle bundle = data.getExtras();
-                bmp = (Bitmap) bundle.get("data");
+                //Bundle bundle = data.getExtras();
+                //bmp = (Bitmap) bundle.get("data");
+                bmp = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                immagineviewID.setImageBitmap(bmp);
                 uploadCamera();
                 immagineviewID.setImageBitmap(bmp);
             }else if(requestCode==SELECT_FILE){
@@ -340,6 +394,20 @@ public class EditActivity extends AppCompatActivity {
                 immagineviewID.setImageURI(selectedImageUri);
             }
         }
+    }
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     public void rbclick(View v)
@@ -427,6 +495,14 @@ public class EditActivity extends AppCompatActivity {
                             progressDialog.setMessage("Caricamento in corso: "+(int)progress+"%");
                         }
                     });
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                captureimage();
+            }
         }
     }
     public void setUrlimmagine(Uri prova)
