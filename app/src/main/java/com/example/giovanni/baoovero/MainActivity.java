@@ -3,6 +3,7 @@ package com.example.giovanni.baoovero;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,16 +49,27 @@ public class MainActivity extends AppCompatActivity {
     private List<Dog> nomicani;
     private ProgressBar caricamento;
     private FirebaseAuth auth;
-
+    private FloatingActionButton aggiungi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
         nomicani=new ArrayList<>();
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
-
+        aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
+        aggiungi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (auth.getCurrentUser()!=null)
+                    startActivity(new Intent(MainActivity.this,Add_Activity.class));
+                else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    Toast.makeText(MainActivity.this, "Devi prima aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                }
+                }
+        });
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -134,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
                     case R.id.navpreferiti:
-                        auth = FirebaseAuth.getInstance();
                         if(auth.getCurrentUser() != null)
                             startActivity(new Intent(MainActivity.this,FavouriteActivity.class));
                         else
