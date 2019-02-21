@@ -192,8 +192,6 @@ public class EditActivity extends AppCompatActivity {
                 boolean nome=true;
                 boolean razza=false;
                 boolean phone=true;
-                etcity.setHintTextColor(getResources().getColor(R.color.error_color));
-                actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
                 for (String provinciona:provincine)
                 {
                     if (addcity.equalsIgnoreCase(provinciona)) {
@@ -237,8 +235,13 @@ public class EditActivity extends AppCompatActivity {
                     Toast.makeText(EditActivity.this, "Complimenti, hai modificato "+addname+"!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditActivity.this,ProfileActivity.class));
                 }
-                else
+                else {
                     Toast.makeText(EditActivity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
+                    etcity.setHintTextColor(getResources().getColor(R.color.error_color));
+                    actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
+                    etcity.setText("");
+                    actvbreed.setText("");
+                }
             }
         });
         btnindietro.setOnClickListener(new View.OnClickListener() {

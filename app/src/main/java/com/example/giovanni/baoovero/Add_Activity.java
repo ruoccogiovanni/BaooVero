@@ -125,13 +125,12 @@ public class Add_Activity extends AppCompatActivity {
         btnavanti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String [] provincine = {"Agrigento","Alessandria","Ancona","Aosta","L'Aquila","Arezzo","Ascoli-Piceno","Asti","Avellino","Bari","Barletta-Andria-Trani","Belluno","Benevento","Bergamo","Biella","Bologna","Bolzano","Brescia","Brindisi","Cagliari","Caltanissetta","Campobasso","Carbonia Iglesias","Caserta","Catania","Catanzaro","Chieti","Como","Cosenza","Cremona","Crotone","Cuneo","Enna","Fermo","Ferrara","Firenze","Foggia","Forli-Cesena","Frosinone","Genova","Gorizia","Grosseto","Imperia","Isernia","La-Spezia","Latina","Lecce","Lecco","Livorno","Lodi","Lucca","Macerata","Mantova","Massa-Carrara","Matera","Medio Campidano","Messina","Milano","Modena","Monza-Brianza","Napoli","Novara","Nuoro","Ogliastra","Olbia Tempio","Oristano","Padova","Palermo","Parma","Pavia","Perugia","Pesaro-Urbino","Pescara","Piacenza","Pisa","Pistoia","Pordenone","Potenza","Prato","Ragusa","Ravenna","Reggio-Calabria","Reggio-Emilia","Rieti","Rimini","Roma","Rovigo","Salerno","Sassari","Savona","Siena","Siracusa","Sondrio","Taranto","Teramo","Terni","Torino","Trapani","Trento","Treviso","Trieste","Udine","Varese","Venezia","Verbania","Vercelli","Verona","Vibo-Valentia","Vicenza","Viterbo"};
+                String[] provincine = {"Agrigento", "Alessandria", "Ancona", "Aosta", "L'Aquila", "Arezzo", "Ascoli-Piceno", "Asti", "Avellino", "Bari", "Barletta-Andria-Trani", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Cagliari", "Caltanissetta", "Campobasso", "Carbonia Iglesias", "Caserta", "Catania", "Catanzaro", "Chieti", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo", "Enna", "Fermo", "Ferrara", "Firenze", "Foggia", "Forli-Cesena", "Frosinone", "Genova", "Gorizia", "Grosseto", "Imperia", "Isernia", "La-Spezia", "Latina", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca", "Macerata", "Mantova", "Massa-Carrara", "Matera", "Medio Campidano", "Messina", "Milano", "Modena", "Monza-Brianza", "Napoli", "Novara", "Nuoro", "Ogliastra", "Olbia Tempio", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro-Urbino", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato", "Ragusa", "Ravenna", "Reggio-Calabria", "Reggio-Emilia", "Rieti", "Rimini", "Roma", "Rovigo", "Salerno", "Sassari", "Savona", "Siena", "Siracusa", "Sondrio", "Taranto", "Teramo", "Terni", "Torino", "Trapani", "Trento", "Treviso", "Trieste", "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo-Valentia", "Vicenza", "Viterbo"};
                 int grandezza = dogList.size();
                 Portrait_Dog[] a = new Portrait_Dog[grandezza];
                 dogList.toArray(a);
                 List<String> razze = new ArrayList<>();
-                for (Portrait_Dog s : a)
-                {
+                for (Portrait_Dog s : a) {
                     razze.add(s.getDogName());
                 }
                 String addcity = etcity.getText().toString().trim();
@@ -141,64 +140,58 @@ public class Add_Activity extends AppCompatActivity {
                 String addbreed = actvbreed.getText().toString().trim();
                 int intage = sbage.getProgress();
                 String addage = String.valueOf(intage);
-                int idbutton=rgroup.getCheckedRadioButtonId();
-                rbutton= findViewById(idbutton);
-                String addgender="Maschio";
+                int idbutton = rgroup.getCheckedRadioButtonId();
+                rbutton = findViewById(idbutton);
+                String addgender = "Maschio";
                 try {
-                     addgender= rbutton.getText().toString();
+                    addgender = rbutton.getText().toString();
+                } catch (NullPointerException e) {
+
                 }
-                catch (NullPointerException e)
-                {
-                    Toast.makeText(Add_Activity.this, "Il tuo cane non ha sesso?", Toast.LENGTH_SHORT).show();
-                }
-                boolean provincia=false;
-                boolean nome=true;
-                boolean razza=false;
-                boolean phone=true;
-                etcity.setHintTextColor(getResources().getColor(R.color.error_color));
-                actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
-                for (String provinciona:provincine)
-                {
+                boolean provincia = false;
+                boolean nome = true;
+                boolean razza = false;
+                boolean phone = true;
+                for (String provinciona : provincine) {
                     if (addcity.equalsIgnoreCase(provinciona)) {
                         provincia = true;
                         break;
                     }
                 }
-                for (String s:razze)
-                {
+                for (String s : razze) {
                     if (addbreed.equalsIgnoreCase(s)) {
                         razza = true;
                         break;
                     }
                 }
-                if (addname.isEmpty())
-                {
-                    nome=false;
+                if (addname.isEmpty()) {
+                    nome = false;
                     etname.setHintTextColor(getResources().getColor(R.color.error_color));
                 }
-                if (addphone.isEmpty())
-                {
-                    phone=false;
+                if (addphone.isEmpty()) {
+                    phone = false;
                     etphone.setHintTextColor(getResources().getColor(R.color.error_color));
                 }
-                if (adddescription.isEmpty())
-                {
-                    adddescription="Il mio padroncino non vuole la mia descrizione :(";
+                if (adddescription.isEmpty()) {
+                    adddescription = "Il mio padroncino non vuole aggiungere la mia descrizione :(";
                 }
-                if (provincia&&nome&&phone&&razza)
-                {
+                if (provincia && nome && phone && razza) {
                     getUrlimmagine();
-
-                    Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
+                    Dog cane = new Dog(addname, addbreed, adddescription, addgender, addcity, addage, addphone, email, urlimmagine);
                     cane.setUtente(utente);
-                    String uid=mDatabase.child("Cani").push().getKey();
+                    String uid = mDatabase.child("Cani").push().getKey();
                     cane.setUid(uid);
                     mDatabase.child("Cani").child(uid).setValue(cane);
                     Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
-                }
-                else
-                Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Add_Activity.this, ProfileActivity.class));
+                } else
+                    {
+                    Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito bene le informazioni?", Toast.LENGTH_LONG).show();
+                        etcity.setHintTextColor(getResources().getColor(R.color.error_color));
+                        actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
+                        etcity.setText("");
+                        actvbreed.setText("");
+                    }
             }
         });
         btnindietro.setOnClickListener(new View.OnClickListener() {

@@ -45,7 +45,7 @@ public class SlideAdapter extends PagerAdapter {
             Color.rgb(55,55,55),
             Color.rgb(239,85,85),
             Color.rgb(110,49,89),
-            Color.rgb(1,188,212)
+            Color.rgb(75,150,75)
     };
 
 
