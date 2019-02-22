@@ -120,6 +120,7 @@ public class FilterSearchActivity extends AppCompatActivity {
                     intent.putExtra("Breed",filterbreed);
                     intent.putExtra("Age",filterage);
                     intent.putExtra("City",provincia);
+                    intent.putExtra("Provenienza",false);
                     startActivity(intent);
                 }
                 else {

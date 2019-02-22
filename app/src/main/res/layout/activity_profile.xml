@@ -57,16 +57,16 @@
 
     <TextView
         android:id="@+id/profile_welcome"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/productsansregular"
         android:text="Benvenuto"
         android:textSize="18dp"
         android:textStyle="bold"
-        style="@style/Widget.AppCompat.Button.Borderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,7 +1,6 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,12 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
-        nomicani=new ArrayList<>();
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
         aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
         aggiungi.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)
     {
-        nomicani=listacani;
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
@@ -168,23 +160,24 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                nomicani=listacani;
-                //menu.findItem(R.id.app_bar_search).collapseActionView();
-                nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(query.toLowerCase())));
-                myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
-                myrv.setAdapter(myAdapter);
+                Intent intento = new Intent(MainActivity.this,FilterActivity.class);
+                intento.putExtra("Name",query);
+                intento.putExtra("Provenienza",true);
+                startActivity(intento);
+                searchView.onActionViewCollapsed();
                 return false;
             }
 
+
             @Override
             public boolean onQueryTextChange(String newText) {
-                nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(newText.toLowerCase())));
-                myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
-                myrv.setAdapter(myAdapter);
+                //nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(newText.toLowerCase())));
+                //myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
+                //myrv.setAdapter(myAdapter);
                 return false;
             }
         });
-        menu.findItem(R.id.app_bar_search).collapseActionView();
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -204,4 +197,7 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         finishAffinity();
     }
+
+
+
 }
