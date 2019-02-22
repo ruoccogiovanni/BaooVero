@@ -188,9 +188,10 @@ public class Add_Activity extends AppCompatActivity {
                     nome = false;
                     etname.setHintTextColor(getResources().getColor(R.color.error_color));
                 }
-                if (addphone.isEmpty()) {
+                if (addphone.isEmpty()||!(addphone.startsWith("3"))) {
                     phone = false;
                     etphone.setHintTextColor(getResources().getColor(R.color.error_color));
+                    etphone.setText("");
                 }
                 if (adddescription.isEmpty()) {
                     adddescription = "Il mio padroncino non vuole aggiungere la mia descrizione :(";
@@ -207,10 +208,16 @@ public class Add_Activity extends AppCompatActivity {
                 } else
                     {
                     Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito bene le informazioni?", Toast.LENGTH_LONG).show();
-                        etcity.setHintTextColor(getResources().getColor(R.color.error_color));
-                        actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
-                        etcity.setText("");
-                        actvbreed.setText("");
+                        if (!provincia)
+                        {
+                            etcity.setHintTextColor(getResources().getColor(R.color.error_color));
+                            etcity.setText("");
+                        }
+                        if (!razza)
+                        {
+                            actvbreed.setHintTextColor(getResources().getColor(R.color.error_color));
+                            actvbreed.setText("");
+                        }
                     }
             }
         });

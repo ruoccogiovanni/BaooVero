@@ -101,7 +101,6 @@ public class FilterSearchActivity extends AppCompatActivity {
                 }
                 catch (NullPointerException e)
                 {
-                    Toast.makeText(FilterSearchActivity.this, "Il tuo cane non ha sesso?", Toast.LENGTH_SHORT).show();
                 }
                 boolean boolprovincia=false;
                 if (!provincia.isEmpty()) {
@@ -123,8 +122,19 @@ public class FilterSearchActivity extends AppCompatActivity {
                     intent.putExtra("City",provincia);
                     startActivity(intent);
                 }
-                else
-                    Toast.makeText(FilterSearchActivity.this, "C'è qualcosa che non va. Sei sicuro di aver inserito almeno il sesso?", Toast.LENGTH_SHORT).show();;
+                else {
+                    Toast.makeText(FilterSearchActivity.this, "C'è qualcosa che non va. Sei sicuro di aver inserito almeno il sesso?", Toast.LENGTH_SHORT).show();
+                    if (!razza)
+                    {
+                        ftcmpltbreed.setHintTextColor(getResources().getColor(R.color.error_color));
+                        ftcmpltbreed.setText("");
+                    }
+                    if (!boolprovincia)
+                    {
+                        ftcity.setHintTextColor(getResources().getColor(R.color.error_color));
+                        ftcity.setText("");
+                    }
+                }
             }
         });
     }

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -98,34 +99,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                (new Handler()).postDelayed(new Runnable() {
+
+                myRef.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void run() {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        listacani.clear();
+                        for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
+                            Dog cane = posSnapshot.getValue(Dog.class);
+                            listacani.add(cane);
+                            caricamento.setVisibility(View.INVISIBLE);
+                        }
+                        myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+                        myrv.setAdapter(myAdapter);
                         swipeRefreshLayout.setRefreshing(false);
 
-                        myRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                listacani.clear();
-                                for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                                    Dog cane = posSnapshot.getValue(Dog.class);
-                                    listacani.add(cane);
-                                    caricamento.setVisibility(View.INVISIBLE);
-                                }
-                                myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
-                                myrv.setAdapter(myAdapter);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                caricamento.setVisibility(View.INVISIBLE);
-                                Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
                     }
-                },2000);
-            }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        caricamento.setVisibility(View.INVISIBLE);
+                        Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
+                    }
+                });            }
         });
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
@@ -173,8 +168,9 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                menu.findItem(R.id.app_bar_search).collapseActionView();
-                nomicani.removeIf(n ->!(n.getName().equalsIgnoreCase(query)));
+                nomicani=listacani;
+                //menu.findItem(R.id.app_bar_search).collapseActionView();
+                nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(query.toLowerCase())));
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
                 myrv.setAdapter(myAdapter);
                 return false;
