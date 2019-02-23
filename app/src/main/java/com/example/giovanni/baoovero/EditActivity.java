@@ -233,7 +233,7 @@ public class EditActivity extends AppCompatActivity {
                 }
                 if (adddescription.isEmpty())
                 {
-                    adddescription="Il mio padroncino non vuole la mia descrizione :(";
+                    adddescription="Il mio padroncino non vuole aggiungere la mia descrizione :(";
                 }
                 if (provincia&&nome&&phone&&razza)
                 {
