@@ -263,6 +263,16 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(EditActivity.this,"Modifica non effettuata",Toast.LENGTH_SHORT).show();
+                if (getUrlimmagine()!=null)
+                {
+                    StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
+                    cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(EditActivity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 startActivity(new Intent(EditActivity.this,ProfileActivity.class));
             }
         });
@@ -417,6 +427,16 @@ public class EditActivity extends AppCompatActivity {
     }
     public void onBackPressed() {
         super.onBackPressed();
+        if (getUrlimmagine()!=null)
+        {
+            StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
+            cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(EditActivity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         startActivity(new Intent(EditActivity.this,ProfileActivity.class));
     }
 
