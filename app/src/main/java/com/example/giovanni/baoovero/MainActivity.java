@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Dog> nomicani;
     private ProgressBar caricamento;
     private FirebaseAuth auth;
+    private SearchView searchView;
     private FloatingActionButton aggiungi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
-        SearchView searchView = (SearchView)cerca.getActionView();
+        searchView = (SearchView)cerca.getActionView();
+        searchView.setQueryHint("Cerca per nome...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -201,19 +203,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onBackPressed() {
-        //super.onBackPressed();
-        new AlertDialog.Builder(this)
-                .setMessage("Sei sicuro di voler chiudere Baoo?")
-                .setCancelable(false)
-                .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
+        if (!searchView.isIconified())
+            searchView.onActionViewCollapsed();
+        else {
+            new AlertDialog.Builder(this)
+                    .setMessage("Sei sicuro di voler chiudere Baoo?")
+                    .setCancelable(false)
+                    .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finishAffinity();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }
+
     }
-
-
 
 }
