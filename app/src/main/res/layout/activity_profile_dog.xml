@@ -56,11 +56,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-
         android:text="Dog Name"
         android:textSize="22dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/profile_breed"
+        app:layout_constraintEnd_toStartOf="@+id/profile_gender"
         app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
         app:layout_constraintTop_toBottomOf="@+id/profiledogimg" />
 
@@ -70,14 +72,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:fitsSystemWindows="true"
+        android:layout_marginEnd="20dp"
 
+        android:fitsSystemWindows="true"
         android:fontFamily="@font/productsansregular"
         android:text="Breed"
         android:textSize="20dp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="@+id/profile_gender"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/profiledogimg2"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 

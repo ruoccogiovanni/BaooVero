@@ -89,13 +89,8 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                (new Handler()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                        query.addListenerForSingleValueEvent(valueEventListener);
-                    }
-                },2000);
+                query.addListenerForSingleValueEvent(valueEventListener);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

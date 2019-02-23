@@ -224,6 +224,16 @@ public class Add_Activity extends AppCompatActivity {
         btnindietro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (getUrlimmagine()!=null)
+                {
+                    StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
+                    cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Add_Activity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 Toast.makeText(Add_Activity.this,"Aggiunta fallita",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
             }
@@ -380,6 +390,16 @@ public class Add_Activity extends AppCompatActivity {
     }
     public void onBackPressed() {
         super.onBackPressed();
+        if (getUrlimmagine()!=null)
+        {
+            StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
+            cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(Add_Activity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
     }
 

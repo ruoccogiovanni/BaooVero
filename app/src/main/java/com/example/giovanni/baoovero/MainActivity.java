@@ -113,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
                         caricamento.setVisibility(View.INVISIBLE);
                         Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
                     }
-                });            }
+                });
+            }
         });
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
