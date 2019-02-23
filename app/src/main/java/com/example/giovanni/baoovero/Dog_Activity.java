@@ -67,8 +67,10 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         setContentView(R.layout.activity_dog_);
         cani=new HashMap<>();
         tvname = (TextView) findViewById(R.id.textName);
+        tvname.setSelected(true);
         tvdescription = (TextView) findViewById(R.id.txtDesc);
         tvbreed = (TextView) findViewById(R.id.textBreed);
+        tvbreed.setSelected(true);
         tvgender = (TextView) findViewById(R.id.textGend);
         tvcity = (TextView) findViewById(R.id.textCity);
         tvage = (TextView) findViewById(R.id.txtAge);

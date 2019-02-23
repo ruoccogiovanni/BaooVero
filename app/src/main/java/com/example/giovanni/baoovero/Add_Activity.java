@@ -383,6 +383,8 @@ public class Add_Activity extends AppCompatActivity {
         return image;
     }
 
+
+
     public void rbclick(View v)
     {
         int idbutton=rgroup.getCheckedRadioButtonId();

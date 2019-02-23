@@ -48,8 +48,10 @@ public class ProfileDog extends AppCompatActivity {
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
 
         tvname = (TextView) findViewById(R.id.profile_name);
+        tvname.setSelected(true);
         tvdescription = (TextView) findViewById(R.id.profile_desc);
         tvbreed = (TextView) findViewById(R.id.profile_breed);
+        tvbreed.setSelected(true);
         tvgender = (TextView) findViewById(R.id.profile_gender);
         tvcity = (TextView) findViewById(R.id.profile_city);
         tvage = (TextView) findViewById(R.id.profile_age);

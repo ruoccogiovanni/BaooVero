@@ -29,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.reverse;
+
 public class ProfileActivity extends AppCompatActivity {
     private Button logout;
     private Button adddog;
@@ -105,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Dog cane = snapshot.getValue(Dog.class);
                     listacani.add(cane);
                 }
+                reverse(listacani);
                 myAdapter=new RecyclerViewProfile( ProfileActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
             }

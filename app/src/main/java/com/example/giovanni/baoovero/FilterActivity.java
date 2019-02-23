@@ -100,7 +100,7 @@ public class FilterActivity extends AppCompatActivity {
                     if (!ftcity.isEmpty())
                         listacani.removeIf(n -> !(n.getCity().equalsIgnoreCase(ftcity)));
                     if (!ftage.isEmpty()) {
-                        listacani.removeIf(n -> (Integer.parseInt(n.getAge()) <= Integer.parseInt(ftage)));
+                        listacani.removeIf(n -> (Integer.parseInt(n.getAge()) < Integer.parseInt(ftage)));
                     }
                 }
                 if (listacani.isEmpty()){
