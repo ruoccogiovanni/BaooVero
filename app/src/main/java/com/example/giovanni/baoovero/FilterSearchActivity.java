@@ -31,6 +31,7 @@ public class FilterSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_search);
+        Toast.makeText(this, "Il campo sesso è obbligatorio.", Toast.LENGTH_SHORT).show();
         groupgender=(RadioGroup)findViewById(R.id.filter_gender);
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
@@ -89,6 +90,7 @@ public class FilterSearchActivity extends AppCompatActivity {
                 int idbutton=groupgender.getCheckedRadioButtonId();
                 genderbutton= findViewById(idbutton);
                 boolean sesso=false;
+                boolean boolprovincia=false;
                 String filterbreed = ftcmpltbreed.getText().toString().trim();
                 if (!filterbreed.isEmpty()) {
                     for (String s : razze) {
@@ -108,7 +110,7 @@ public class FilterSearchActivity extends AppCompatActivity {
                 catch (NullPointerException e)
                 {
                 }
-                boolean boolprovincia=false;
+
                 if (!provincia.isEmpty()) {
                     for (String provinciona : provincine) {
                         if (provincia.equalsIgnoreCase(provinciona)) {
