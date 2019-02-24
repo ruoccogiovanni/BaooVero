@@ -20,6 +20,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +52,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static com.example.giovanni.baoovero.Add_Activity.provincine;
+
 public class EditActivity extends AppCompatActivity {
     ImageView immagineviewID;
     private Button addimmagine;
@@ -58,7 +61,7 @@ public class EditActivity extends AppCompatActivity {
     private Button btnindietro;
     private SeekBar sbage;
     private TextView tvage;
-    private AutoCompleteTextView actvbreed;
+    private AutoCompleteTextView actvbreed,etcity;
     private List<Portrait_Dog> dogList;
     private RadioGroup rgroup;
     private RadioButton rbutton, rmaschio,rfemmina;
@@ -67,7 +70,6 @@ public class EditActivity extends AppCompatActivity {
     private EditText etname;
     private EditText etemail;
     private EditText etphone;
-    private EditText etcity;
     private EditText etdescription;
     private DatabaseReference mDatabase;
     private FirebaseAuth auth;
@@ -110,7 +112,10 @@ public class EditActivity extends AppCompatActivity {
         sbage = (SeekBar) findViewById(R.id.edit_Age);
         etname = (EditText) findViewById(R.id.edit_dog_name);
         etphone = (EditText) findViewById(R.id.edit_phone);
-        etcity = (EditText) findViewById(R.id.edit_city);
+        etcity = (AutoCompleteTextView) findViewById(R.id.edit_city);
+        ArrayAdapter<String> adattatore = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,provincine);
+        etcity.setAdapter(adattatore);
+        etcity.setDropDownVerticalOffset(-100);
         etdescription = (EditText) findViewById(R.id.edit_description);
         String annio=" anni";
 

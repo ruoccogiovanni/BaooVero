@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,18 +14,17 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
+import static com.example.giovanni.baoovero.Add_Activity.provincine;
 
 public class FilterSearchActivity extends AppCompatActivity {
     private SeekBar ftage;
-    private AutoCompleteTextView ftbreed;
+    private AutoCompleteTextView ftbreed,ftcity;
     private List<Portrait_Dog> dogList;
     private RadioGroup groupgender;
     private RadioButton genderbutton;
     private TextView fttextage;
-    private EditText ftcity;
     private Button ftbutton;
 
     @Override
@@ -36,7 +36,10 @@ public class FilterSearchActivity extends AppCompatActivity {
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
         ftbutton = (Button)findViewById(R.id.ft_button);
-        ftcity = (EditText) findViewById(R.id.ft_citta);
+        ftcity = (AutoCompleteTextView) findViewById(R.id.ft_citta);
+        ArrayAdapter<String> adattatore = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,provincine);
+        ftcity.setAdapter(adattatore);
+        ftcity.setDropDownVerticalOffset(-100);
         final int agemax = 20;
         ftage.setMax(agemax);
         fttextage.setText("Età: da " + ftage.getProgress() + " anni in poi");

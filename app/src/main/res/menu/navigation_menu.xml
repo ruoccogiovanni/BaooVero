@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/profilo"
         android:title="Profilo"
@@ -12,8 +13,17 @@
     </item>
     <item
         android:id="@+id/about"
-        android:title="About"
+        android:title="Guida"
+        android:icon="@drawable/ic_info_outline_black_24dp">
+    </item>
+    <item
+        android:id="@+id/feedback"
+        android:title="Invia FeedBack"
+        android:icon="@drawable/ic_saddog">
+    </item>
+    <item
+        android:id="@+id/info"
+        android:title="Sviluppatori"
         android:icon="@drawable/ic_about">
     </item>
-
 </menu>

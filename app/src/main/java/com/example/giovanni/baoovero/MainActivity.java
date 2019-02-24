@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.about:
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
                         break;
+                    case R.id.feedback:
+
                 }
                 return true;
             }
