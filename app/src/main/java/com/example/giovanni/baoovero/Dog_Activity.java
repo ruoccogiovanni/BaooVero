@@ -176,7 +176,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Incontriamoci!");
                     intent.putExtra(Intent.EXTRA_TEXT, "Il mio cane è interessato a farsela con il tuo. Vediamoci e facciamoli divertire. Bacini :**");
                     intent.setType("message/rfc822");
-                    Intent chooser = Intent.createChooser(intent, "Send email");
+                    Intent chooser = Intent.createChooser(intent, "Invia email");
                     startActivity(chooser);
                 } else
                     Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();

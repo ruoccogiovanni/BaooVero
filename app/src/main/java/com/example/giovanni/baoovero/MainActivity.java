@@ -2,6 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -153,7 +154,16 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
                         break;
                     case R.id.feedback:
-
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setData(Uri.parse("mailto: "));
+                        String[] contatto = {"lucapocchia@gmail.ciomciom"};
+                        intent.putExtra(Intent.EXTRA_EMAIL, contatto);
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Feedback");
+                        intent.putExtra(Intent.EXTRA_TEXT, "Vorrei segnalarvi il seguente disservizio: ");
+                        intent.setType("message/rfc822");
+                        Intent chooser = Intent.createChooser(intent, "Invia Email");
+                        startActivity(chooser);
+                        break;
                 }
                 return true;
             }
