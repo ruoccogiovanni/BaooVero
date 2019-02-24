@@ -69,10 +69,11 @@ public class FilterActivity extends AppCompatActivity {
                         {
                             filtro.setText("Risultati della ricerca per il nome:\n" +name);
                             errore.setVisibility(View.INVISIBLE);
+                            myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
+                            myrv.setAdapter(myAdapter);
                         }
 
-                        myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
-                        myrv.setAdapter(myAdapter);
+
                     }
                 }
 
@@ -111,9 +112,10 @@ public class FilterActivity extends AppCompatActivity {
             else {
                     filtro.setText("Questi sono i risultati.");
                     errore.setVisibility(View.INVISIBLE);
-                }
-                myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
-                myrv.setAdapter(myAdapter);
+                    myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
+                    myrv.setAdapter(myAdapter);
+            }
+
             }
         }
         @Override
