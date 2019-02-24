@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -205,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (!searchView.isIconified())
             searchView.onActionViewCollapsed();
+        else if (dl.isDrawerOpen(GravityCompat.START)) {
+        dl.closeDrawer(GravityCompat.START);
+        }
         else {
             new AlertDialog.Builder(this)
                     .setMessage("Sei sicuro di voler chiudere Baoo?")
