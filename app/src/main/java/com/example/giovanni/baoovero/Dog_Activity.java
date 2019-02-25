@@ -10,6 +10,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.transition.TransitionManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,6 +70,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         tvname = (TextView) findViewById(R.id.textName);
         tvname.setSelected(true);
         tvdescription = (TextView) findViewById(R.id.txtDesc);
+        tvdescription.setMovementMethod(new ScrollingMovementMethod());
         tvbreed = (TextView) findViewById(R.id.textBreed);
         tvbreed.setSelected(true);
         tvgender = (TextView) findViewById(R.id.textGend);

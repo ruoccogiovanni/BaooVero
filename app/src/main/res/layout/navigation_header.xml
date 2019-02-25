@@ -12,6 +12,6 @@
         android:layout_height="180dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/ic_drawer1" />
+        android:background="@drawable/canedamettere" />
 
 </LinearLayout>
