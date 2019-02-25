@@ -1,5 +1,6 @@
 package com.example.giovanni.baoovero;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -156,13 +157,26 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.feedback:
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setData(Uri.parse("mailto: "));
-                        String[] contatto = {"lucapocchia@gmail.ciomciom"};
+                        String[] contatto = {"baoo@engineer.com"};
                         intent.putExtra(Intent.EXTRA_EMAIL, contatto);
                         intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Feedback");
                         intent.putExtra(Intent.EXTRA_TEXT, "Vorrei segnalarvi il seguente disservizio: ");
                         intent.setType("message/rfc822");
                         Intent chooser = Intent.createChooser(intent, "Invia Email");
                         startActivity(chooser);
+                        break;
+                    case R.id.cheers:
+                        String urlString = "http://paypal.me/baooincontri";
+                        Intent intento = new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
+                        intento.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intento.setPackage("com.android.chrome");
+                        try {
+                            startActivity(intento);
+                        } catch (ActivityNotFoundException ex) {
+                            // Chrome browser presumably not installed so allow user to choose instead
+                            intento.setPackage(null);
+                            startActivity(intento);
+                        }
                         break;
                 }
                 return true;
