@@ -64,7 +64,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         getSupportActionBar().hide(); //<< this
         myRef= FirebaseDatabase.getInstance().getReference();
         myRef2 = FirebaseDatabase.getInstance().getReference("Utenti");
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dog_);
         cani=new HashMap<>();
         tvname = (TextView) findViewById(R.id.textName);

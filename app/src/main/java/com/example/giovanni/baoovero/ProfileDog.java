@@ -1,12 +1,14 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -42,11 +44,9 @@ public class ProfileDog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide(); //<< this
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile_dog);
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
-
         tvname = (TextView) findViewById(R.id.profile_name);
         tvname.setSelected(true);
         tvdescription = (TextView) findViewById(R.id.profile_desc);
@@ -122,22 +122,18 @@ public class ProfileDog extends AppCompatActivity {
         btelimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
                 myVib.vibrate(25);
-                myRef.child(Uid).setValue(null);
-
-                Snackbar snack = Snackbar.make(v,"Hai eliminato il cane",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.Rosso)).setAction("ANNULLA", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Snackbar.make(v,"Il cane è stato riaggiunto con successo.",Snackbar.LENGTH_SHORT).show();
-                        Dog cane = new Dog(Name,Breed,Description,Gender,City,eig,Tel,Email,image);
-                        cane.setUid(Uid);
-                        cane.setUtente(utente);
-                        myRef.child(Uid).setValue(cane);
-                    }
-                });
-                snack.show();
-
+                new AlertDialog.Builder(ProfileDog.this)
+                        .setMessage("Sei sicuro di voler eliminare " + Name +"?")
+                        .setCancelable(false)
+                        .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                myRef.child(Uid).setValue(null);
+                                startActivity(new Intent(ProfileDog.this, ProfileActivity.class) );
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
             }
 
         });

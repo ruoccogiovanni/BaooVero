@@ -35,13 +35,13 @@
 
     <com.like.LikeButton
         android:id="@+id/heart_button"
-        android:layout_width="66dp"
-        android:layout_height="84dp"
+        android:layout_width="55dp"
+        android:layout_height="72dp"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="70dp"
         app:anim_scale_factor="3"
-        app:icon_size="16dp"
+        app:icon_size="13dp"
         app:icon_type="heart"
         app:layout_constraintBottom_toBottomOf="@+id/textGend"
         app:layout_constraintEnd_toEndOf="parent"

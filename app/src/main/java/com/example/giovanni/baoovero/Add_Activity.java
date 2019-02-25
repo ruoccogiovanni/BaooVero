@@ -191,8 +191,9 @@ public class Add_Activity extends AppCompatActivity {
                 if (addname.isEmpty()) {
                     nome = false;
                     etname.setHintTextColor(getResources().getColor(R.color.error_color));
+                    etname.setText("");
                 }
-                if (addphone.isEmpty()||!(addphone.startsWith("3"))) {
+                if (addphone.isEmpty()||(addphone.length() <9)) {
                     phone = false;
                     etphone.setHintTextColor(getResources().getColor(R.color.error_color));
                     etphone.setText("");
@@ -200,6 +201,11 @@ public class Add_Activity extends AppCompatActivity {
                 if (adddescription.isEmpty()) {
                     adddescription = "Il mio padroncino non vuole aggiungere la mia descrizione :(";
                 }
+                if (getUrlimmagine()==null)
+                {
+                    urlimmagine=null;
+                }
+
                 if (provincia && nome && phone && razza) {
                     getUrlimmagine();
                     Dog cane = new Dog(addname, addbreed, adddescription, addgender, addcity, addage, addphone, email, urlimmagine);

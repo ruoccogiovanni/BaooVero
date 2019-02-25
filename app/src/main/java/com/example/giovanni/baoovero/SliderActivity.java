@@ -26,15 +26,8 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide(); //<< this
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-
-        if(Build.VERSION.SDK_INT>=19){
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-        else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
         setContentView(R.layout.activity_slider);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         Dots_Layout = (LinearLayout) findViewById(R.id.dotsLayout);

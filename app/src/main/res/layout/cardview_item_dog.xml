@@ -34,21 +34,23 @@
 
         <TextView
             android:id="@+id/dog_name_id"
-            android:layout_width="192dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:fontFamily="@font/productsansregular"
             android:gravity="center|start|center_horizontal"
+            android:lines="2"
+            android:maxLines="2"
             android:text="Dog Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="19dp"
             cardview:layout_constraintBottom_toBottomOf="parent"
-            cardview:layout_constraintEnd_toStartOf="@+id/textBreed"
+            cardview:layout_constraintEnd_toStartOf="@+id/dog_breed_id"
             cardview:layout_constraintStart_toStartOf="@+id/dog_img_id"
             cardview:layout_constraintTop_toBottomOf="@id/dog_img_id" />
 
         <TextView
             android:id="@+id/dog_breed_id"
-            android:layout_width="205dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:fontFamily="@font/productsansitalic"
             android:gravity="center"
@@ -56,6 +58,7 @@
             android:textColor="#2d2d2d"
             android:textSize="14dp"
             android:textStyle="normal|bold|italic"
+            cardview:layout_constraintBottom_toBottomOf="parent"
             cardview:layout_constraintEnd_toEndOf="@+id/dog_img_id"
             cardview:layout_constraintStart_toEndOf="@+id/dog_name_id"
             cardview:layout_constraintTop_toTopOf="@+id/dog_name_id" />

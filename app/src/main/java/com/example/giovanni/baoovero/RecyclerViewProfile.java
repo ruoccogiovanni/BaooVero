@@ -135,26 +135,18 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                             else if (items[i].equals("Elimina il tuo cane"))
                             {
                                 dialogInterface.dismiss();
-                                    final CharSequence[] items={"Confermo", "Annulla"};
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                                    builder.setTitle("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?");
-                                    builder.setItems(items, new DialogInterface.OnClickListener() {
 
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            if (items[i].equals("Annulla")) {
-                                                dialogInterface.dismiss();
-                                            }
-                                            else if (items[i].equals("Confermo"))
-                                            {
-                                                myVib.vibrate(25);
+                                new AlertDialog.Builder(mContext)
+                                        .setMessage("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
                                                 myRef.child(mData.get(position).getUid()).setValue(null);
-                                                dialogInterface.dismiss();
                                                 mContext.startActivity(new Intent(mContext,ProfileActivity.class));
                                             }
-                                        }
-                                    });
-                                    builder.show();
+                                        })
+                                        .setNegativeButton("No", null)
+                                        .show();
                             }
                         }
                     });
