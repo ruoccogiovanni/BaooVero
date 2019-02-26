@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ckeytool -exportcert -keystore path-to-debug-or-production-keystore -list -v">
-    <uses-feature android:name="android.hardware.camera"
+    package="com.example.giovanni.baoovero">
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,6 +18,8 @@
         android:roundIcon="@drawable/ic_icona_profilo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SviluppatoriActivity"></activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.giovanni.baoovero.fileprovider"
@@ -22,57 +27,62 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
         <activity android:name=".ProfileDog" />
         <activity
             android:name=".FavouriteActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".ProfileActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FilterSearchActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SliderActivity" />
         <activity
             android:name=".FilterActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".FilterSearchActivity" />
+            android:parentActivityName=".FilterSearchActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignUp"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ForgotPassword"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Dog_Activity"
-                  android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity"
-                  android:screenOrientation="portrait" />
-        <activity android:name=".ActivitySplash"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dog_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivitySplash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".DashBoard" />
         <activity
             android:name=".Add_Activity"
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".EditActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".ProfileActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

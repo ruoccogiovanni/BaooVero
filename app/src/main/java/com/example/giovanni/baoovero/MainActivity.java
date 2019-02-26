@@ -3,6 +3,7 @@ package com.example.giovanni.baoovero;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -53,12 +54,15 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private SearchView searchView;
     private FloatingActionButton aggiungi;
+    private int numero;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
+        numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
         aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
         aggiungi.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 }
         });
+       aggiungi.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                numero++;
+                Toast.makeText(MainActivity.this, "Ce ne hai messo di tempo per trovarmi.", Toast.LENGTH_SHORT).show();
+                if (numero%2==1)
+                    MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                else
+                    MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                return true;
+            }
+        });
+
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -153,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.about:
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
+                        break;
+                    case R.id.info:
+                        startActivity(new Intent(MainActivity.this,SviluppatoriActivity.class));
                         break;
                     case R.id.feedback:
                         Intent intent = new Intent(Intent.ACTION_SEND);
