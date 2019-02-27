@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    private ArrayAdapter<String> adattatore;
-    private List<Dog> nomicani;
     private ProgressBar caricamento;
     private FirebaseAuth auth;
     private SearchView searchView;
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 numero++;
-                Toast.makeText(MainActivity.this, "Ce ne hai messo di tempo per trovarmi.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Ce ne hai messo di tempo per trovarmi.\nConsiglio: attiva la rotazione automatica.", Toast.LENGTH_SHORT).show();
                 if (numero%2==1)
                     MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
                 else
