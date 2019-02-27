@@ -192,11 +192,11 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("American Pit Bull Terrier", R.drawable.image_pitbull));
         dogList.add(new Portrait_Dog("Golden Retriever", R.drawable.image_retriever));
         dogList.add(new Portrait_Dog("Rottweiler", R.drawable.image_rottweiler));
-        dogList.add(new Portrait_Dog("Jack Russell Terrier", R.drawable.image_russel));
+        dogList.add(new Portrait_Dog("Jack Russell Terrier", R.drawable.image_russell));
         dogList.add(new Portrait_Dog("Schnauzer Nano", R.drawable.image_shnauzer));
         dogList.add(new Portrait_Dog("Shiba Inu", R.drawable.image_shiba));
         dogList.add(new Portrait_Dog("Volpino Italiano", R.drawable.image_volpino));
-        dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_westie));
+        dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_olivi));
         dogList.add(new Portrait_Dog("Yorkshire Terrier", R.drawable.image_yorkshire));
     }
 

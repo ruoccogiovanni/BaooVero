@@ -2,6 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.pm.ActivityInfo;
 import android.os.Vibrator;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class SviluppatoriActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
+        ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(R.id.constraint_svil);
+        constraintLayout.setBackgroundColor(getResources().getColor(R.color.uait));
         numero = 0;
         myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         immagine = (ImageView) findViewById(R.id.developerimage);
@@ -31,7 +34,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         numero++;
         if (numero % 3 == 0 )
         {
-            Snackbar.make(v,"WAAOOOOOOOOOOOOOOO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
+            Snackbar.make(v,"WAAOOOOOOO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     contenitore.stopDropping();
@@ -52,6 +55,55 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji(R.drawable.image_bulldog);
             contenitore.addEmoji(R.drawable.image_carlino);
             contenitore.addEmoji(R.drawable.image_chiuaua);
+            contenitore.addEmoji(R.drawable.image_chowchow);
+            contenitore.addEmoji(R.drawable.image_dalmata);
+            contenitore.addEmoji(R.drawable.image_labrador);
+            contenitore.addEmoji(R.drawable.image_maltese);
+            contenitore.addEmoji(R.drawable.image_chowchow);
+            contenitore.addEmoji( R.drawable.image_akita);
+            contenitore.addEmoji( R.drawable.image_alano);
+            contenitore.addEmoji( R.drawable.image_bassotto);
+            contenitore.addEmoji( R.drawable.image_beagle);
+            contenitore.addEmoji( R.drawable.beardedcollie);
+            contenitore.addEmoji( R.drawable.bordercollie);
+            contenitore.addEmoji(R.drawable.image_boxer);
+            contenitore.addEmoji( R.drawable.image_gisy);
+            contenitore.addEmoji( R.drawable.bulldog);
+            contenitore.addEmoji(R.drawable.canecorso);
+            contenitore.addEmoji(R.drawable.lupocecoslovacco);
+            contenitore.addEmoji( R.drawable.montagnapirenei);
+            contenitore.addEmoji(R.drawable.canedeifaraoni );
+            contenitore.addEmoji(R.drawable.cockeramericano);
+            contenitore.addEmoji(R.drawable.greyhound);
+            contenitore.addEmoji(R.drawable.levrieroafgano);
+            contenitore.addEmoji(R.drawable.levrierospagnolo );
+            contenitore.addEmoji(R.drawable.mastinonapoletano );
+            contenitore.addEmoji(R.drawable.pastorebergamasco);
+            contenitore.addEmoji(R.drawable.pastoreolandese);
+            contenitore.addEmoji( R.drawable.pechinese);
+            contenitore.addEmoji(R.drawable.sanbernardo);
+            contenitore.addEmoji(R.drawable.segugioserbo );
+            contenitore.addEmoji( R.drawable.segugiospagnolo);
+            contenitore.addEmoji(R.drawable.setteringlese);
+            contenitore.addEmoji(R.drawable.sharpei);
+            contenitore.addEmoji(R.drawable.siberianhusky);
+            contenitore.addEmoji(R.drawable.image_bulldog);
+            contenitore.addEmoji(R.drawable.image_carlino);
+            contenitore.addEmoji(R.drawable.image_chiuaua);
+            contenitore.addEmoji( R.drawable.image_chowchow);
+            contenitore.addEmoji( R.drawable.image_dalmata);
+            contenitore.addEmoji( R.drawable.image_labrador);
+            contenitore.addEmoji( R.drawable.image_maltese);
+            contenitore.addEmoji(R.drawable.image_pastoretedesco);
+            contenitore.addEmoji( R.drawable.image_pitbull);
+            contenitore.addEmoji( R.drawable.image_retriever);
+            contenitore.addEmoji( R.drawable.image_rottweiler);
+            contenitore.addEmoji( R.drawable.image_russell);
+            contenitore.addEmoji( R.drawable.image_shnauzer);
+            contenitore.addEmoji(R.drawable.image_shiba);
+            contenitore.addEmoji( R.drawable.image_volpino);
+            contenitore.addEmoji( R.drawable.image_olivi);
+            contenitore.addEmoji( R.drawable.image_yorkshire);
             contenitore.stopDropping();
             contenitore.setPer(10);
             contenitore.setDuration(7200);

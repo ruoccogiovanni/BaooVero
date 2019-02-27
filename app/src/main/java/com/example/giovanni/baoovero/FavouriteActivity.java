@@ -64,49 +64,42 @@ public class FavouriteActivity extends AppCompatActivity {
                 int grandezza= uid.values().size();
                 preferiti= new String[grandezza];
                 uid.values().toArray(preferiti);
-                }
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        listacani.clear();
+                        for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
+                            Dog cane = posSnapshot.getValue(Dog.class);
+                                for (String s : preferiti) {
+                                    if (cane.getUid().equals(s)) {
+                                        listacani.add(cane);
+                                    }
+                                }
+
+                                    immagine.setVisibility(View.INVISIBLE);
+                                    errore.setVisibility(View.INVISIBLE);
+                                    myAdapter = new RecyclerViewAdapter(FavouriteActivity.this, listacani);
+                                    myrv.setAdapter(myAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+
+            }
 
                 catch (NullPointerException e)
                 {
+                    errore.setVisibility(View.VISIBLE);
+                    errore.setText("Non hai ancora nessun preferito.");
+                    immagine.setVisibility(View.VISIBLE);
                     /*View v = findViewById(android.R.id.content);
                     Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
                    return;
                     */
                 }
-
-
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    listacani.clear();
-                    for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
-                        Dog cane = posSnapshot.getValue(Dog.class);
-                        for (String s: preferiti) {
-                            if (cane.getUid().equals(s)) {
-                                listacani.add(cane);
-                            }
-                        }
-                        if (listacani.isEmpty())
-                        {
-                            errore.setVisibility(View.VISIBLE);
-                            errore.setText("Non hai ancora nessun preferito.");
-                            immagine.setVisibility(View.VISIBLE);
-                        }
-                        else
-                        {
-                            immagine.setVisibility(View.INVISIBLE);
-                            errore.setVisibility(View.INVISIBLE);
-                            myAdapter=new RecyclerViewAdapter(FavouriteActivity.this,listacani);
-                            myrv.setAdapter(myAdapter);
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
         }
 
         @Override
@@ -130,51 +123,31 @@ protected void onResume(){
         myRef2 = FirebaseDatabase.getInstance().getReference("Utenti");
         myrv = (RecyclerView) findViewById(R.id.favourite_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Utente match = dataSnapshot.child(utente).getValue(Utente.class);
-                uid=match.getPreferiti();
-                try{
-                    int grandezza= uid.values().size();
-                    preferiti= new String[grandezza];
-                    uid.values().toArray(preferiti);
-                }
-
-                catch (NullPointerException e)
-                {
-                    /*View v = findViewById(android.R.id.content);
-                    Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
-                   return;
-                    */
-                }
-
-
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Utente match = dataSnapshot.child(utente).getValue(Utente.class);
+            uid=match.getPreferiti();
+            try{
+                int grandezza= uid.values().size();
+                preferiti= new String[grandezza];
+                uid.values().toArray(preferiti);
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         listacani.clear();
                         for(DataSnapshot posSnapshot: dataSnapshot.getChildren())  {
                             Dog cane = posSnapshot.getValue(Dog.class);
-                            for (String s: preferiti) {
+                            for (String s : preferiti) {
                                 if (cane.getUid().equals(s)) {
                                     listacani.add(cane);
                                 }
                             }
-                            if (listacani.isEmpty())
-                            {
-                                errore.setVisibility(View.VISIBLE);
-                                errore.setText("Non hai ancora nessun preferito.");
-                                immagine.setVisibility(View.VISIBLE);
-                            }
-                            else
-                            {
-                                immagine.setVisibility(View.INVISIBLE);
-                                errore.setVisibility(View.INVISIBLE);
-                                myAdapter=new RecyclerViewAdapter(FavouriteActivity.this,listacani);
-                                myrv.setAdapter(myAdapter);
-                            }
 
+                            immagine.setVisibility(View.INVISIBLE);
+                            errore.setVisibility(View.INVISIBLE);
+                            myAdapter = new RecyclerViewAdapter(FavouriteActivity.this, listacani);
+                            myrv.setAdapter(myAdapter);
                         }
                     }
 
@@ -182,13 +155,26 @@ protected void onResume(){
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        };
+
+            catch (NullPointerException e)
+            {
+                errore.setVisibility(View.VISIBLE);
+                errore.setText("Non hai ancora nessun preferito.");
+                immagine.setVisibility(View.VISIBLE);
+                    /*View v = findViewById(android.R.id.content);
+                    Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
+                   return;
+                    */
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
         myRef2.addValueEventListener(listener);
     }
 
