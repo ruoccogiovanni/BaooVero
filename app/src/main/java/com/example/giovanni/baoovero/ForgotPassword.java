@@ -67,6 +67,8 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
             {
                 Snackbar snackBar = Snackbar.make(activity_forgot,"C'è qualcosa che non va. Sicuro di aver inserito correttamente la tua email?",Snackbar.LENGTH_LONG);
                 snackBar.show();
+                input_email.setHintTextColor(getResources().getColor(R.color.error_color));
+                input_email.setText("");
             }
             else
             resetPassword(input_email.getText().toString());

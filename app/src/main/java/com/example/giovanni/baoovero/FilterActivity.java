@@ -96,12 +96,27 @@ public class FilterActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Dog cane = snapshot.getValue(Dog.class);
                     listacani.add(cane);
-                    if (!ftbreed.isEmpty())
-                        listacani.removeIf(n -> !(n.getBreed().equalsIgnoreCase(ftbreed)));
+                    if (!ftbreed.isEmpty()) {
+                        for (Dog a : listacani) {
+                            if (!(a.getBreed().equalsIgnoreCase(ftbreed))) {
+                                listacani.remove(a);
+                            }
+                        }
+                    }
                     if (!ftcity.isEmpty())
-                        listacani.removeIf(n -> !(n.getCity().equalsIgnoreCase(ftcity)));
+                    {
+                        for (Dog a : listacani) {
+                            if (!(a.getCity().equalsIgnoreCase(ftcity))) {
+                                listacani.remove(a);
+                            }
+                        }
+                    }
                     if (!ftage.isEmpty()) {
-                        listacani.removeIf(n -> (Integer.parseInt(n.getAge()) < Integer.parseInt(ftage)));
+                        for (Dog a : listacani) {
+                            if (Integer.parseInt(a.getAge())<Integer.parseInt(ftage)) {
+                                listacani.remove(a);
+                            }
+                        }
                     }
                 }
                 if (listacani.isEmpty()){

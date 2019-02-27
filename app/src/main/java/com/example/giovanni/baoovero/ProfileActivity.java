@@ -58,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
-        Query query=myRef.orderByChild("utente").equalTo(utente);
+        final Query query=myRef.orderByChild("utente").equalTo(utente);
         query.addListenerForSingleValueEvent(valueEventListener);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
