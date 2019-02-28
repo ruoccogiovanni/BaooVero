@@ -83,19 +83,157 @@ public class ProfileDog extends AppCompatActivity {
         tvgender.setText(Gender);
         tvcity.setText(citta);
         tvage.setText(Age);
+
+        switch (Breed){
+            case "Akita Inu":
+                imag.setImageResource(R.drawable.image_akita);
+                break;
+            case "Alano":
+                imag.setImageResource(R.drawable.image_alano);
+                break;
+            case "Bassotto":
+                imag.setImageResource(R.drawable.image_bassotto);
+                break;
+            case "Bearded Collie":
+                imag.setImageResource(R.drawable.image_beardedcollie);
+                break;
+            case "Cane Corso":
+                imag.setImageResource(R.drawable.canecorso);
+                break;
+            case "Lupo Cecoslovacco":
+                imag.setImageResource(R.drawable.lupocecoslovacco);
+                break;
+            case "Cane da montagna dei Pirenei":
+                imag.setImageResource(R.drawable.montagnapirenei);
+                break;
+            case "Cane dei Faraoni":
+                imag.setImageResource(R.drawable.canedeifaraoni);
+                break;
+            case "Cocker Americano":
+                imag.setImageResource(R.drawable.cockeramericano);
+                break;
+            case "Beagle":
+                imag.setImageResource(R.drawable.image_beagle);
+                break;
+            case "Levriero Afgano":
+                imag.setImageResource(R.drawable.levrieroafgano);
+                break;
+            case "Levriero Spagnolo":
+                imag.setImageResource(R.drawable.levrierospagnolo);
+                break;
+            case "Mastino Napoletano":
+                imag.setImageResource(R.drawable.mastinonapoletano);
+                break;
+            case "Pastore Bergamasco":
+                imag.setImageResource(R.drawable.pastorebergamasco);
+                break;
+            case "Pastore Olandese":
+                imag.setImageResource(R.drawable.pastoreolandese);
+                break;
+            case "San Bernardo":
+                imag.setImageResource(R.drawable.sanbernardo);
+                break;
+            case "Segugio Spagnolo":
+                imag.setImageResource(R.drawable.segugiospagnolo);
+                break;
+            case "Shar Pei":
+                imag.setImageResource(R.drawable.sharpei);
+                break;
+            case "Siberian Husky":
+                imag.setImageResource(R.drawable.siberianhusky);
+                break;
+            case "Bulldog Francese":
+                imag.setImageResource(R.drawable.bulldogfrancese);
+                break;
+            case "Carlino":
+                imag.setImageResource(R.drawable.image_carlino);
+                break;
+            case "Chihuahua":
+                imag.setImageResource(R.drawable.image_chiuaua);
+                break;
+            case "Dalmata":
+                imag.setImageResource(R.drawable.image_dalmata);
+                break;
+            case "Labrador Retriever":
+                imag.setImageResource(R.drawable.image_labrador);
+                break;
+            case "Maltese":
+                imag.setImageResource(R.drawable.image_maltese);
+                break;
+            case "Pastore Tedesco":
+                imag.setImageResource(R.drawable.image_pastoretedesco);
+                break;
+            case "American Pit Bull Terrier":
+                imag.setImageResource(R.drawable.image_pitbull);
+                break;
+            case "Jack Russell Terrier":
+                imag.setImageResource(R.drawable.image_russell);
+                break;
+            case "Schnauzer Nano":
+                imag.setImageResource(R.drawable.image_shnauzer);
+                break;
+            case "Shiba Inu":
+                imag.setImageResource(R.drawable.image_shiba);
+                break;
+            case "Volpino Italiano":
+                imag.setImageResource(R.drawable.image_volpino);
+                break;
+            case "West Highland White Terrier":
+                imag.setImageResource(R.drawable.image_olivi);
+                break;
+            case "Pastore della Brie":
+                imag.setImageResource(R.drawable.image_gisy);
+                break;
+            case "Chow chow":
+                imag.setImageResource(R.drawable.image_chowchow);
+                break;
+            case "Border Collie":
+                imag.setImageResource(R.drawable.image_bordercollie);
+                break;
+            case "Boxer":
+                imag.setImageResource(R.drawable.image_boxer);
+                break;
+            case "Greyhound":
+                imag.setImageResource(R.drawable.greyhound);
+                break;
+            case "Bulldog":
+                imag.setImageResource(R.drawable.image_bulldog);
+                break;
+            case "Segugio Serbo":
+                imag.setImageResource(R.drawable.segugioserbo);
+                break;
+            case "Setter Inglese":
+                imag.setImageResource(R.drawable.setteringlese);
+                break;
+            case "Meticcio":
+                imag.setImageResource(R.drawable.image_meticcio);
+                break;
+            case "Rottweiler":
+                imag.setImageResource(R.drawable.image_rottweiler);
+                break;
+            case "Yorkshire Terrier":
+                imag.setImageResource(R.drawable.image_yorkshire);
+                break;
+            case "Golden Retriever":
+                imag.setImageResource(R.drawable.image_retriever);
+                break;
+            case "Pechinese":
+                imag.setImageResource(R.drawable.pechinese);
+                break;
+            default:
+                Picasso.get()
+                        .load(image)
+                        .placeholder(R.drawable.roundloading)
+                        .fit()
+                        .centerCrop()
+                        .into(imag);
+        }
         Picasso.get()
                 .load(image)
                 .placeholder(R.drawable.loading_prova)
                 .fit()
                 .centerCrop()
                 .into(img);
-        Picasso.get()
-                .load(image)
-                .placeholder(R.drawable.loading_prova)
-                .fit()
-                .centerCrop()
-                .into(imag);
-
         btmodifica = (Button) findViewById(R.id.modifica);
         btmodifica.setOnClickListener(new View.OnClickListener() {
             @Override

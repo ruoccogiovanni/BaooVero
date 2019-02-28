@@ -1,14 +1,12 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -157,8 +155,8 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new Portrait_Dog("Alano", R.drawable.image_alano));
         dogList.add(new Portrait_Dog("Bassotto", R.drawable.image_bassotto));
         dogList.add(new Portrait_Dog("Beagle", R.drawable.image_beagle));
-        dogList.add(new Portrait_Dog("Bearded Collie", R.drawable.beardedcollie));
-        dogList.add(new Portrait_Dog("Border Collie", R.drawable.bordercollie));
+        dogList.add(new Portrait_Dog("Bearded Collie", R.drawable.image_beardedcollie));
+        dogList.add(new Portrait_Dog("Border Collie", R.drawable.image_bordercollie));
         dogList.add(new Portrait_Dog("Boxer", R.drawable.image_boxer));
         dogList.add(new Portrait_Dog("Pastore della Brie", R.drawable.image_gisy));
         dogList.add(new Portrait_Dog("Bulldog", R.drawable.bulldog));

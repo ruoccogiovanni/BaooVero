@@ -1,6 +1,5 @@
 package com.example.giovanni.baoovero;
 
-import android.content.pm.ActivityInfo;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -41,8 +40,8 @@ public class SviluppatoriActivity extends AppCompatActivity {
                 }
             }).show();
             myVib.vibrate(100);
-            contenitore.addEmoji(R.drawable.beardedcollie);
-            contenitore.addEmoji(R.drawable.bordercollie);
+            contenitore.addEmoji(R.drawable.image_beardedcollie);
+            contenitore.addEmoji(R.drawable.image_bordercollie);
             contenitore.addEmoji(R.drawable.bulldog);
             contenitore.addEmoji(R.drawable.canecorso);
             contenitore.addEmoji(R.drawable.canedeifaraoni);
@@ -64,8 +63,8 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji( R.drawable.image_alano);
             contenitore.addEmoji( R.drawable.image_bassotto);
             contenitore.addEmoji( R.drawable.image_beagle);
-            contenitore.addEmoji( R.drawable.beardedcollie);
-            contenitore.addEmoji( R.drawable.bordercollie);
+            contenitore.addEmoji( R.drawable.image_beardedcollie);
+            contenitore.addEmoji( R.drawable.image_bordercollie);
             contenitore.addEmoji(R.drawable.image_boxer);
             contenitore.addEmoji( R.drawable.image_gisy);
             contenitore.addEmoji( R.drawable.bulldog);
