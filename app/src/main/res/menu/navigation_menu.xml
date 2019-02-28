@@ -16,19 +16,25 @@
         android:title="Guida"
         android:icon="@drawable/ic_info">
     </item>
-    <item
-        android:id="@+id/feedback"
-        android:title="Invia Feedback"
-        android:icon="@drawable/ic_feedback">
-    </item>
-    <item
-        android:id="@+id/info"
-        android:title="Sviluppatori"
-        android:icon="@drawable/ic_developer">
-    </item>
-    <item
-        android:id="@+id/cheers"
-        android:title="Offrici da bere"
-        android:icon="@drawable/ic_cheers">
+    <item android:title="Parla con noi">
+        <menu>
+            <item
+                android:id="@+id/feedback"
+                android:title="Invia Feedback"
+                android:icon="@drawable/ic_feedback">
+            </item>
+
+            <item
+                android:id="@+id/cheers"
+                android:title="Offrici da bere"
+                android:icon="@drawable/ic_cheers">
+            </item>
+
+            <item
+                android:id="@+id/info"
+                android:title="Sviluppatori"
+                android:icon="@drawable/ic_developer">
+            </item>
+        </menu>
     </item>
 </menu>

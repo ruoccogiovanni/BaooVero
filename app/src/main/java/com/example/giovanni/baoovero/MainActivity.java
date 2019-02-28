@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,8 +26,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private FloatingActionButton aggiungi;
     private int numero;
+    private TextView tvnamelogin, tvemaillogin;
+    private ImageView immaginelogin;
+    private String utente,url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
+
+        NavigationView navigescionView = (NavigationView) findViewById(R.id.nv);
+        View headerView = navigescionView.getHeaderView(0);
+        immaginelogin= (ImageView) headerView.findViewById(R.id.immaginelogin);
+        tvnamelogin = (TextView) headerView.findViewById(R.id.navigation_name);
+        tvemaillogin = (TextView) headerView.findViewById(R.id.navigation_email);
+        tvemaillogin.setPaintFlags(tvemaillogin.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
         aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
@@ -86,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
+
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         myRef.addValueEventListener(new ValueEventListener() {
@@ -141,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        if (auth.getCurrentUser()!=null)
+            tvemaillogin.setText(auth.getCurrentUser().getEmail());
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         t.setDrawerIndicatorEnabled(true);
@@ -154,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 int id = item.getItemId();
                 switch(id)
                 {
@@ -225,9 +245,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //nomicani.removeIf(n ->!(n.getName().toLowerCase().contains(newText.toLowerCase())));
-                //myAdapter=new RecyclerViewAdapter( MainActivity.this,nomicani);
-                //myrv.setAdapter(myAdapter);
                 return false;
             }
         });
@@ -265,6 +282,13 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", null)
                     .show();
         }
+
+    }
+    public void Clicckino(View v){
+        if (auth.getCurrentUser()==null)
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        else
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 
     }
 
