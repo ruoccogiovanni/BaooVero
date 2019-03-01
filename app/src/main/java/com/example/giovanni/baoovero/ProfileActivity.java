@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     private RecyclerView myrv;
     private List<Dog> listacani;
     private RecyclerViewProfile myAdapter;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef,myRef2;
     private String utente;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {
-            welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail() + "\nQuesti sono i tuoi cani.");
+            //welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail() + "\nQuesti sono i tuoi cani.");
             utente = auth.getCurrentUser().getUid();
         }
         else startActivity(loginact);
@@ -58,8 +58,11 @@ public class ProfileActivity extends AppCompatActivity {
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
+        myRef2=FirebaseDatabase.getInstance().getReference("Utenti");
         final Query query=myRef.orderByChild("utente").equalTo(utente);
         query.addListenerForSingleValueEvent(valueEventListener);
+        Query profilo=myRef2.orderByChild("email").equalTo(auth.getCurrentUser().getEmail());
+        profilo.addListenerForSingleValueEvent(evento);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
 
@@ -118,6 +121,23 @@ public class ProfileActivity extends AppCompatActivity {
 
         }
     };
+
+    ValueEventListener evento = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for (DataSnapshot snap: dataSnapshot.getChildren())
+            {
+                Utente user=snap.getValue(Utente.class);
+                welcome.setText("Benvenuto, " + user.getNome() + " " + user.getCognome() +"\nQuesti sono i tuoi cani.");
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
