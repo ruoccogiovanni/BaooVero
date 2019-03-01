@@ -22,7 +22,7 @@
         android:background="@drawable/ic_icona_profilo" />
 
     <android.support.design.widget.TextInputLayout
-        android:layout_below="@+id/icon"
+        android:layout_below="@+id/input_usersurname"
         android:id="@+id/signup_input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +34,23 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
             android:hint="Inserisci la tua Email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/icon"
+        android:id="@+id/input_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/signup_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansregular"
+            android:hint="Inserisci il tuo Nome"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
 
@@ -53,6 +70,23 @@
             android:fontFamily="@font/productsansregular"
             android:hint="Inserisci la tua password"
             android:inputType="textPassword"
+            android:maxLines="1" />
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/input_username"
+        android:id="@+id/input_usersurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/signup_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansregular"
+            android:hint="Inserisci il tuo Cognome"
+            android:inputType="textEmailAddress"
             android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>

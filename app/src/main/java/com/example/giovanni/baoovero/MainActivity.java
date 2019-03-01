@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private  RecyclerView myrv;
     private List<Dog> listacani;
     private RecyclerViewAdapter myAdapter;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef,myRef2;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
-
         NavigationView navigescionView = (NavigationView) findViewById(R.id.nv);
         View headerView = navigescionView.getHeaderView(0);
         immaginelogin= (ImageView) headerView.findViewById(R.id.immaginelogin);
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
-
+        myRef2=FirebaseDatabase.getInstance().getReference("Utenti");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         myRef.addValueEventListener(new ValueEventListener() {
@@ -158,8 +157,14 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        if (auth.getCurrentUser()!=null)
+        if (auth.getCurrentUser()!=null){
+            utente=auth.getCurrentUser().getUid();
             tvemaillogin.setText(auth.getCurrentUser().getEmail());
+            Query query = myRef.orderByChild("utente").equalTo(utente).limitToFirst(1);
+            query.addListenerForSingleValueEvent(valueEventListener);
+            Query nome = myRef2.orderByChild("email").equalTo(auth.getCurrentUser().getEmail());
+            nome.addListenerForSingleValueEvent(evento);
+        }
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         t.setDrawerIndicatorEnabled(true);
@@ -222,6 +227,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snap: dataSnapshot.getChildren())
+                {Dog cane = snap.getValue(Dog.class);
+                 url=new String(cane.getThumbnail());
+                 break;
+                }
+            Picasso.get()
+                    .load(url)
+                    .fit()
+                    .centerCrop()
+                    .into(immaginelogin);
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+    ValueEventListener evento = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for (DataSnapshot snap: dataSnapshot.getChildren())
+            {
+                Utente user=snap.getValue(Utente.class);
+                tvnamelogin.setText(user.getNome()+" " + user.getCognome());
+            }
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)

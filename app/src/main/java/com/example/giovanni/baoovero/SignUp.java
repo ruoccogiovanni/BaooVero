@@ -27,7 +27,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     Button btnSignup;
     TextView btnLogin,btnForgotPass;
-    EditText input_email,input_pass;
+    EditText input_email,input_pass,nome,cognome;
     RelativeLayout activity_sign_up;
     private Vibrator myVib;
     private FirebaseAuth auth;
@@ -45,6 +45,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         btnForgotPass = (TextView)findViewById(R.id.signup_btn_forgot_pass);
         input_email = (EditText)findViewById(R.id.signup_email);
         input_pass = (EditText)findViewById(R.id.signup_password);
+        nome = (EditText)findViewById(R.id.signup_username);
+        cognome = (EditText)findViewById(R.id.signup_surname);
         activity_sign_up = (RelativeLayout)findViewById(R.id.activity_sign_up);
         myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         btnSignup.setOnClickListener(this);
@@ -102,6 +104,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         else{
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                             mDatabase.child("Utenti").child(currentFirebaseUser.getUid()).child("email").setValue(input_email.getText().toString());
+                            mDatabase.child("Utenti").child(currentFirebaseUser.getUid()).child("nome").setValue(nome.getText().toString());
+                            mDatabase.child("Utenti").child(currentFirebaseUser.getUid()).child("cognome").setValue(cognome.getText().toString());
                             startActivity(new Intent(SignUp.this,ProfileActivity.class));
                         }
                     }
