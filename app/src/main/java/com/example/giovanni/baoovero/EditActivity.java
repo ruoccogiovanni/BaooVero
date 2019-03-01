@@ -86,6 +86,7 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        setTitle("Modifica il tuo cane");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         v = findViewById(android.R.id.content);

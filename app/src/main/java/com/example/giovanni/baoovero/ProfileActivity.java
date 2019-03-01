@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         welcome=(TextView)findViewById(R.id.profile_welcome);
+        setTitle("Profilo");
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {

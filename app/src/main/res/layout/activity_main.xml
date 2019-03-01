@@ -56,7 +56,8 @@ tools:context="com.example.giovanni.baoovero.MainActivity">
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
-        android:id="@+id/nv">
+        android:id="@+id/nv"
+        app:itemTextAppearance="@style/NavigationStyle">
 
 
     </android.support.design.widget.NavigationView>

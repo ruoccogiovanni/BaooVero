@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NavigationStyle" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/productsansregular</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/scuro</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

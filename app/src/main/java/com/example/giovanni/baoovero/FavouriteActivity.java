@@ -44,6 +44,7 @@ public class FavouriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
+        setTitle("Preferiti");
         auth = FirebaseAuth.getInstance();
         utente = auth.getCurrentUser().getUid();
         listacani=new ArrayList<>();
