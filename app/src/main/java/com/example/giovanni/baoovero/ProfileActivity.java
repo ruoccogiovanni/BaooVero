@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     private List<Dog> listacani;
     private RecyclerViewProfile myAdapter;
     private DatabaseReference myRef,myRef2;
-    private String utente;
+    private String utente,email;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -51,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         if(auth.getCurrentUser() != null) {
             //welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail() + "\nQuesti sono i tuoi cani.");
             utente = auth.getCurrentUser().getUid();
+            email=auth.getCurrentUser().getEmail();
         }
         else startActivity(loginact);
         logout=(Button)findViewById(R.id.profile_logout);
@@ -61,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         myRef2=FirebaseDatabase.getInstance().getReference("Utenti");
         final Query query=myRef.orderByChild("utente").equalTo(utente);
         query.addListenerForSingleValueEvent(valueEventListener);
-        Query profilo=myRef2.orderByChild("email").equalTo(auth.getCurrentUser().getEmail());
+        Query profilo=myRef2.orderByChild("email").equalTo(email);
         profilo.addListenerForSingleValueEvent(evento);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
