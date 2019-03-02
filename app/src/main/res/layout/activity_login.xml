@@ -58,7 +58,7 @@
         android:fontFamily="@font/productsansbold"
         android:text="Accedi con email e password" />
 
-    <Button
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/login_btn_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
