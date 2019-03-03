@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        setTitle("Registrati");
         mDatabase=FirebaseDatabase.getInstance().getReference();
         //View
         btnSignup = (Button)findViewById(R.id.signup_btn_register);

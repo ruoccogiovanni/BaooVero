@@ -26,7 +26,6 @@
         android:onClick="Clicckino"
         app:civ_border_color="@color/prova"
         app:civ_border_width="2dp"
-        android:background="@mipmap/ic_launcher_round"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

@@ -19,6 +19,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
+        setTitle("Sviluppatori");
         ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(R.id.constraint_svil);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.uait));
         numero = 0;

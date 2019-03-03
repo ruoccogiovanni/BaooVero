@@ -31,7 +31,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-
+        setTitle("Password dimenticata");
         //View
         input_email = (EditText)findViewById(R.id.forgot_email);
         btnResetPass = (Button)findViewById(R.id.forgot_btn_reset);
