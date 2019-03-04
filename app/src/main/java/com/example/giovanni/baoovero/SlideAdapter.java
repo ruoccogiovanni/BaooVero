@@ -15,28 +15,24 @@ public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
 
-    // list of images
     public int[] lst_images = {
             R.drawable.ic_about,
             R.drawable.ic_icona_profilo,
             R.drawable.ic_icona_baoo,
             R.drawable.image_meticcio
     };
-    // list of titles
     public String[] lst_title = {
             "INCONTRARCI",
-            "COSE SCONCE", //QUI C'ERA SCOPARE
+            "COSE SCONCE",
             "DEPRESSIONE",
             "ARRIVANO I CUCCIOLI"
     }   ;
-    // list of descriptions
     public String[] lst_description = {
             "Lo scopo della nostra applicazione è far trovare l'amore ai nostri cuccioli.",
             "Questi cagnolini hanno l'aria da furfanti, un po' come noi.",
             "Qui arriva il momento di pensare che loro hanno trovato l'amore, e noi no.",
             "Restate aggiornati. Arriveranno nuovi aggiornamenti."
     };
-    // list of background colors
     public int[]  lst_backgroundcolor = {
             Color.rgb(55,55,55),
             Color.rgb(239,85,85),

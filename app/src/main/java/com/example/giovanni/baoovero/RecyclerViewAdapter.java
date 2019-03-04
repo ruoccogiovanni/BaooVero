@@ -51,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext,Dog_Activity.class);
+                Intent intent = new Intent(mContext, DogActivity.class);
 
                 // passing data to the dog activity
                 intent.putExtra("Name",mData.get(position).getName());

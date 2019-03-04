@@ -26,15 +26,13 @@ public class SviluppatoriActivity extends AppCompatActivity {
         myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         immagine = (ImageView) findViewById(R.id.developerimage);
         contenitore = (EmojiRainLayout) findViewById(R.id.emoji);
-
-
     }
 
     public void developerclick(View v) {
         numero++;
         if (numero % 3 == 0 )
         {
-            Snackbar.make(v,"WAAOOOOOOO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
+            Snackbar.make(v,"COSA STA SUCCEDENDO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     contenitore.stopDropping();
@@ -110,9 +108,6 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
-
         }
-
-
     }
 }

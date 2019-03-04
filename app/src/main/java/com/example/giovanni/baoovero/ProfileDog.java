@@ -41,7 +41,7 @@ public class ProfileDog extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
-        getSupportActionBar().hide(); //<< this
+        getSupportActionBar().hide();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile_dog);
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
@@ -57,7 +57,6 @@ public class ProfileDog extends AppCompatActivity {
         imag = (ImageView) findViewById(R.id.profiledogimg2);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         String annio=" anni";
-        // Recieve data
         final Intent intent = getIntent();
         final String Name = intent.getExtras().getString("Name");
         final String Breed =  intent.getExtras().getString("Breed");
@@ -74,14 +73,12 @@ public class ProfileDog extends AppCompatActivity {
         final String image = intent.getExtras().getString("Thumbnail");
         final String Uid = intent.getExtras().getString("Uid");
         final String utente=auth.getCurrentUser().getUid();
-        // Setting values
         tvname.setText(Name);
         tvbreed.setText(Breed);
         tvdescription.setText(descrizione);
         tvgender.setText(Gender);
         tvcity.setText(citta);
         tvage.setText(Age);
-
         switch (Breed){
             case "Akita Inu":
                 imag.setImageResource(R.drawable.image_akita);
@@ -251,7 +248,6 @@ public class ProfileDog extends AppCompatActivity {
                intento.putExtra("Utente",utente);
                startActivity(intento);
             }
-
         });
 
         btelimina = (Button) findViewById(R.id.elimina);
@@ -307,4 +303,3 @@ public class ProfileDog extends AppCompatActivity {
     }
     
 }
-

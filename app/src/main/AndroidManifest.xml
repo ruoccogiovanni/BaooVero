@@ -60,13 +60,13 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Dog_Activity"
+            android:name=".DogActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivitySplash"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,7 +80,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".DashBoard" />
         <activity
-            android:name=".Add_Activity"
+            android:name=".AddActivity"
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".EditActivity"

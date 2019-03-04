@@ -119,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="false"
+                android:checked="true"
                 android:fontFamily="@font/productsansbold"
                 android:onClick="ftclick"
                 android:text="Maschio" />
@@ -144,6 +144,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/productsansregular"
             android:hint="Selezionare razza"
+            android:completionThreshold="1"
             android:inputType="textShortMessage|textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

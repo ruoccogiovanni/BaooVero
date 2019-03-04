@@ -18,17 +18,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (auth.getCurrentUser()!=null)
-                    startActivity(new Intent(MainActivity.this,Add_Activity.class));
+                    startActivity(new Intent(MainActivity.this, AddActivity.class));
                 else {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     Toast.makeText(MainActivity.this, "Devi prima aver effettuato il login.", Toast.LENGTH_SHORT).show();

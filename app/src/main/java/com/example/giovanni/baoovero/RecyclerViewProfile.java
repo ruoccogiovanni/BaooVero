@@ -97,7 +97,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 intent.putExtra("Email",mData.get(position).getEmail());
                 intent.putExtra("Thumbnail",mData.get(position).getThumbnail());
                 intent.putExtra("Uid",mData.get(position).getUid());
-                // start the activity
                 mContext.startActivity(intent);
             }
         });
@@ -115,7 +114,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                         public void onClick(DialogInterface dialogInterface, int i) {
                             if (items[i].equals("Modifica il tuo cane")) {
                                 Intent intento = new Intent(mContext,EditActivity.class);
-                                // passing data to the dog activity
                                 intento.putExtra("Name",mData.get(position).getName());
                                 intento.putExtra("Breed",mData.get(position).getBreed());
                                 intento.putExtra("Description",mData.get(position).getDescription());
@@ -126,7 +124,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                                 intento.putExtra("Email",mData.get(position).getEmail());
                                 intento.putExtra("Image",mData.get(position).getThumbnail());
                                 intento.putExtra("Uid",mData.get(position).getUid());
-                                // start the activity
                                 mContext.startActivity(intento);
                                 dialogInterface.dismiss();
                             }else if (items[i].equals("Indietro")) {
@@ -179,8 +176,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
             tv_dog_age=(TextView)itemView.findViewById(R.id.dog_age_profile);
             img_dog_thumbnail = (ImageView) itemView.findViewById(R.id.dog_img_id_profile);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id_profile);
-
-
         }
     }
 }

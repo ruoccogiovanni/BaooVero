@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("Login");
-                  //View
         btnLogin = (Button)findViewById(R.id.login_btn_login);
         input_email = (EditText)findViewById(R.id.login_email);
         input_password = (EditText)findViewById(R.id.login_password);
@@ -58,11 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignup.setOnClickListener(this);
         btnForgotPass.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
-
-        //Init Firebase Auth
         auth = FirebaseAuth.getInstance();
-
-
         if(auth.getCurrentUser() != null)
             startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
     }

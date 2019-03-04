@@ -9,15 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AutoCompletePortrait extends ArrayAdapter<Portrait_Dog> {
-    private List<Portrait_Dog> dogListFull;
+public class AutoCompletePortrait extends ArrayAdapter<PortraitDog> {
+    private List<PortraitDog> dogListFull;
 
-    public AutoCompletePortrait(@NonNull Context context, @NonNull List<Portrait_Dog> dogList) {
+    public AutoCompletePortrait(@NonNull Context context, @NonNull List<PortraitDog> dogList) {
         super(context, 0, dogList);
         dogListFull = new ArrayList<>(dogList);
     }
@@ -40,7 +39,7 @@ public class AutoCompletePortrait extends ArrayAdapter<Portrait_Dog> {
         TextView textViewName = convertView.findViewById(R.id.tv_breed);
         ImageView imageViewFlag = convertView.findViewById(R.id.image_breed);
 
-        Portrait_Dog portrait_Dog = getItem(position);
+        PortraitDog portrait_Dog = getItem(position);
 
         if (portrait_Dog != null) {
             textViewName.setText(portrait_Dog.getDogName());
@@ -54,14 +53,14 @@ public class AutoCompletePortrait extends ArrayAdapter<Portrait_Dog> {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            List<Portrait_Dog> suggestions = new ArrayList<>();
+            List<PortraitDog> suggestions = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 suggestions.addAll(dogListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (Portrait_Dog item : dogListFull) {
+                for (PortraitDog item : dogListFull) {
                     if (item.getDogName().toLowerCase().contains(filterPattern)) {
                         suggestions.add(item);
                     }
@@ -83,7 +82,7 @@ public class AutoCompletePortrait extends ArrayAdapter<Portrait_Dog> {
 
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            return ((Portrait_Dog) resultValue).getDogName();
+            return ((PortraitDog) resultValue).getDogName();
         }
     };
 }

@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
             android:hint="Inserisci il tuo Nome"
-            android:inputType="textEmailAddress"
+            android:inputType="textShortMessage|textCapWords"
             android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Inserisci la tua password"
+            android:hint="Inserisci la tua password (min 6 caratteri)"
             android:inputType="textPassword"
             android:maxLines="1" />
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
             android:hint="Inserisci il tuo Cognome"
-            android:inputType="textEmailAddress"
+            android:inputType="textShortMessage|textCapWords"
             android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>

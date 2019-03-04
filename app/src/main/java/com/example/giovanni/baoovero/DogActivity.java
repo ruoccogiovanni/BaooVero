@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
+public class DogActivity extends AppCompatActivity implements OnLikeListener {
     float x1,x2,y1,y2;
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;
     private ImageView img, imag;
@@ -58,7 +58,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         if(auth.getCurrentUser() != null) {
             utentecorrente = auth.getCurrentUser().getUid();
         }
-        getSupportActionBar().hide(); //<< this
+        getSupportActionBar().hide();
         myRef= FirebaseDatabase.getInstance().getReference();
         myRef2 = FirebaseDatabase.getInstance().getReference("Utenti");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -79,7 +79,7 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         likeButton.setOnLikeListener(this);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         String annio=" anni";
-        // Recieve data
+        // Ricezione dei dati
         Intent intent = getIntent();
         String Name = intent.getExtras().getString("Name");
         String Breed =  intent.getExtras().getString("Breed");
@@ -93,7 +93,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         final String image = intent.getExtras().getString("Thumbnail");
-        // Setting values
         tvname.setText(Name);
         tvbreed.setText(Breed);
         tvdescription.setText(Description);
@@ -252,7 +251,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                 .into(img);
         Button btcall = (Button) findViewById(R.id.chiama);
         if(auth.getCurrentUser() != null) {
-
             ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -291,7 +289,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
 
                 } else
                     Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
-                                       // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
         });
@@ -316,7 +313,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
                     startActivity(chooser);
                 } else
                     Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
-                   // startActivity(new Intent(Dog_Activity.this, LoginActivity.class));
             }
 
         });
@@ -331,7 +327,6 @@ public class Dog_Activity extends AppCompatActivity implements OnLikeListener {
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
-
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent.getX();

@@ -25,7 +25,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     private Vibrator myVib;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide(); //<< this
+        getSupportActionBar().hide();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slider);
@@ -40,12 +40,10 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
                 addDotsIndicator(position);
             }
 
@@ -60,7 +58,6 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
         mDots = new TextView[3];
         if(Dots_Layout!=null)
             Dots_Layout.removeAllViews();
-
         dots= new ImageView[4];
         for (int i=0;i<dots.length;i++)
         {
@@ -71,14 +68,12 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
             else{
                 dots[i].setImageDrawable(ContextCompat.getDrawable(this,R.drawable.default_dots));
             }
-
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(4,0,4,0);
             Dots_Layout.addView(dots[i],params);
         }
 
     }
-
 
     @Override
     public void onClick(View view) {
@@ -89,6 +84,4 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
-
-
 }

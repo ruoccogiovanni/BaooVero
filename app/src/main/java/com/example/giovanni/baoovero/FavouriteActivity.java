@@ -96,10 +96,6 @@ public class FavouriteActivity extends AppCompatActivity {
                     errore.setVisibility(View.VISIBLE);
                     errore.setText("Non hai ancora nessun preferito.");
                     immagine.setVisibility(View.VISIBLE);
-                    /*View v = findViewById(android.R.id.content);
-                    Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
-                   return;
-                    */
                 }
         }
 
@@ -164,10 +160,6 @@ protected void onResume(){
                 errore.setVisibility(View.VISIBLE);
                 errore.setText("Non hai ancora nessun preferito.");
                 immagine.setVisibility(View.VISIBLE);
-                    /*View v = findViewById(android.R.id.content);
-                    Snackbar.make(v,"Non hai ancora nessun preferito, che ne dici di pushare il quore?",Snackbar.LENGTH_LONG).show();
-                   return;
-                    */
             }
         }
 

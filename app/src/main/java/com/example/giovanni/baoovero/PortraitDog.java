@@ -1,13 +1,13 @@
 package com.example.giovanni.baoovero;
 
-public class Portrait_Dog {
+public class PortraitDog {
     private String dogName;
     private int dogImage;
 
 
-    public Portrait_Dog() {
+    public PortraitDog() {
     }
-    public Portrait_Dog(String dogName, int dogImage) {
+    public PortraitDog(String dogName, int dogImage) {
         this.dogName = dogName;
         this.dogImage = dogImage;
     }

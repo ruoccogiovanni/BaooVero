@@ -73,8 +73,6 @@ public class FilterActivity extends AppCompatActivity {
                             myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
                             myrv.setAdapter(myAdapter);
                         }
-
-
                     }
                 }
 

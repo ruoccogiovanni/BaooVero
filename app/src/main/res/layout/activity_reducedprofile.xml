@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.giovanni.baoovero.Dog_Activity">
+    tools:context="com.example.giovanni.baoovero.DogActivity">
 
     <ImageView
         android:id="@+id/dogthumbnail"

@@ -2,10 +2,7 @@ package com.example.giovanni.baoovero;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -74,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myVib.vibrate(25);
-                startActivity(new Intent(ProfileActivity.this,Add_Activity.class));
+                startActivity(new Intent(ProfileActivity.this, AddActivity.class));
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

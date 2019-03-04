@@ -53,7 +53,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class Add_Activity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity {
     ImageView immagineviewID;
     private Button addimmagine;
     private Button btnavanti;
@@ -61,7 +61,7 @@ public class Add_Activity extends AppCompatActivity {
     private SeekBar sbage;
     private TextView tvage;
     private AutoCompleteTextView actvbreed;
-    private List<Portrait_Dog> dogList;
+    private List<PortraitDog> dogList;
     private RadioGroup rgroup;
     private RadioButton rbutton;
     static final int REQUEST_CAMERA = 1;
@@ -156,10 +156,10 @@ public class Add_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int grandezza = dogList.size();
-                Portrait_Dog[] a = new Portrait_Dog[grandezza];
+                PortraitDog[] a = new PortraitDog[grandezza];
                 dogList.toArray(a);
                 List<String> razze = new ArrayList<>();
-                for (Portrait_Dog s : a) {
+                for (PortraitDog s : a) {
                     razze.add(s.getDogName());
                 }
                 String addcity = etcity.getText().toString().trim();
@@ -219,11 +219,11 @@ public class Add_Activity extends AppCompatActivity {
                     String uid = mDatabase.child("Cani").push().getKey();
                     cane.setUid(uid);
                     mDatabase.child("Cani").child(uid).setValue(cane);
-                    Toast.makeText(Add_Activity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Add_Activity.this, ProfileActivity.class));
+                    Toast.makeText(AddActivity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddActivity.this, ProfileActivity.class));
                 } else
                     {
-                    Toast.makeText(Add_Activity.this, "C'è qualcosa che non va. Sicuro di aver inserito bene le informazioni?", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddActivity.this, "C'è qualcosa che non va. Sicuro di aver inserito bene le informazioni?", Toast.LENGTH_LONG).show();
                         if (!provincia)
                         {
                             etcity.setHintTextColor(getResources().getColor(R.color.error_color));
@@ -246,68 +246,67 @@ public class Add_Activity extends AppCompatActivity {
                     cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(Add_Activity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-                Toast.makeText(Add_Activity.this,"Aggiunta fallita",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
+                Toast.makeText(AddActivity.this,"Aggiunta fallita.",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddActivity.this,ProfileActivity.class));
             }
         });
     }
 
     private void fillDogList() {
         dogList = new ArrayList<>();
-        dogList.add(new Portrait_Dog("Akita Inu", R.drawable.image_akita));
-        dogList.add(new Portrait_Dog("Alano", R.drawable.image_alano));
-        dogList.add(new Portrait_Dog("Bassotto", R.drawable.image_bassotto));
-        dogList.add(new Portrait_Dog("Beagle", R.drawable.image_beagle));
-        dogList.add(new Portrait_Dog("Bearded Collie", R.drawable.image_beardedcollie));
-        dogList.add(new Portrait_Dog("Border Collie", R.drawable.image_bordercollie));
-        dogList.add(new Portrait_Dog("Boxer", R.drawable.image_boxer));
-        dogList.add(new Portrait_Dog("Pastore della Brie", R.drawable.image_gisy));
-        dogList.add(new Portrait_Dog("Bulldog", R.drawable.bulldog));
-        dogList.add(new Portrait_Dog("Cane Corso",R.drawable.canecorso));
-        dogList.add(new Portrait_Dog("Lupo Cecoslovacco",R.drawable.lupocecoslovacco));
-        dogList.add(new Portrait_Dog("Cane da montagna dei Pirenei", R.drawable.montagnapirenei));
-        dogList.add(new Portrait_Dog("Cane dei Faraoni",R.drawable.canedeifaraoni ));
-        dogList.add(new Portrait_Dog("Cocker Americano", R.drawable.cockeramericano));
-        dogList.add(new Portrait_Dog("Greyhound", R.drawable.greyhound));
-        dogList.add(new Portrait_Dog("Levriero Afgano", R.drawable.levrieroafgano));
-        dogList.add(new Portrait_Dog("Levriero Spagnolo",R.drawable.levrierospagnolo ));
-        dogList.add(new Portrait_Dog("Mastino Napoletano",R.drawable.mastinonapoletano ));
-        dogList.add(new Portrait_Dog("Pastore Bergamasco", R.drawable.pastorebergamasco));
-        dogList.add(new Portrait_Dog("Pastore Olandese", R.drawable.pastoreolandese));
-        dogList.add(new Portrait_Dog("Pechinese", R.drawable.pechinese));
-        dogList.add(new Portrait_Dog("San Bernardo", R.drawable.sanbernardo));
-        dogList.add(new Portrait_Dog("Segugio Serbo",R.drawable.segugioserbo ));
-        dogList.add(new Portrait_Dog("Segugio Spagnolo", R.drawable.segugiospagnolo));
-        dogList.add(new Portrait_Dog("Setter Inglese", R.drawable.setteringlese));
-        dogList.add(new Portrait_Dog("Shar Pei", R.drawable.sharpei));
-        dogList.add(new Portrait_Dog("Siberian Husky", R.drawable.siberianhusky));
-        dogList.add(new Portrait_Dog("Bulldog Francese", R.drawable.image_bulldog));
-        dogList.add(new Portrait_Dog("Carlino", R.drawable.image_carlino));
-        dogList.add(new Portrait_Dog("Chihuahua", R.drawable.image_chiuaua));
-        dogList.add(new Portrait_Dog("Chow chow", R.drawable.image_chowchow));
-        dogList.add(new Portrait_Dog("Dalmata", R.drawable.image_dalmata));
-        dogList.add(new Portrait_Dog("Labrador Retriever", R.drawable.image_labrador));
-        dogList.add(new Portrait_Dog("Maltese", R.drawable.image_maltese));
-        dogList.add(new Portrait_Dog("Meticcio", R.drawable.image_meticcio));
-        dogList.add(new Portrait_Dog("Pastore Tedesco", R.drawable.image_pastoretedesco));
-        dogList.add(new Portrait_Dog("American Pit Bull Terrier", R.drawable.image_pitbull));
-        dogList.add(new Portrait_Dog("Golden Retriever", R.drawable.image_retriever));
-        dogList.add(new Portrait_Dog("Rottweiler", R.drawable.image_rottweiler));
-        dogList.add(new Portrait_Dog("Jack Russell Terrier", R.drawable.image_russell));
-        dogList.add(new Portrait_Dog("Schnauzer Nano", R.drawable.image_shnauzer));
-        dogList.add(new Portrait_Dog("Shiba Inu", R.drawable.image_shiba));
-        dogList.add(new Portrait_Dog("Volpino Italiano", R.drawable.image_volpino));
-        dogList.add(new Portrait_Dog("West Highland White Terrier", R.drawable.image_olivi));
-        dogList.add(new Portrait_Dog("Yorkshire Terrier", R.drawable.image_yorkshire));
+        dogList.add(new PortraitDog("Akita Inu", R.drawable.image_akita));
+        dogList.add(new PortraitDog("Alano", R.drawable.image_alano));
+        dogList.add(new PortraitDog("Bassotto", R.drawable.image_bassotto));
+        dogList.add(new PortraitDog("Beagle", R.drawable.image_beagle));
+        dogList.add(new PortraitDog("Bearded Collie", R.drawable.image_beardedcollie));
+        dogList.add(new PortraitDog("Border Collie", R.drawable.image_bordercollie));
+        dogList.add(new PortraitDog("Boxer", R.drawable.image_boxer));
+        dogList.add(new PortraitDog("Pastore della Brie", R.drawable.image_gisy));
+        dogList.add(new PortraitDog("Bulldog", R.drawable.bulldog));
+        dogList.add(new PortraitDog("Cane Corso",R.drawable.canecorso));
+        dogList.add(new PortraitDog("Lupo Cecoslovacco",R.drawable.lupocecoslovacco));
+        dogList.add(new PortraitDog("Cane da montagna dei Pirenei", R.drawable.montagnapirenei));
+        dogList.add(new PortraitDog("Cane dei Faraoni",R.drawable.canedeifaraoni ));
+        dogList.add(new PortraitDog("Cocker Americano", R.drawable.cockeramericano));
+        dogList.add(new PortraitDog("Greyhound", R.drawable.greyhound));
+        dogList.add(new PortraitDog("Levriero Afgano", R.drawable.levrieroafgano));
+        dogList.add(new PortraitDog("Levriero Spagnolo",R.drawable.levrierospagnolo ));
+        dogList.add(new PortraitDog("Mastino Napoletano",R.drawable.mastinonapoletano ));
+        dogList.add(new PortraitDog("Pastore Bergamasco", R.drawable.pastorebergamasco));
+        dogList.add(new PortraitDog("Pastore Olandese", R.drawable.pastoreolandese));
+        dogList.add(new PortraitDog("Pechinese", R.drawable.pechinese));
+        dogList.add(new PortraitDog("San Bernardo", R.drawable.sanbernardo));
+        dogList.add(new PortraitDog("Segugio Serbo",R.drawable.segugioserbo ));
+        dogList.add(new PortraitDog("Segugio Spagnolo", R.drawable.segugiospagnolo));
+        dogList.add(new PortraitDog("Setter Inglese", R.drawable.setteringlese));
+        dogList.add(new PortraitDog("Shar Pei", R.drawable.sharpei));
+        dogList.add(new PortraitDog("Siberian Husky", R.drawable.siberianhusky));
+        dogList.add(new PortraitDog("Bulldog Francese", R.drawable.image_bulldog));
+        dogList.add(new PortraitDog("Carlino", R.drawable.image_carlino));
+        dogList.add(new PortraitDog("Chihuahua", R.drawable.image_chiuaua));
+        dogList.add(new PortraitDog("Chow chow", R.drawable.image_chowchow));
+        dogList.add(new PortraitDog("Dalmata", R.drawable.image_dalmata));
+        dogList.add(new PortraitDog("Labrador Retriever", R.drawable.image_labrador));
+        dogList.add(new PortraitDog("Maltese", R.drawable.image_maltese));
+        dogList.add(new PortraitDog("Meticcio", R.drawable.image_meticcio));
+        dogList.add(new PortraitDog("Pastore Tedesco", R.drawable.image_pastoretedesco));
+        dogList.add(new PortraitDog("American Pit Bull Terrier", R.drawable.image_pitbull));
+        dogList.add(new PortraitDog("Golden Retriever", R.drawable.image_retriever));
+        dogList.add(new PortraitDog("Rottweiler", R.drawable.image_rottweiler));
+        dogList.add(new PortraitDog("Jack Russell Terrier", R.drawable.image_russell));
+        dogList.add(new PortraitDog("Schnauzer Nano", R.drawable.image_shnauzer));
+        dogList.add(new PortraitDog("Shiba Inu", R.drawable.image_shiba));
+        dogList.add(new PortraitDog("Volpino Italiano", R.drawable.image_volpino));
+        dogList.add(new PortraitDog("West Highland White Terrier", R.drawable.image_olivi));
+        dogList.add(new PortraitDog("Yorkshire Terrier", R.drawable.image_yorkshire));
     }
 
     private void SelectImage(){
         final CharSequence[] items={"Fotocamera","Galleria", "Indietro"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(Add_Activity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddActivity.this);
         builder.setTitle("Seleziona Foto");
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
@@ -338,12 +337,11 @@ public class Add_Activity extends AppCompatActivity {
         {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                // Create the File where the photo should go
+                // Crea il file dove dovrebbe andare l'immagine
                 try {
 
                     photoFile = createImageFile();
-                    Toast.makeText(this, photoFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-                    // Continue only if the File was successfully created
+                    // Continua solamente se il file è stato creato con successo
                     if (photoFile != null) {
                         Uri photoURI = FileProvider.getUriForFile(this,
                                 "com.example.giovanni.baoovero.fileprovider",
@@ -352,7 +350,6 @@ public class Add_Activity extends AppCompatActivity {
                         startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST);
                     }
                 } catch (Exception ex) {
-                    // Error occurred while creating the File
                 }
 
 
@@ -371,8 +368,6 @@ public class Add_Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode,data);
         if(resultCode== Activity.RESULT_OK){
             if(requestCode==REQUEST_CAMERA){
-                //Bundle bundle = data.getExtras();
-                //bmp = (Bitmap) bundle.get("data");
                 bmp = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 immagineviewID.setImageBitmap(bmp);
                 uploadCamera();
@@ -390,11 +385,10 @@ public class Add_Activity extends AppCompatActivity {
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,  /* prefisso*/
+                ".jpg",         /* suffisso */
+                storageDir      /* cartella */
         );
-        // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
@@ -414,11 +408,11 @@ public class Add_Activity extends AppCompatActivity {
             cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(Add_Activity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddActivity.this, "Aggiunta fallita.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-        startActivity(new Intent(Add_Activity.this,ProfileActivity.class));
+        startActivity(new Intent(AddActivity.this,ProfileActivity.class));
     }
 
     private void uploadImage() {

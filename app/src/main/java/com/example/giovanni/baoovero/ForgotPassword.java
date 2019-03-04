@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +31,6 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         setTitle("Password dimenticata");
-        //View
         input_email = (EditText)findViewById(R.id.forgot_email);
         btnResetPass = (Button)findViewById(R.id.forgot_btn_reset);
         btnBack = (TextView)findViewById(R.id.forgot_btn_back);
@@ -40,8 +38,6 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         btnResetPass.setOnClickListener(this);
         btnBack.setOnClickListener(this);
-
-        //Init Firebase
         auth = FirebaseAuth.getInstance();
 
     }
@@ -83,11 +79,11 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato la password all'email: "+email,Snackbar.LENGTH_LONG);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato le istruzioni per il recupero della password all'email: "+email,Snackbar.LENGTH_LONG);
                             snackBar.show();
                         }
                         else{
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Riprova, la password non è stata resettata.",Snackbar.LENGTH_SHORT);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Riprova di nuovo, non siamo riusciti a mandare le istruzioni all'email inserita.",Snackbar.LENGTH_SHORT);
                             snackBar.show();
                         }
                     }
