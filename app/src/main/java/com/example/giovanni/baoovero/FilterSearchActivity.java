@@ -40,7 +40,7 @@ public class FilterSearchActivity extends AppCompatActivity {
         ftcity.setDropDownVerticalOffset(-100);
         final int agemax = 20;
         ftage.setMax(agemax);
-        fttextage.setText("Età: da " + ftage.getProgress() + " anni in poi");
+        fttextage.setText("Età: qualsiasi");
         ftage.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     int progress_value;
@@ -48,7 +48,9 @@ public class FilterSearchActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         progress_value = progress;
-                        if (progress==1)
+                        if(progress==0)
+                            fttextage.setText("Età: qualsiasi");
+                        else if (progress==1)
                             fttextage.setText("Età: da " + progress + " anno in poi");
                         else
                             fttextage.setText("Età: da " + progress + " anni in poi");
@@ -60,7 +62,9 @@ public class FilterSearchActivity extends AppCompatActivity {
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        if (progress_value==1)
+                        if (progress_value==0)
+                            fttextage.setText("Età: qualsiasi");
+                        else if (progress_value==1)
                             fttextage.setText("Età: da " + progress_value + " anno in poi");
                         else
                             fttextage.setText("Età: da " + progress_value + " anni in poi");
