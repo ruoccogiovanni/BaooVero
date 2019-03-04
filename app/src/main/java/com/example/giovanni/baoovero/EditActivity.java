@@ -3,6 +3,7 @@ package com.example.giovanni.baoovero;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +22,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -82,10 +85,18 @@ public class EditActivity extends AppCompatActivity {
     private String mCurrentPhotoPath;
     private static final String IMAGE_DIRECTORY_NAME = "BAOO";
     static final int CAPTURE_IMAGE_REQUEST = 1;
+    private ConstraintLayout layout;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        layout=(ConstraintLayout)findViewById(R.id.editlayout);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
         setTitle("Modifica il tuo cane");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -545,6 +556,13 @@ public class EditActivity extends AppCompatActivity {
     public String getUrlimmagine()
     {
         return urlimmagine;
+    }
+    private void closeKeyboard(){
+        View vista = this.getCurrentFocus();
+        if (vista!=null){
+            InputMethodManager inputt = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputt.hideSoftInputFromWindow(vista.getWindowToken(),0);
+        }
     }
 
 }

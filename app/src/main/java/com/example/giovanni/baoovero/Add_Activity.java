@@ -3,6 +3,7 @@ package com.example.giovanni.baoovero;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +22,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -81,7 +84,7 @@ public class Add_Activity extends AppCompatActivity {
     private static final String IMAGE_DIRECTORY_NAME = "BAOO";
     static final int CAPTURE_IMAGE_REQUEST = 1;
     public final static String[] provincine = {"Agrigento", "Alessandria", "Ancona", "Aosta", "L'Aquila", "Arezzo", "Ascoli-Piceno", "Asti", "Avellino", "Bari", "Barletta-Andria-Trani", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Cagliari", "Caltanissetta", "Campobasso", "Carbonia Iglesias", "Caserta", "Catania", "Catanzaro", "Chieti", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo", "Enna", "Fermo", "Ferrara", "Firenze", "Foggia", "Forli-Cesena", "Frosinone", "Genova", "Gorizia", "Grosseto", "Imperia", "Isernia", "La-Spezia", "Latina", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca", "Macerata", "Mantova", "Massa-Carrara", "Matera", "Medio Campidano", "Messina", "Milano", "Modena", "Monza-Brianza", "Napoli", "Novara", "Nuoro", "Ogliastra", "Olbia Tempio", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro-Urbino", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato", "Ragusa", "Ravenna", "Reggio-Calabria", "Reggio-Emilia", "Rieti", "Rimini", "Roma", "Rovigo", "Salerno", "Sassari", "Savona", "Siena", "Siracusa", "Sondrio", "Taranto", "Teramo", "Terni", "Torino", "Trapani", "Trento", "Treviso", "Trieste", "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo-Valentia", "Vicenza", "Viterbo"};
-
+    private ConstraintLayout layout;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
@@ -95,6 +98,13 @@ public class Add_Activity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         final String utente = FirebaseAuth.getInstance().getCurrentUser().getUid() ;
+        layout=(ConstraintLayout)findViewById(R.id.addlayout);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeKeyboard();
+            }
+        });
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
         addimmagine = findViewById(R.id.immaginepiuID);
@@ -171,6 +181,7 @@ public class Add_Activity extends AppCompatActivity {
                 boolean nome = true;
                 boolean razza = false;
                 boolean phone = true;
+                boolean immagine=true;
                 for (String provinciona : provincine) {
                     if (addcity.equalsIgnoreCase(provinciona)) {
                         provincia = true;
@@ -198,10 +209,10 @@ public class Add_Activity extends AppCompatActivity {
                 }
                 if (getUrlimmagine()==null)
                 {
-                    urlimmagine=null;
+                    immagine=false;
                 }
 
-                if (provincia && nome && phone && razza) {
+                if (provincia && nome && phone && razza&&immagine) {
                     getUrlimmagine();
                     Dog cane = new Dog(addname, addbreed, adddescription, addgender, addcity, addage, addphone, email, urlimmagine);
                     cane.setUtente(utente);
@@ -505,6 +516,13 @@ private void uploadCamera(){
         return urlimmagine;
     }
 
+    private void closeKeyboard(){
+        View vista = this.getCurrentFocus();
+        if (vista!=null){
+            InputMethodManager inputt = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputt.hideSoftInputFromWindow(vista.getWindowToken(),0);
+        }
+    }
 }
 
 
