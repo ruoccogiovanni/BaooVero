@@ -41,6 +41,7 @@ import java.util.List;
 
 import static java.util.Collections.reverse;
 import static java.util.Collections.reverseOrder;
+import static java.util.Collections.rotate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -299,6 +300,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search);
 
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -319,10 +321,14 @@ public class MainActivity extends AppCompatActivity {
             reverse(listacani);
             myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
             myrv.setAdapter(myAdapter);
-            if(conta%2!=0)
+            if(conta%2!=0) {
                 Toast.makeText(this, "Ordine invertito: dal primo inserito all'ultimo", Toast.LENGTH_SHORT).show();
-            else
+                item.setIcon(R.drawable.ic_ascendant_sort);
+            }
+            else {
                 Toast.makeText(this, "Ordine invertito: dall'ultimo inserito al primo", Toast.LENGTH_SHORT).show();
+                item.setIcon(R.drawable.ic_discendant_sort);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
