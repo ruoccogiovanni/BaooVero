@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.reverse;
+import static java.util.Collections.reverseOrder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -267,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
+        cerca.setIcon(R.drawable.ic_search);
         searchView = (SearchView)cerca.getActionView();
         searchView.setQueryHint("Cerca per nome...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -289,6 +291,18 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem searchViewMenuItem = menu.findItem(R.id.app_bar_search);
+        searchView = (SearchView) searchViewMenuItem.getActionView();
+        int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView v = (ImageView) searchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search);
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -299,7 +313,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
                 return true;
         }
-
+        if (item.getItemId()==R.id.ordina)
+        {
+            reverse(listacani);
+            myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+            myrv.setAdapter(myAdapter);
+            Toast.makeText(this, "Ordine invertito", Toast.LENGTH_SHORT).show();
+        }
         return super.onOptionsItemSelected(item);
     }
     public void onBackPressed() {

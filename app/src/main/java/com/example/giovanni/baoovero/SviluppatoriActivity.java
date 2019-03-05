@@ -56,6 +56,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji(R.drawable.image_chowchow);
             contenitore.addEmoji(R.drawable.image_dalmata);
             contenitore.addEmoji(R.drawable.image_labrador);
+            contenitore.addEmoji(R.drawable.image_barboncino);
             contenitore.addEmoji(R.drawable.image_maltese);
             contenitore.addEmoji(R.drawable.image_chowchow);
             contenitore.addEmoji( R.drawable.image_akita);
@@ -91,6 +92,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji( R.drawable.image_chowchow);
             contenitore.addEmoji( R.drawable.image_dalmata);
             contenitore.addEmoji( R.drawable.image_labrador);
+            contenitore.addEmoji( R.drawable.image_barboncino);
             contenitore.addEmoji( R.drawable.image_maltese);
             contenitore.addEmoji(R.drawable.image_pastoretedesco);
             contenitore.addEmoji( R.drawable.image_pitbull);

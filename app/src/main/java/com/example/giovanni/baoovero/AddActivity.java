@@ -290,6 +290,7 @@ public class AddActivity extends AppCompatActivity {
         dogList.add(new PortraitDog("Chow chow", R.drawable.image_chowchow));
         dogList.add(new PortraitDog("Dalmata", R.drawable.image_dalmata));
         dogList.add(new PortraitDog("Labrador Retriever", R.drawable.image_labrador));
+        dogList.add(new PortraitDog("Barboncino", R.drawable.image_barboncino));
         dogList.add(new PortraitDog("Maltese", R.drawable.image_maltese));
         dogList.add(new PortraitDog("Meticcio", R.drawable.image_meticcio));
         dogList.add(new PortraitDog("Pastore Tedesco", R.drawable.image_pastoretedesco));

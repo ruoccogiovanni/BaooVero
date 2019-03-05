@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/ordina"
+        android:title="Ordina"
+        android:icon="@drawable/ic_orderby"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
         android:id="@+id/filtra"
         android:title="Filtra"
         android:icon="@drawable/ic_filter"
@@ -10,7 +17,9 @@
     </item>
     <item
         android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@drawable/ic_search"
+        android:searchIcon="@drawable/ic_search"
+        android:closeIcon="@drawable/ic_search"
         android:title="Search"
         app:showAsAction="ifRoom"
         app:actionViewClass="android.widget.SearchView" />

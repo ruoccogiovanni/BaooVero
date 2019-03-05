@@ -172,6 +172,9 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             case "Labrador Retriever":
                 imag.setImageResource(R.drawable.image_labrador);
                 break;
+            case "Barboncino":
+                imag.setImageResource(R.drawable.image_barboncino);
+                break;
             case "Maltese":
                 imag.setImageResource(R.drawable.image_maltese);
                 break;
