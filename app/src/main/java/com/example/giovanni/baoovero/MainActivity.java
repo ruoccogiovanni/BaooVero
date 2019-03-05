@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private SearchView searchView;
     private FloatingActionButton aggiungi;
-    private int numero;
+    private int numero,conta=0;
     private TextView tvnamelogin, tvemaillogin;
     private ImageView immaginelogin;
     private String utente,url;
@@ -315,10 +315,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (item.getItemId()==R.id.ordina)
         {
+            conta++;
             reverse(listacani);
             myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
             myrv.setAdapter(myAdapter);
-            Toast.makeText(this, "Ordine invertito", Toast.LENGTH_SHORT).show();
+            if(conta%2!=0)
+                Toast.makeText(this, "Ordine invertito: dal primo inserito all'ultimo", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Ordine invertito: dall'ultimo inserito al primo", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
