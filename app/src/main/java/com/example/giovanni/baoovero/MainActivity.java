@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -39,9 +40,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static java.util.Collections.reverse;
-import static java.util.Collections.reverseOrder;
-import static java.util.Collections.rotate;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvnamelogin, tvemaillogin;
     private ImageView immaginelogin;
     private String utente,url;
+    private DrawerLayout activity_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         tvnamelogin = (TextView) headerView.findViewById(R.id.navigation_name);
         tvemaillogin = (TextView) headerView.findViewById(R.id.navigation_email);
         tvemaillogin.setPaintFlags(tvemaillogin.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        activity_main = (DrawerLayout) findViewById(R.id.dl);
         numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
         aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
@@ -266,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(final Menu menu)
     {
+
         MenuInflater inflauto = getMenuInflater();
         inflauto.inflate(R.menu.right_menu,menu);
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
@@ -275,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 Intent intento = new Intent(MainActivity.this,FilterActivity.class);
                 intento.putExtra("Name",query);
                 intento.putExtra("Provenienza",true);
@@ -286,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 return false;
             }
         });
@@ -322,12 +328,14 @@ public class MainActivity extends AppCompatActivity {
             myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
             myrv.setAdapter(myAdapter);
             if(conta%2!=0) {
-                Toast.makeText(this, "Ordine invertito: dal primo inserito all'ultimo", Toast.LENGTH_SHORT).show();
-                item.setIcon(R.drawable.ic_ascendant_sort);
+                item.setIcon(R.drawable.ic_discendant_sort);
+                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane inserito all'ultimo", Snackbar.LENGTH_SHORT);
+                snackBar.show();
             }
             else {
-                Toast.makeText(this, "Ordine invertito: dall'ultimo inserito al primo", Toast.LENGTH_SHORT).show();
-                item.setIcon(R.drawable.ic_discendant_sort);
+                item.setIcon(R.drawable.ic_ascendant_sort);
+                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane inserito al primo", Snackbar.LENGTH_SHORT);
+                snackBar.show();
             }
         }
         return super.onOptionsItemSelected(item);
