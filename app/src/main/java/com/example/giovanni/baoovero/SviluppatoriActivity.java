@@ -118,7 +118,6 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
-
         }
     }
 }
