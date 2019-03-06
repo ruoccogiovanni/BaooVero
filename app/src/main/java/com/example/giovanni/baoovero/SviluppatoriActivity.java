@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.luolc.emojirain.EmojiRainLayout;
 
 public class SviluppatoriActivity extends AppCompatActivity {
