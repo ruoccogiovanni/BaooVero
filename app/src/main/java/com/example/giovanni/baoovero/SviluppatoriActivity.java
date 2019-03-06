@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.luolc.emojirain.EmojiRainLayout;
 
@@ -15,11 +16,15 @@ public class SviluppatoriActivity extends AppCompatActivity {
     private ImageView immagine;
     private EmojiRainLayout contenitore;
     private Vibrator myVib;
+    private TextView dev1,dev2,dev3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Sviluppatori");
+        dev1=(TextView)findViewById(R.id.testodeveloper);
+        dev2=(TextView)findViewById(R.id.testodeveloper2);
+        dev3=(TextView)findViewById(R.id.testodev3);
         ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(R.id.constraint_svil);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.uait));
         numero = 0;
@@ -105,11 +110,15 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji( R.drawable.image_olivi);
             contenitore.addEmoji( R.drawable.image_yorkshire);
             contenitore.stopDropping();
+            dev1.setVisibility(View.INVISIBLE);
+            dev2.setVisibility(View.INVISIBLE);
+            dev3.setVisibility(View.INVISIBLE);
             contenitore.setPer(10);
-            contenitore.setDuration(7200);
+            contenitore.setDuration(6500);
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
+
         }
     }
 }

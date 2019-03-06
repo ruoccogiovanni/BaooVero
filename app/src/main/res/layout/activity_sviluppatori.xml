@@ -10,8 +10,7 @@
     <com.luolc.emojirain.EmojiRainLayout
         android:id="@+id/emoji"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
-        </com.luolc.emojirain.EmojiRainLayout>
+        android:layout_width="match_parent"/>
     <ImageView
         android:id="@+id/developerimage"
         android:layout_width="153dp"
@@ -26,4 +25,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
+
+    <TextView
+        android:id="@+id/testodeveloper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/productsansregular"
+        android:gravity="center"
+        android:text="Quest'applicazione è stata sviluppata da:\nLuca Campanile\nIvan Orefice\n Giovanni Ruocco"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/developerimage" />
+
+    <TextView
+        android:id="@+id/testodeveloper2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Si ringrazia anche la gentile collaborazione di:\nSasà di Lauro e Sasà di Rosa"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testodeveloper" />
+
+    <TextView
+        android:id="@+id/testodev3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="cursive"
+        android:text="Tutti i diritti sono riservati"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testodeveloper2" />
 </android.support.constraint.ConstraintLayout>
