@@ -329,12 +329,12 @@ public class MainActivity extends AppCompatActivity {
             myrv.setAdapter(myAdapter);
             if(conta%2!=0) {
                 item.setIcon(R.drawable.ic_discendant_sort);
-                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane inserito all'ultimo", Snackbar.LENGTH_SHORT);
+                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane all'ultimo", Snackbar.LENGTH_SHORT);
                 snackBar.show();
             }
             else {
                 item.setIcon(R.drawable.ic_ascendant_sort);
-                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane inserito al primo", Snackbar.LENGTH_SHORT);
+                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane al primo", Snackbar.LENGTH_SHORT);
                 snackBar.show();
             }
         }

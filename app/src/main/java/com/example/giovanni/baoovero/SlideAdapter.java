@@ -30,8 +30,8 @@ public class SlideAdapter extends PagerAdapter {
     public String[] lst_description = {
             "Lo scopo della nostra applicazione è far trovare l'amore ai nostri cuccioli.",
             "Questi cagnolini hanno l'aria da furfanti, un po' come noi.",
-            "Qui arriva il momento di pensare che loro hanno trovato l'amore, e noi no.",
-            "Restate aggiornati. Arriveranno nuovi aggiornamenti."
+            "Infine arriva il momento di pensare che loro hanno trovato l'amore, e noi no.",
+            "Restate aggiornati. In pentola bollono molte altre funzionalità, e non cani, mi raccomando."
     };
     public int[]  lst_backgroundcolor = {
             Color.rgb(55,55,55),

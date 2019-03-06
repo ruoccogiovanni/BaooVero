@@ -11,13 +11,14 @@
     <ImageView
         android:id="@+id/dogthumbnail"
         android:layout_width="0dp"
-        android:layout_height="580dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/chiama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/lineaview"
@@ -170,7 +171,7 @@
     <Button
         android:id="@+id/chiama"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="186dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"

@@ -155,7 +155,7 @@
     <Button
         android:id="@+id/modifica"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="186dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -167,6 +167,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/elimina"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
