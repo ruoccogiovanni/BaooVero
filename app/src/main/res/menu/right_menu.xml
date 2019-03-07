@@ -8,7 +8,6 @@
         android:icon="@drawable/ic_ascendant_sort"
         app:showAsAction="ifRoom">
     </item>
-
     <item
         android:id="@+id/filtra"
         android:title="Filtra"

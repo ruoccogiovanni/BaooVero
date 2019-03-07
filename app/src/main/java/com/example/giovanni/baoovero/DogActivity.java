@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,7 +158,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
                 break;
             case "Bulldog Francese":
                 imag.setImageResource(R.drawable.bulldogfrancese);
-            break;
+                break;
             case "Carlino":
                 imag.setImageResource(R.drawable.image_carlino);
                 break;
