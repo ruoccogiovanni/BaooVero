@@ -38,6 +38,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -47,7 +49,7 @@ import static java.util.Collections.reverse;
 public class MainActivity extends AppCompatActivity {
 
     private  RecyclerView myrv;
-    private List<Dog> listacani;
+    private List<Dog> listacani,cani;
     private RecyclerViewAdapter myAdapter;
     private DatabaseReference myRef,myRef2;
     private DrawerLayout dl;
@@ -57,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private SearchView searchView;
     private FloatingActionButton aggiungi;
-    private int numero,conta=0;
+    private int numero,conta=0,conto=0;
     private TextView tvnamelogin, tvemaillogin;
     private ImageView immaginelogin;
     private String utente,url;
     private DrawerLayout activity_main;
+    private boolean ordine=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     listacani.add(cane);
                     caricamento.setVisibility(View.INVISIBLE);
                 }
+                cani=new ArrayList<>(listacani);
                 reverse(listacani);
                 myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
                 myrv.setAdapter(myAdapter);
@@ -144,8 +148,17 @@ public class MainActivity extends AppCompatActivity {
                             caricamento.setVisibility(View.INVISIBLE);
                         }
                         reverse(listacani);
-                        myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
-                        myrv.setAdapter(myAdapter);
+                        if (ordine)
+                        {
+                            myAdapter=new RecyclerViewAdapter( MainActivity.this,cani);
+                            myrv.setAdapter(myAdapter);
+                        }
+                        else {
+                            if (conta%2!=0)
+                                reverse(listacani);
+                            myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+                            myrv.setAdapter(myAdapter);
+                        }
                         swipeRefreshLayout.setRefreshing(false);
 
                     }
@@ -323,20 +336,73 @@ public class MainActivity extends AppCompatActivity {
         }
         if (item.getItemId()==R.id.ordina)
         {
-            conta++;
-            reverse(listacani);
-            myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
-            myrv.setAdapter(myAdapter);
-            if(conta%2!=0) {
-                item.setIcon(R.drawable.ic_discendant_sort);
-                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane all'ultimo", Snackbar.LENGTH_SHORT);
-                snackBar.show();
-            }
-            else {
-                item.setIcon(R.drawable.ic_ascendant_sort);
-                Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane al primo", Snackbar.LENGTH_SHORT);
-                snackBar.show();
-            }
+            new AlertDialog.Builder(this)
+                    .setMessage("Ordina per:")
+                    .setCancelable(true)
+                    .setPositiveButton("Ordine alfabetico", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            conto++;
+                            ordine=true;
+                            Collections.sort(cani, new Comparator<Dog>() {
+                                @Override
+                                public int compare(Dog o1, Dog o2) {
+                                    return o1.getName().compareTo(o2.getName());
+                                }
+                            });
+                            if (conto%2!=0){
+                                Snackbar snackBar = Snackbar.make(activity_main, "Ordine alfabetico crescente.", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                            }
+                            else
+                            {
+                                reverse(cani);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Ordine alfabetico decrescente.", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                            }
+                            myAdapter=new RecyclerViewAdapter( MainActivity.this,cani);
+                            myrv.setAdapter(myAdapter);
+                        }
+                    })
+                    .setNegativeButton("Ordine temporale", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            conta++;
+                            if (ordine)
+                                conta=1;
+                            ordine=false;
+                            reverse(listacani);
+                            myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+                            myrv.setAdapter(myAdapter);
+                            if(conta%2==0) {
+                                //item.setIcon(R.drawable.ic_discendant_sort);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Dal cane più recente.", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                            }
+                            else {
+                                //item.setIcon(R.drawable.ic_ascendant_sort);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Dal cane meno recente.", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                            }
+                        }
+                    })
+                    .show();
+
+
+
+            //conta++;
+            //reverse(listacani);
+            //myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
+            //myrv.setAdapter(myAdapter);
+            //if(conta%2!=0) {
+            //    item.setIcon(R.drawable.ic_discendant_sort);
+            //    Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane all'ultimo", Snackbar.LENGTH_SHORT);
+            //    snackBar.show();
+            //}
+            //else {
+            //    item.setIcon(R.drawable.ic_ascendant_sort);
+            //    Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane al primo", Snackbar.LENGTH_SHORT);
+            //    snackBar.show();
+            //}
         }
         return super.onOptionsItemSelected(item);
     }
