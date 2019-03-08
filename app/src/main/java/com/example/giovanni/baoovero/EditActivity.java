@@ -293,7 +293,6 @@ public class EditActivity extends AppCompatActivity {
                     cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(EditActivity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -365,6 +364,10 @@ public class EditActivity extends AppCompatActivity {
                     //startActivityForResult(intent, REQUEST_CAMERA);
                     captureimage();
                 } else if (items[i].equals("Galleria")) {
+                    if (ContextCompat.checkSelfPermission(EditActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
+                        selectimage();
+                    else
+                        requeststorage();
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent, SELECT_FILE);
@@ -375,6 +378,15 @@ public class EditActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    private void selectimage(){
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, SELECT_FILE);
+    }
+    private void requeststorage(){
+        ActivityCompat.requestPermissions(EditActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},1);
+    }
+
     private void captureimage()
     {
 
@@ -389,7 +401,6 @@ public class EditActivity extends AppCompatActivity {
                 try {
 
                     photoFile = createImageFile();
-                    Toast.makeText(this, photoFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                     // Continue only if the File was successfully created
                     if (photoFile != null) {
                         Uri photoURI = FileProvider.getUriForFile(this,
@@ -458,7 +469,6 @@ public class EditActivity extends AppCompatActivity {
             cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(EditActivity.this, "Il file è stato eliminato mmbro", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -478,7 +488,7 @@ public class EditActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Caricamento completato", Snackbar.LENGTH_SHORT).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
@@ -489,7 +499,7 @@ public class EditActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Caricamento fallito, riprova.", Snackbar.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -518,7 +528,7 @@ public class EditActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Caricamento completato", Snackbar.LENGTH_SHORT).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
@@ -529,7 +539,7 @@ public class EditActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Caricamento fallito, riprova.", Snackbar.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -548,6 +558,11 @@ public class EditActivity extends AppCompatActivity {
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 captureimage();
             }
+        }
+        if (requestCode==1)
+        {
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                selectimage();
         }
     }
     public void setUrlimmagine(Uri prova)
