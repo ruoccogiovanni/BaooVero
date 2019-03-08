@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +40,13 @@ public class ProfileActivity extends AppCompatActivity {
     private RecyclerViewProfile myAdapter;
     private DatabaseReference myRef,myRef2;
     private String utente,email;
+    private ImageView immagine;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         welcome=(TextView)findViewById(R.id.profile_welcome);
+        immagine=(ImageView)findViewById(R.id.profile_image);
+        immagine.setVisibility(View.INVISIBLE);
         setTitle("Profilo");
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
@@ -127,6 +131,12 @@ public class ProfileActivity extends AppCompatActivity {
             for (DataSnapshot snap: dataSnapshot.getChildren())
             {
                 Utente user=snap.getValue(Utente.class);
+                if (listacani.isEmpty())
+                {
+                    welcome.setText("Benvenuto, " + user.getNome() + " " + user.getCognome() +"\nNon hai ancora aggiunto cani.");
+                    immagine.setVisibility(View.VISIBLE);
+                }
+                else
                 welcome.setText("Benvenuto, " + user.getNome() + " " + user.getCognome() +"\nQuesti sono i tuoi cani.");
             }
         }

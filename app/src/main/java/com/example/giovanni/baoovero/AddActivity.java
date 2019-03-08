@@ -318,15 +318,24 @@ public class AddActivity extends AppCompatActivity {
                     //startActivityForResult(intent, REQUEST_CAMERA);
                     captureimage();
                 } else if (items[i].equals("Galleria")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, SELECT_FILE);
+                    if (ContextCompat.checkSelfPermission(AddActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
+                        selectimage();
+                    else
+                        requeststorage();
                 } else if (items[i].equals("Indietro")) {
                     dialogInterface.dismiss();
                 }
             }
         });
         builder.show();
+    }
+    private void selectimage(){
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            startActivityForResult(intent, SELECT_FILE);
+    }
+    private void requeststorage(){
+        ActivityCompat.requestPermissions(AddActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},1);
     }
     private void captureimage()
     {
@@ -499,6 +508,11 @@ private void uploadCamera(){
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 captureimage();
             }
+        }
+        if (requestCode==1)
+        {
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                selectimage();
         }
 
     }
