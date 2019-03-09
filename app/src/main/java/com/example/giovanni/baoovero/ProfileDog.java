@@ -17,9 +17,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 
@@ -35,6 +38,8 @@ public class ProfileDog extends AppCompatActivity {
     private Button btmodifica;
     private Button btelimina;
     private DatabaseReference myRef;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
 
     @Override
@@ -44,6 +49,8 @@ public class ProfileDog extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile_dog);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
         tvname = (TextView) findViewById(R.id.profile_name);
         tvname.setSelected(true);
@@ -260,10 +267,16 @@ public class ProfileDog extends AppCompatActivity {
                 myVib.vibrate(25);
                 new AlertDialog.Builder(ProfileDog.this)
                         .setMessage("Sei sicuro di voler eliminare " + Name +"?")
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 myRef.child(Uid).setValue(null);
+                                StorageReference cancella = storage.getReferenceFromUrl(image);
+                                cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                    }
+                                });
                                 startActivity(new Intent(ProfileDog.this, ProfileActivity.class) );
                             }
                         })

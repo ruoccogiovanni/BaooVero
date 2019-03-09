@@ -260,6 +260,15 @@ public class EditActivity extends AppCompatActivity {
                     {
                         urlimmagine=image;
                     }
+                    else
+                    {
+                        StorageReference cancella = storage.getReferenceFromUrl(image);
+                        cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                            }
+                        });
+                    }
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
                     cane.setUtente(utente);
                     cane.setUid(Uid);

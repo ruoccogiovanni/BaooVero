@@ -15,9 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -33,6 +36,8 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
     private DatabaseReference myRef;
     private String Name,Breed,Description,Gender,Age,Tel,Email,City,Thumbnail,Utente;
     private FirebaseAuth auth;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
     public RecyclerViewProfile(Context mContext, List<Dog> mData) {
         this.mContext = mContext;
@@ -51,6 +56,8 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         Dog currentdog= mData.get(position);
         holder.tv_dog_name.setText(mData.get(position).getName());
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
@@ -135,10 +142,16 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
                                 new AlertDialog.Builder(mContext)
                                         .setMessage("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?")
-                                        .setCancelable(false)
+                                        .setCancelable(true)
                                         .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 myRef.child(mData.get(position).getUid()).setValue(null);
+                                                StorageReference cancella = storage.getReferenceFromUrl(mData.get(position).getThumbnail());
+                                                cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                    }
+                                                });
                                                 mContext.startActivity(new Intent(mContext,ProfileActivity.class));
                                             }
                                         })
