@@ -146,7 +146,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/productsansregular"
-        android:scrollHorizontally="false"
+
         android:text="Description"
         android:textSize="24dp"
         android:visibility="invisible"

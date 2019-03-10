@@ -117,7 +117,7 @@
         android:layout_marginBottom="8dp"
         android:fitsSystemWindows="true"
         android:fontFamily="@font/productsansregular"
-        android:scrollHorizontally="false"
+
         android:text="Description"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/chiama"

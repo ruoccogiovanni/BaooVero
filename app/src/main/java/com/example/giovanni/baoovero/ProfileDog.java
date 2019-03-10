@@ -96,6 +96,12 @@ public class ProfileDog extends AppCompatActivity {
             case "Bassotto":
                 imag.setImageResource(R.drawable.image_bassotto);
                 break;
+                case "Cane da Pastore Maremmano Abruzzese":
+                imag.setImageResource(R.drawable.image_maremmano);
+                break;
+            case "American Staffordshire Terrier":
+                imag.setImageResource(R.drawable.image_american_terrier);
+                break;
             case "Bearded Collie":
                 imag.setImageResource(R.drawable.image_beardedcollie);
                 break;

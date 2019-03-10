@@ -149,6 +149,8 @@ public class FilterSearchActivity extends AppCompatActivity {
         dogList.add(new PortraitDog("Akita Inu", R.drawable.image_akita));
         dogList.add(new PortraitDog("Alano", R.drawable.image_alano));
         dogList.add(new PortraitDog("Bassotto", R.drawable.image_bassotto));
+        dogList.add(new PortraitDog("Cane da Pastore Maremmano Abruzzese", R.drawable.image_maremmano));
+        dogList.add(new PortraitDog("American Staffordshire Terrier", R.drawable.image_american_terrier));
         dogList.add(new PortraitDog("Beagle", R.drawable.image_beagle));
         dogList.add(new PortraitDog("Bearded Collie", R.drawable.image_beardedcollie));
         dogList.add(new PortraitDog("Border Collie", R.drawable.image_bordercollie));
