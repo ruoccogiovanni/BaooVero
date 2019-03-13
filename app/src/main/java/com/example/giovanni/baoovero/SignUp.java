@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
-
     Button btnSignup;
     TextView btnLogin,btnForgotPass;
     EditText input_email,input_pass,nome,cognome;
@@ -40,7 +37,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_sign_up);
         setTitle("Registrati");
         mDatabase=FirebaseDatabase.getInstance().getReference();
-        //View
         btnSignup = (Button)findViewById(R.id.signup_btn_register);
         btnLogin = (TextView)findViewById(R.id.signup_btn_login);
         btnForgotPass = (TextView)findViewById(R.id.signup_btn_forgot_pass);
@@ -53,8 +49,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         btnSignup.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnForgotPass.setOnClickListener(this);
-
-        //Init Firebase
         auth = FirebaseAuth.getInstance();
     }
     @Override
@@ -62,7 +56,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         super.onBackPressed();
         startActivity(new Intent(SignUp.this,MainActivity.class));
     }
-
 
     @Override
     public void onClick(View view) {
@@ -85,9 +78,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 snackBar.show();
             }
             else {
-
                 signUpUser(input_email.getText().toString(), input_pass.getText().toString());
-
             }
         }
     }

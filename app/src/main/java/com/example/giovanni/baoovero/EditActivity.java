@@ -44,7 +44,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -53,7 +52,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
 import static com.example.giovanni.baoovero.AddActivity.provincine;
 
 public class EditActivity extends AppCompatActivity {
@@ -188,7 +186,7 @@ public class EditActivity extends AppCompatActivity {
         fillDogList();
         final AutoCompleteTextView actvbreed = findViewById(R.id.editcmpltbreed);
         actvbreed.setText(Breed);
-        AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
+        AutoCompleteBreed adapter = new AutoCompleteBreed(this, dogList);
         actvbreed.setAdapter(adapter);
         btnedit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -371,8 +369,7 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (items[i].equals("Fotocamera")) {
-                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    //startActivityForResult(intent, REQUEST_CAMERA);
+
                     captureimage();
                 } else if (items[i].equals("Galleria")) {
                     if (ContextCompat.checkSelfPermission(EditActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
@@ -408,11 +405,11 @@ public class EditActivity extends AppCompatActivity {
         {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                // Create the File where the photo should go
+
                 try {
 
                     photoFile = createImageFile();
-                    // Continue only if the File was successfully created
+
                     if (photoFile != null) {
                         Uri photoURI = FileProvider.getUriForFile(this,
                                 "com.example.giovanni.baoovero.fileprovider",
@@ -421,7 +418,7 @@ public class EditActivity extends AppCompatActivity {
                         startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST);
                     }
                 } catch (Exception ex) {
-                    // Error occurred while creating the File
+
                 }
 
 
@@ -430,8 +427,6 @@ public class EditActivity extends AppCompatActivity {
                 Toast.makeText(this, "ERRORE", Toast.LENGTH_SHORT).show();
             }
         }
-
-
 
     }
     @Override

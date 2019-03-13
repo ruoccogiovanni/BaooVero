@@ -16,7 +16,6 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Do any action here. Now we are moving to next page
                 Intent mySuperIntent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(mySuperIntent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);

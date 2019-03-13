@@ -34,7 +34,7 @@
         <activity android:name=".SviluppatoriActivity"
                   android:parentActivityName=".MainActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".ProfileDog" />
+        <activity android:name=".ProfileDogActivity" />
         <activity
             android:name=".FavouriteActivity"
             android:parentActivityName=".ProfileActivity"

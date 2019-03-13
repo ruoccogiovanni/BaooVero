@@ -8,10 +8,7 @@ public class Utente {
     private Map<String,String> Preferiti;
     private String email, nome, cognome;
 
-
-
     public Utente(){
-
   }
 
     public Utente(Map<String,String> preferiti, String email) {
@@ -56,7 +53,4 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 }
-

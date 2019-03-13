@@ -1,7 +1,6 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -49,10 +48,8 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
-
     }
     private void addDotsIndicator(int current_position) {
         mDots = new TextView[3];
@@ -72,7 +69,6 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
             params.setMargins(4,0,4,0);
             Dots_Layout.addView(dots[i],params);
         }
-
     }
 
     @Override

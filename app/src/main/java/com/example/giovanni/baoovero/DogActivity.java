@@ -66,7 +66,6 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
         tvname = (TextView) findViewById(R.id.textName);
         tvname.setSelected(true);
         tvdescription = (TextView) findViewById(R.id.txtDesc);
-        //tvdescription.setMovementMethod(new ScrollingMovementMethod());
         tvbreed = (TextView) findViewById(R.id.textBreed);
         tvbreed.setSelected(true);
         tvgender = (TextView) findViewById(R.id.textGend);
@@ -108,10 +107,10 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             case "Bassotto":
                 imag.setImageResource(R.drawable.image_bassotto);
                 break;
-                case "Cane da Pastore Maremmano Abruzzese":
+            case "Cane da Pastore Maremmano Abruzzese":
                 imag.setImageResource(R.drawable.image_maremmano);
                 break;
-                case "American Staffordshire Terrier":
+            case "American Staffordshire Terrier":
                 imag.setImageResource(R.drawable.image_american_terrier);
                 break;
             case "Bearded Collie":

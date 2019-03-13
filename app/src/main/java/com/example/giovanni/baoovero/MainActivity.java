@@ -36,7 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,10 +44,8 @@ import java.util.List;
 
 import static java.util.Collections.reverse;
 
-
 public class MainActivity extends AppCompatActivity {
-
-    private  RecyclerView myrv;
+    private RecyclerView myrv;
     private List<Dog> listacani,cani;
     private RecyclerViewAdapter myAdapter;
     private DatabaseReference myRef,myRef2;
@@ -182,17 +179,13 @@ public class MainActivity extends AppCompatActivity {
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         t.setDrawerIndicatorEnabled(true);
-
         dl.addDrawerListener(t);
         t.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         nv = (NavigationView)findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 int id = item.getItemId();
                 switch(id)
                 {
@@ -292,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 Intent intento = new Intent(MainActivity.this,FilterActivity.class);
                 intento.putExtra("Name",query);
                 intento.putExtra("Provenienza",true);
@@ -301,14 +293,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
 
-
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -318,12 +307,8 @@ public class MainActivity extends AppCompatActivity {
         int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search);
-
-
         return super.onPrepareOptionsMenu(menu);
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -386,23 +371,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .show();
-
-
-
-            //conta++;
-            //reverse(listacani);
-            //myAdapter=new RecyclerViewAdapter( MainActivity.this,listacani);
-            //myrv.setAdapter(myAdapter);
-            //if(conta%2!=0) {
-            //    item.setIcon(R.drawable.ic_discendant_sort);
-            //    Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dal primo cane all'ultimo", Snackbar.LENGTH_SHORT);
-            //    snackBar.show();
-            //}
-            //else {
-            //    item.setIcon(R.drawable.ic_ascendant_sort);
-            //    Snackbar snackBar = Snackbar.make(activity_main, "Ordine invertito: dall'ultimo cane al primo", Snackbar.LENGTH_SHORT);
-            //    snackBar.show();
-            //}
         }
         return super.onOptionsItemSelected(item);
     }
@@ -431,7 +399,5 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         else
             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-
     }
-
 }

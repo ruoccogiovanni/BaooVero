@@ -1,7 +1,6 @@
 package com.example.giovanni.baoovero;
 
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,22 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +67,6 @@ public class FavouriteActivity extends AppCompatActivity {
                                         listacani.add(cane);
                                     }
                                 }
-
                                     immagine.setVisibility(View.INVISIBLE);
                                     errore.setVisibility(View.INVISIBLE);
                                     myAdapter = new RecyclerViewAdapter(FavouriteActivity.this, listacani);
@@ -88,9 +78,7 @@ public class FavouriteActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-
             }
-
                 catch (NullPointerException e)
                 {
                     errore.setVisibility(View.VISIBLE);
@@ -152,9 +140,7 @@ protected void onResume(){
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-
             }
-
             catch (NullPointerException e)
             {
                 errore.setVisibility(View.VISIBLE);
@@ -170,6 +156,4 @@ protected void onResume(){
     };
         myRef2.addValueEventListener(listener);
     }
-
-
 }

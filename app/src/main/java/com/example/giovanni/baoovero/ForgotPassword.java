@@ -39,7 +39,6 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         btnResetPass.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         auth = FirebaseAuth.getInstance();
-
     }
     @Override
     public void onBackPressed() {
@@ -68,7 +67,6 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
             }
             else
             resetPassword(input_email.getText().toString());
-
         }
     }
 

@@ -16,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +24,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-
-public class ProfileDog extends AppCompatActivity {
+public class ProfileDogActivity extends AppCompatActivity {
     float x1,x2,y1,y2;
     private TextView tvname, tvdescription, tvbreed, tvgender, tvcity, tvage;
     private ImageView img, imag;
@@ -40,7 +38,6 @@ public class ProfileDog extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,7 +248,7 @@ public class ProfileDog extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 myVib.vibrate(25);
-               Intent intento = new Intent(ProfileDog.this,EditActivity.class);
+               Intent intento = new Intent(ProfileDogActivity.this,EditActivity.class);
                intento.putExtra("Name",Name);
                intento.putExtra("Breed",Breed);
                intento.putExtra("Description",Description);
@@ -265,13 +262,12 @@ public class ProfileDog extends AppCompatActivity {
                startActivity(intento);
             }
         });
-
         btelimina = (Button) findViewById(R.id.elimina);
         btelimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myVib.vibrate(25);
-                new AlertDialog.Builder(ProfileDog.this)
+                new AlertDialog.Builder(ProfileDogActivity.this)
                         .setMessage("Sei sicuro di voler eliminare " + Name +"?")
                         .setCancelable(true)
                         .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
@@ -283,7 +279,7 @@ public class ProfileDog extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                     }
                                 });
-                                startActivity(new Intent(ProfileDog.this, ProfileActivity.class) );
+                                startActivity(new Intent(ProfileDogActivity.this, ProfileActivity.class) );
                             }
                         })
                         .setNegativeButton("No", null)
@@ -291,7 +287,6 @@ public class ProfileDog extends AppCompatActivity {
             }
 
         });
-
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
         layout3 = new ConstraintSet();
@@ -323,5 +318,4 @@ public class ProfileDog extends AppCompatActivity {
         }
         return false;
     }
-    
 }

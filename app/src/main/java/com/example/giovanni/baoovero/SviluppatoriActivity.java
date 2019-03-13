@@ -92,14 +92,6 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji(R.drawable.setteringlese);
             contenitore.addEmoji(R.drawable.sharpei);
             contenitore.addEmoji(R.drawable.siberianhusky);
-            contenitore.addEmoji(R.drawable.image_bulldog);
-            contenitore.addEmoji(R.drawable.image_carlino);
-            contenitore.addEmoji(R.drawable.image_chiuaua);
-            contenitore.addEmoji( R.drawable.image_chowchow);
-            contenitore.addEmoji( R.drawable.image_dalmata);
-            contenitore.addEmoji( R.drawable.image_labrador);
-            contenitore.addEmoji( R.drawable.image_barboncino);
-            contenitore.addEmoji( R.drawable.image_maltese);
             contenitore.addEmoji(R.drawable.image_pastoretedesco);
             contenitore.addEmoji( R.drawable.image_pitbull);
             contenitore.addEmoji( R.drawable.image_retriever);

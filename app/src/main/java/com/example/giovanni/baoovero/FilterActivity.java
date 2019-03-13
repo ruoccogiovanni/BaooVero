@@ -1,7 +1,6 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -130,13 +128,10 @@ public class FilterActivity extends AppCompatActivity {
                     myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
                     myrv.setAdapter(myAdapter);
             }
-
             }
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {
-
         }
     };
-
 }

@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AutoCompletePortrait extends ArrayAdapter<PortraitDog> {
+public class AutoCompleteBreed extends ArrayAdapter<PortraitDog> {
     private List<PortraitDog> dogListFull;
 
-    public AutoCompletePortrait(@NonNull Context context, @NonNull List<PortraitDog> dogList) {
+    public AutoCompleteBreed(@NonNull Context context, @NonNull List<PortraitDog> dogList) {
         super(context, 0, dogList);
         dogListFull = new ArrayList<>(dogList);
     }

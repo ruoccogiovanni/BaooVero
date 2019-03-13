@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,12 +20,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import java.util.List;
-
-
 import static android.content.Context.VIBRATOR_SERVICE;
 
 public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfile.MyViewHolder> {
-
     private Context mContext ;
     private List<Dog> mData ;
     private String uid;
@@ -46,7 +40,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view ;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
         view = mInflater.inflate(R.layout.cardview_profile,parent,false);
@@ -68,7 +61,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         if(auth.getCurrentUser() != null) {
             Utente = auth.getCurrentUser().getUid();
         }
-
         if (Integer.parseInt(mData.get(position).getAge())==1)
             eig="anno";
         holder.tv_dog_age.setText(eta+mData.get(position).getAge()+" " + eig);
@@ -78,7 +70,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 .fit()
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);
-
         Name=mData.get(position).getName();
         Breed=mData.get(position).getBreed();
         Description=mData.get(position).getDescription();
@@ -88,11 +79,10 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         Tel=mData.get(position).getTel();
         Email=mData.get(position).getEmail();
         Thumbnail=mData.get(position).getThumbnail();
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,ProfileDog.class);
+                Intent intent = new Intent(mContext, ProfileDogActivity.class);
                 // passing data to the dog activity
                 intent.putExtra("Name",mData.get(position).getName());
                 intent.putExtra("Breed",mData.get(position).getBreed());
@@ -107,7 +97,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                 mContext.startActivity(intent);
             }
         });
-
 
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
@@ -161,7 +150,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                         }
                     });
                     builder.show();
-
                 myVib=(Vibrator) mContext.getSystemService(VIBRATOR_SERVICE);
                 return true;
             }
@@ -172,9 +160,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
     public int getItemCount() {
         return mData.size();
     }
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView tv_dog_name;
         TextView tv_dog_breed;
         TextView tv_dog_age;
@@ -183,7 +169,6 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             tv_dog_name = (TextView) itemView.findViewById(R.id.dog_name_id_profile) ;
             tv_dog_breed=(TextView) itemView.findViewById(R.id.dog_breed_id_profile);
             tv_dog_age=(TextView)itemView.findViewById(R.id.dog_age_profile);

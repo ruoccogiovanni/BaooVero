@@ -73,7 +73,7 @@ public class FilterSearchActivity extends AppCompatActivity {
         );
         fillDogList();
         final AutoCompleteTextView ftcmpltbreed = findViewById(R.id.ft_cmplt_breed);
-        AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
+        AutoCompleteBreed adapter = new AutoCompleteBreed(this, dogList);
         ftcmpltbreed.setAdapter(adapter);
 
         ftbutton.setOnClickListener(new View.OnClickListener() {

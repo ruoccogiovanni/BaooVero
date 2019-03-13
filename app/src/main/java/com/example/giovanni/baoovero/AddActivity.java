@@ -43,7 +43,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -55,34 +54,27 @@ import java.util.UUID;
 
 public class AddActivity extends AppCompatActivity {
     ImageView immagineviewID;
-    private Button addimmagine;
-    private Button btnavanti;
-    private Button btnindietro;
+    private Button addimmagine,btnavanti,btnindietro;
     private SeekBar sbage;
     private TextView tvage;
-    private AutoCompleteTextView actvbreed;
+    private AutoCompleteTextView actvbreed,etcity;
     private List<PortraitDog> dogList;
     private RadioGroup rgroup;
     private RadioButton rbutton;
     static final int REQUEST_CAMERA = 1;
-    Integer SELECT_FILE=0;
-    private EditText etname;
-    private EditText etemail;
-    private EditText etphone;
-    private AutoCompleteTextView etcity;
-    private EditText etdescription;
+    static final int CAPTURE_IMAGE_REQUEST = 1;
+    private Integer SELECT_FILE=0;
+    private EditText etname,etemail,etphone,etdescription;
     private DatabaseReference mDatabase;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private Uri selectedImageUri;
     private View v;
-    private String urlimmagine;
-    private  Bitmap bmp;
+    private String urlimmagine, mCurrentPhotoPath;
+    private Bitmap bmp;
     File photoFile = null;
-    private String mCurrentPhotoPath;
     private static final String IMAGE_DIRECTORY_NAME = "BAOO";
-    static final int CAPTURE_IMAGE_REQUEST = 1;
     public final static String[] provincine = {"Agrigento", "Alessandria", "Ancona", "Aosta", "L'Aquila", "Arezzo", "Ascoli-Piceno", "Asti", "Avellino", "Bari", "Barletta-Andria-Trani", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Cagliari", "Caltanissetta", "Campobasso", "Carbonia Iglesias", "Caserta", "Catania", "Catanzaro", "Chieti", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo", "Enna", "Fermo", "Ferrara", "Firenze", "Foggia", "Forli-Cesena", "Frosinone", "Genova", "Gorizia", "Grosseto", "Imperia", "Isernia", "La-Spezia", "Latina", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca", "Macerata", "Mantova", "Massa-Carrara", "Matera", "Medio Campidano", "Messina", "Milano", "Modena", "Monza-Brianza", "Napoli", "Novara", "Nuoro", "Ogliastra", "Olbia Tempio", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro-Urbino", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato", "Ragusa", "Ravenna", "Reggio-Calabria", "Reggio-Emilia", "Rieti", "Rimini", "Roma", "Rovigo", "Salerno", "Sassari", "Savona", "Siena", "Siracusa", "Sondrio", "Taranto", "Teramo", "Terni", "Torino", "Trapani", "Trento", "Treviso", "Trieste", "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo-Valentia", "Vicenza", "Viterbo"};
     private ConstraintLayout layout;
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +99,7 @@ public class AddActivity extends AppCompatActivity {
         });
         rgroup=(RadioGroup)findViewById(R.id.group_gender);
         immagineviewID = (ImageView) findViewById(R.id.immagineviewID);
-        addimmagine = findViewById(R.id.immaginepiuID);
+        addimmagine = (Button) findViewById(R.id.immaginepiuID);
         addimmagine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +142,7 @@ public class AddActivity extends AppCompatActivity {
         );
         fillDogList();
         final AutoCompleteTextView actvbreed = findViewById(R.id.cmpltbreed);
-        AutoCompletePortrait adapter = new AutoCompletePortrait(this, dogList);
+        AutoCompleteBreed adapter = new AutoCompleteBreed(this, dogList);
         actvbreed.setAdapter(adapter);
         btnavanti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,8 +308,6 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (items[i].equals("Fotocamera")) {
-                    //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    //startActivityForResult(intent, REQUEST_CAMERA);
                     captureimage();
                 } else if (items[i].equals("Galleria")) {
                     if (ContextCompat.checkSelfPermission(AddActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
@@ -361,18 +351,15 @@ public class AddActivity extends AppCompatActivity {
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST);
                     }
-                } catch (Exception ex) {
                 }
-
-
-            }else
+                catch (Exception ex) {
+                }
+            }
+            else
             {
                 Toast.makeText(this, "ERRORE", Toast.LENGTH_SHORT).show();
             }
         }
-
-
-
     }
 
     @Override
@@ -392,7 +379,7 @@ public class AddActivity extends AppCompatActivity {
             }
     }
     private File createImageFile() throws IOException {
-        // Create an image file name
+        // Creazione di un file
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -404,8 +391,6 @@ public class AddActivity extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
-
 
     public void rbclick(View v)
     {
@@ -516,7 +501,6 @@ private void uploadCamera(){
             if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
                 selectimage();
         }
-
     }
     public void setUrlimmagine(Uri prova)
     {
@@ -535,5 +519,3 @@ private void uploadCamera(){
         }
     }
 }
-
-

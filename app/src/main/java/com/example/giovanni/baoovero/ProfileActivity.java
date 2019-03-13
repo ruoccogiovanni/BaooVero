@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,10 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.util.Collections.reverse;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -51,7 +48,6 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {
-            //welcome.setText("Benvenuto, " + auth.getCurrentUser().getEmail() + "\nQuesti sono i tuoi cani.");
             utente = auth.getCurrentUser().getUid();
             email=auth.getCurrentUser().getEmail();
         }
@@ -68,8 +64,6 @@ public class ProfileActivity extends AppCompatActivity {
         profilo.addListenerForSingleValueEvent(evento);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
-
-
         final Intent intentmain = new Intent(this, MainActivity.class);
         adddog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +96,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
 
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
@@ -143,7 +136,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-
         }
     };
 
@@ -161,7 +153,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.preferiti)
         {
             startActivity(new Intent(ProfileActivity.this,FavouriteActivity.class));
-            //startActivity(new Intent(ProfileActivity.this,FilterActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

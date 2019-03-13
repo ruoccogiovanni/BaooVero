@@ -13,7 +13,6 @@ public class Dog {
     private String Age ;
     private String Thumbnail ;
     private String utente;
-
     private String uid;
 
     public Dog() { }
@@ -28,9 +27,7 @@ public class Dog {
         Tel = tel;
         Email = email;
         Thumbnail=thumbnail;
-
     }
-
 
     public String getName() {
         return Name;
@@ -67,11 +64,9 @@ public class Dog {
         return Email;
     }
 
-
     public String getThumbnail() {
         return Thumbnail;
     }
-
 
     public void setName(String name) {
         Name = name;
@@ -112,7 +107,4 @@ public class Dog {
     public void setUid(String uid) {
         this.uid = uid;
     }
-
 }
-
-

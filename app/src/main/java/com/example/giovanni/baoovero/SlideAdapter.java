@@ -1,6 +1,5 @@
 package com.example.giovanni.baoovero;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
-
     public int[] lst_images = {
             R.drawable.ic_about,
             R.drawable.ic_icona_profilo,
@@ -26,7 +24,7 @@ public class SlideAdapter extends PagerAdapter {
             "COSE SCONCE",
             "DEPRESSIONE",
             "ARRIVANO I CUCCIOLI"
-    }   ;
+    };
     public String[] lst_description = {
             "Lo scopo della nostra applicazione è far trovare l'amore ai nostri cuccioli.",
             "Questi cagnolini hanno l'aria da furfanti, un po' come noi.",
@@ -39,7 +37,6 @@ public class SlideAdapter extends PagerAdapter {
             Color.rgb(110,49,89),
             Color.rgb(75,150,75)
     };
-
 
     public SlideAdapter(Context context) {
         this.context = context;
