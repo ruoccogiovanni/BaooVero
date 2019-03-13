@@ -234,14 +234,14 @@ public class ProfileDog extends AppCompatActivity {
             default:
                 Picasso.get()
                         .load(image)
-                        .placeholder(R.drawable.roundloading)
+                        .placeholder(R.drawable.caricacuore)
                         .fit()
                         .centerCrop()
                         .into(imag);
         }
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_prova)
+                .placeholder(R.drawable.caricacuore)
                 .fit()
                 .centerCrop()
                 .into(img);

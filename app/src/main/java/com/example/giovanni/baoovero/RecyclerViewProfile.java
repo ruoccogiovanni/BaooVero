@@ -74,7 +74,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.tv_dog_age.setText(eta+mData.get(position).getAge()+" " + eig);
         Picasso.get()
                 .load(currentdog.getThumbnail())
-                .placeholder(R.drawable.loading_prova)
+                .placeholder(R.drawable.caricacuore)
                 .fit()
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);

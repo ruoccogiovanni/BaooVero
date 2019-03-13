@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
         Picasso.get()
                 .load(currentdog.getThumbnail())
-                .placeholder(R.drawable.roundloading)
+                .placeholder(R.drawable.caricacuore)
                 .fit()
                 .centerCrop()
                 .into(holder.img_dog_thumbnail);

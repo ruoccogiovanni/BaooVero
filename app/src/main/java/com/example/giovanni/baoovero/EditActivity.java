@@ -158,7 +158,7 @@ public class EditActivity extends AppCompatActivity {
         tvage.setText(Age);
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.loading_prova)
+                .placeholder(R.drawable.caricacuore)
                 .fit()
                 .centerCrop()
                 .into(immagineviewID);
