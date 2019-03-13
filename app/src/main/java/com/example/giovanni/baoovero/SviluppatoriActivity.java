@@ -1,5 +1,6 @@
 package com.example.giovanni.baoovero;
 
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Sviluppatori");
+
         dev1=(TextView)findViewById(R.id.testodeveloper);
         dev2=(TextView)findViewById(R.id.testodeveloper2);
         dev3=(TextView)findViewById(R.id.testodev3);
@@ -40,6 +42,10 @@ public class SviluppatoriActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     contenitore.stopDropping();
+                    dev1.setVisibility(View.VISIBLE);
+                    dev2.setVisibility(View.VISIBLE);
+                    dev3.setVisibility(View.VISIBLE);
+                    immagine.setVisibility(View.VISIBLE);
                 }
             }).show();
             myVib.vibrate(100);
@@ -92,6 +98,8 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji(R.drawable.setteringlese);
             contenitore.addEmoji(R.drawable.sharpei);
             contenitore.addEmoji(R.drawable.siberianhusky);
+            contenitore.addEmoji(R.drawable.image_bulldog);
+            contenitore.addEmoji(R.drawable.image_carlino);
             contenitore.addEmoji(R.drawable.image_pastoretedesco);
             contenitore.addEmoji( R.drawable.image_pitbull);
             contenitore.addEmoji( R.drawable.image_retriever);
@@ -106,11 +114,22 @@ public class SviluppatoriActivity extends AppCompatActivity {
             dev1.setVisibility(View.INVISIBLE);
             dev2.setVisibility(View.INVISIBLE);
             dev3.setVisibility(View.INVISIBLE);
+            immagine.setVisibility(View.INVISIBLE);
             contenitore.setPer(10);
             contenitore.setDuration(6500);
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    dev1.setVisibility(View.VISIBLE);
+                    dev2.setVisibility(View.VISIBLE);
+                    dev3.setVisibility(View.VISIBLE);
+                    immagine.setVisibility(View.VISIBLE);
+                }
+            }, 10000);   //10 secondi
         }
     }
 }

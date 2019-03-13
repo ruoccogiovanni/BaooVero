@@ -11,20 +11,21 @@
         android:id="@+id/emoji"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
+
     <ImageView
         android:id="@+id/developerimage"
-        android:layout_width="153dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="157dp"
-        android:layout_marginEnd="129dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="418dp"
         android:onClick="developerclick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
+        app:srcCompat="@drawable/image_sviluppatori" />
 
     <TextView
         android:id="@+id/testodeveloper"
@@ -35,7 +36,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
         android:gravity="center"
-        android:text="Quest'applicazione è stata sviluppata da:\nLuca Campanile\nIvan Orefice\n Giovanni Ruocco"
+        android:text="Quest'applicazione è stata sviluppata da:\nIvan Orefice\n Giovanni Ruocco\nLuca Campanile"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

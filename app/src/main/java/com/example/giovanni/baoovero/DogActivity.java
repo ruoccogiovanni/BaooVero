@@ -365,7 +365,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Non puoi farlo. Devi avere un account.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
             likeButton.setLiked(false);
         }
     }
@@ -406,7 +406,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             }
         }
         else
-            Toast.makeText(this, "Non puoi farlo. Devi avere un account.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
 
     }
 public void setChiavecorrente (String s){chiavecorrente=s;}
