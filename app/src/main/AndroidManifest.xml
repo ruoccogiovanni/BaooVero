@@ -79,7 +79,6 @@
             android:name=".ProfileActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".DashBoard" />
         <activity
             android:name=".AddActivity"
             android:parentActivityName=".ProfileActivity" />

@@ -1,11 +1,14 @@
 package com.example.giovanni.baoovero;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,12 +20,13 @@ public class SviluppatoriActivity extends AppCompatActivity {
     private EmojiRainLayout contenitore;
     private Vibrator myVib;
     private TextView dev1,dev2,dev3;
+    MediaPlayer song;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Sviluppatori");
-
+        song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
         dev1=(TextView)findViewById(R.id.testodeveloper);
         dev2=(TextView)findViewById(R.id.testodeveloper2);
         dev3=(TextView)findViewById(R.id.testodev3);
@@ -38,6 +42,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         numero++;
         if (numero % 3 == 0 )
         {
+            song.start();
             Snackbar.make(v,"COSA STA SUCCEDENDO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -46,6 +51,11 @@ public class SviluppatoriActivity extends AppCompatActivity {
                     dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
                     immagine.setVisibility(View.VISIBLE);
+                    if (song.isPlaying())
+                    {
+                        song.pause();
+                        song.seekTo(0);
+                    }
                 }
             }).show();
             myVib.vibrate(100);
@@ -128,8 +138,33 @@ public class SviluppatoriActivity extends AppCompatActivity {
                     dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
                     immagine.setVisibility(View.VISIBLE);
+                    if (song.isPlaying())
+                    {
+                        song.pause();
+                        song.seekTo(0);
+                    }
+
                 }
-            }, 10000);   //10 secondi
+            }, 9000);   //9 secondi
         }
+    }
+
+    public void onBackPressed(){
+        if (song.isPlaying())
+        {
+            song.pause();
+            song.seekTo(0);
+        }
+        startActivity(new Intent(SviluppatoriActivity.this, MainActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
