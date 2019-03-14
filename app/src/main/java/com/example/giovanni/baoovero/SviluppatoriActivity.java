@@ -2,7 +2,6 @@ package com.example.giovanni.baoovero;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -120,34 +119,38 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.addEmoji( R.drawable.image_volpino);
             contenitore.addEmoji( R.drawable.image_olivi);
             contenitore.addEmoji( R.drawable.image_yorkshire);
+            contenitore.addEmoji(R.drawable.image_meticcio);
+
             contenitore.stopDropping();
             dev1.setVisibility(View.INVISIBLE);
             dev2.setVisibility(View.INVISIBLE);
             dev3.setVisibility(View.INVISIBLE);
             immagine.setVisibility(View.INVISIBLE);
             contenitore.setPer(10);
-            contenitore.setDuration(6500);
+            contenitore.setDuration(13000);
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
 
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
+
+
+            song.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+
                     dev1.setVisibility(View.VISIBLE);
                     dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
                     immagine.setVisibility(View.VISIBLE);
-                    if (song.isPlaying())
-                    {
-                        song.pause();
-                        song.seekTo(0);
-                    }
-
                 }
-            }, 9000);   //9 secondi
+            });
+
+
         }
     }
+
+
+
 
     public void onBackPressed(){
         if (song.isPlaying())
