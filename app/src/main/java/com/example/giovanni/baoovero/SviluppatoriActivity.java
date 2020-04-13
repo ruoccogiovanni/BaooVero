@@ -19,7 +19,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
     private ImageView immagine;
     private EmojiRainLayout contenitore;
     private Vibrator myVib;
-    private TextView dev1,dev2,dev3;
+    private TextView dev1,dev3;
     MediaPlayer song;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,8 @@ public class SviluppatoriActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Developers");
         Random rand = new Random();
-        int whichsong = rand.nextInt(4);
+        int whichsong = rand.nextInt(5);
+        rand = null;
         switch (whichsong)
         {
             case 0:
@@ -42,11 +43,14 @@ public class SviluppatoriActivity extends AppCompatActivity {
             case 3:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.wiisports_flute);
                 break;
+            case 4:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.titanic_flute);
+                break;
             default:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
         }
         dev1=(TextView)findViewById(R.id.testodeveloper);
-        dev2=(TextView)findViewById(R.id.testodeveloper2);
+        //dev2=(TextView)findViewById(R.id.testodeveloper2);
         dev3=(TextView)findViewById(R.id.testodev3);
         ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(R.id.constraint_svil);
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.uait));
@@ -61,18 +65,40 @@ public class SviluppatoriActivity extends AppCompatActivity {
         if (numero % 3 == 0 )
         {
             song.start();
-            Snackbar.make(v,"COSA STA SUCCEDENDO",Snackbar.LENGTH_LONG).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("Fermati ti prego", new View.OnClickListener() {
+            Snackbar.make(v,"WHAT IS HAPPENING AAA",19000).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("STOP NOW PLIS", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     contenitore.stopDropping();
+                    Random rand = new Random();
+                    int whichsong = rand.nextInt(5);
                     dev1.setVisibility(View.VISIBLE);
-                    dev2.setVisibility(View.VISIBLE);
+                    //dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
                     immagine.setVisibility(View.VISIBLE);
                     if (song.isPlaying())
                     {
                         song.pause();
                         song.seekTo(0);
+                        switch (whichsong)
+                        {
+                            case 0:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+                                break;
+                            case 1:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.harry_potter_flute);
+                                break;
+                            case 2:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.wii_flute);
+                                break;
+                            case 3:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.wiisports_flute);
+                                break;
+                            case 4:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.titanic_flute);
+                                break;
+                            default:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+                        }
                     }
                 }
             }).show();
@@ -142,13 +168,13 @@ public class SviluppatoriActivity extends AppCompatActivity {
 
             contenitore.stopDropping();
             dev1.setVisibility(View.INVISIBLE);
-            dev2.setVisibility(View.INVISIBLE);
+            //dev2.setVisibility(View.INVISIBLE);
             dev3.setVisibility(View.INVISIBLE);
             immagine.setVisibility(View.INVISIBLE);
-            contenitore.setPer(10);
-            contenitore.setDuration(13000);
+            contenitore.setPer(15);
+            contenitore.setDuration(18000);
             contenitore.setDropDuration(2400);
-            contenitore.setDropFrequency(500);
+            contenitore.setDropFrequency(300);
             contenitore.startDropping();
 
 
@@ -157,7 +183,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
                 public void onCompletion(MediaPlayer mp) {
 
                     dev1.setVisibility(View.VISIBLE);
-                    dev2.setVisibility(View.VISIBLE);
+                    //dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
                     immagine.setVisibility(View.VISIBLE);
                 }

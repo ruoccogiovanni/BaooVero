@@ -29,7 +29,7 @@ public class SlideAdapter extends PagerAdapter {
             "The goal of our application is to make our puppies fall in love.",
             "This puppies are sun of a beach, just like us.",
             "Eventually is time to think about they found love and we're still single.",
-            "Stay tunes. We've much more features cooking."
+            "Stay tuned. We've much more features cooking."
     };
     public int[]  lst_backgroundcolor = {
             Color.rgb(55,55,55),

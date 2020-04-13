@@ -7,21 +7,22 @@
     android:id="@+id/constraint_svil"
     android:layout_height="match_parent"
     tools:context=".SviluppatoriActivity">
+
     <com.luolc.emojirain.EmojiRainLayout
         android:id="@+id/emoji"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-106dp" />
 
     <ImageView
         android:id="@+id/developerimage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="418dp"
         android:onClick="developerclick"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,30 +44,16 @@
         app:layout_constraintTop_toBottomOf="@+id/developerimage" />
 
     <TextView
-        android:id="@+id/testodeveloper2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/productsansregular"
-        android:text=""
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testodeveloper" />
-
-    <TextView
         android:id="@+id/testodev3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="cursive"
-        android:text="Tutti i diritti sono riservati"
+        android:text="All rights reserved. ©"
         android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testodeveloper2" />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
