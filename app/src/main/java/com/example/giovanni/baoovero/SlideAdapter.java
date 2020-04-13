@@ -20,16 +20,16 @@ public class SlideAdapter extends PagerAdapter {
             R.drawable.image_meticcio
     };
     public String[] lst_title = {
-            "INCONTRARCI",
-            "COSE SCONCE",
-            "DEPRESSIONE",
-            "ARRIVANO I CUCCIOLI"
+            "MEETING",
+            "DIRTY THINGS",
+            "DEPRESSION",
+            "PUPPIES INCOMING"
     };
     public String[] lst_description = {
-            "Lo scopo della nostra applicazione è far trovare l'amore ai nostri cuccioli.",
-            "Questi cagnolini hanno l'aria da furfanti, un po' come noi.",
-            "Infine arriva il momento di pensare che loro hanno trovato l'amore, e noi no.",
-            "Restate aggiornati. In pentola bollono molte altre funzionalità, e non cani, mi raccomando."
+            "The goal of our application is to make our puppies fall in love.",
+            "This puppies are sun of a beach, just like us.",
+            "Eventually is time to think about they found love and we're still single.",
+            "Stay tunes. We've much more features cooking."
     };
     public int[]  lst_backgroundcolor = {
             Color.rgb(55,55,55),

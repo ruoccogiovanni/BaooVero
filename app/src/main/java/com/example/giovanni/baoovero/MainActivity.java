@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 numero++;
-                Toast.makeText(MainActivity.this, "Ce ne hai messo di tempo per trovarmi.\nConsiglio: attiva la rotazione automatica.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "It took you some time to find me.\nAdvice: enable automatic rotation.", Toast.LENGTH_SHORT).show();
                 if (numero%2==1)
                     MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
                 else
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                         if(auth.getCurrentUser() != null)
                             startActivity(new Intent(MainActivity.this,FavouriteActivity.class));
                         else
-                            Toast.makeText(MainActivity.this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "You must be logged in.", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.about:
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
@@ -210,9 +210,9 @@ public class MainActivity extends AppCompatActivity {
                         String[] contatto = {"baoo@engineer.com"};
                         intent.putExtra(Intent.EXTRA_EMAIL, contatto);
                         intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Feedback");
-                        intent.putExtra(Intent.EXTRA_TEXT, "Vorrei segnalarvi il seguente disservizio: ");
+                        intent.putExtra(Intent.EXTRA_TEXT, "I would like to report the following bug: ");
                         intent.setType("message/rfc822");
-                        Intent chooser = Intent.createChooser(intent, "Invia Email");
+                        Intent chooser = Intent.createChooser(intent, "Send Email");
                         startActivity(chooser);
                         break;
                     case R.id.cheers:
@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
         cerca.setIcon(R.drawable.ic_search);
         searchView = (SearchView)cerca.getActionView();
-        searchView.setQueryHint("Cerca per nome...");
+        searchView.setQueryHint("Search by name...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to close Baoo?")
                     .setCancelable(false)
-                    .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             finishAffinity();
                         }

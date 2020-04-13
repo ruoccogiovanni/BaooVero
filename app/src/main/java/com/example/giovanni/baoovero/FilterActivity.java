@@ -61,12 +61,12 @@ public class FilterActivity extends AppCompatActivity {
                         }
                         if (listacani.isEmpty()) {
                             filtro.setVisibility(View.INVISIBLE);
-                            errore.setText("Non ho trovato quello che cercavi.");
+                            errore.setText("The search did not return any results.");
                             immagine.setVisibility(View.VISIBLE);
                         }
                         else
                         {
-                            filtro.setText("Risultati della ricerca per il nome:\n" +name);
+                            filtro.setText("Results of the search of:\n" +name);
                             errore.setVisibility(View.INVISIBLE);
                             myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
                             myrv.setAdapter(myAdapter);
@@ -119,11 +119,11 @@ public class FilterActivity extends AppCompatActivity {
                 }
                 if (listacani.isEmpty()){
                     filtro.setVisibility(View.INVISIBLE);
-                    errore.setText("Non ho trovato quello che cercavi.");
+                    errore.setText("The search did not return any results.");
                 immagine.setVisibility(View.VISIBLE);
             }
             else {
-                    filtro.setText("Questi sono i risultati.");
+                    filtro.setText("Results of the search");
                     errore.setVisibility(View.INVISIBLE);
                     myAdapter=new RecyclerViewAdapter( FilterActivity.this,listacani);
                     myrv.setAdapter(myAdapter);

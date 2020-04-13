@@ -272,11 +272,11 @@ public class EditActivity extends AppCompatActivity {
                     cane.setUid(Uid);
                     mDatabase.child("Cani").child(Uid).setValue(null);
                     mDatabase.child("Cani").child(Uid).setValue(cane);
-                    Toast.makeText(EditActivity.this, "Complimenti, hai modificato "+addname+"!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this, "Congratulations, you have modified "+addname+"!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditActivity.this,ProfileActivity.class));
                 }
                 else {
-                    Toast.makeText(EditActivity.this, "C'è qualcosa che non va. Sicuro di aver inserito tutto?", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditActivity.this, "There's something wrong. Are you sure to have inserted everything?", Toast.LENGTH_LONG).show();
                     if (!provincia)
                     {
                         etcity.setHintTextColor(getResources().getColor(R.color.error_color));
@@ -293,7 +293,7 @@ public class EditActivity extends AppCompatActivity {
         btnindietro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EditActivity.this,"Modifica non effettuata",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditActivity.this,"Edit not made.",Toast.LENGTH_SHORT).show();
                 if (getUrlimmagine()!=null)
                 {
                     StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());

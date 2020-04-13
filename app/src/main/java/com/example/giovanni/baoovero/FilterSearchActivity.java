@@ -128,7 +128,7 @@ public class FilterSearchActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(FilterSearchActivity.this, "C'è qualcosa che non va.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FilterSearchActivity.this, "There's something wrong.", Toast.LENGTH_SHORT).show();
                     if (!razza)
                     {
                         ftcmpltbreed.setHintTextColor(getResources().getColor(R.color.error_color));

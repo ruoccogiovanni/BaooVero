@@ -45,7 +45,6 @@ public class SviluppatoriActivity extends AppCompatActivity {
             default:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
         }
-
         dev1=(TextView)findViewById(R.id.testodeveloper);
         dev2=(TextView)findViewById(R.id.testodeveloper2);
         dev3=(TextView)findViewById(R.id.testodev3);
@@ -151,7 +150,6 @@ public class SviluppatoriActivity extends AppCompatActivity {
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(500);
             contenitore.startDropping();
-
 
 
             song.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

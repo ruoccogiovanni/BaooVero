@@ -26,7 +26,7 @@
 
             <item
                 android:id="@+id/cheers"
-                android:title="Offrici da bere"
+                android:title="Cheers"
                 android:icon="@drawable/ic_cheers">
             </item>
 

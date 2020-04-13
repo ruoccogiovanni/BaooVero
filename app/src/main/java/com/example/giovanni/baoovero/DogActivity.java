@@ -313,10 +313,10 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
                     intent.setData(Uri.parse("mailto: "));
                     String[] contatto = {Email};
                     intent.putExtra(Intent.EXTRA_EMAIL, contatto);
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Incontriamoci!");
-                    intent.putExtra(Intent.EXTRA_TEXT, "Il mio cane è interessato a farsela con il tuo. Vediamoci e facciamoli divertire. Bacini :**");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Let's meet!");
+                    intent.putExtra(Intent.EXTRA_TEXT, "My dog wants to meet your dog. Let's meet and have fun together. XOXO :**");
                     intent.setType("message/rfc822");
-                    Intent chooser = Intent.createChooser(intent, "Invia email");
+                    Intent chooser = Intent.createChooser(intent, "Send Email");
                     startActivity(chooser);
                 } else
                     Toast.makeText(context, "You must be logged in.", Toast.LENGTH_SHORT).show();
@@ -406,7 +406,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             }
         }
         else
-            Toast.makeText(this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must be logged in.", Toast.LENGTH_SHORT).show();
 
     }
 public void setChiavecorrente (String s){chiavecorrente=s;}

@@ -241,7 +241,7 @@ public class AddActivity extends AppCompatActivity {
                         }
                     });
                 }
-                Toast.makeText(AddActivity.this,"Aggiunta fallita.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddActivity.this,"Insertion failed.",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AddActivity.this,ProfileActivity.class));
             }
         });
@@ -405,7 +405,7 @@ public class AddActivity extends AppCompatActivity {
             cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(AddActivity.this, "Aggiunta fallita.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddActivity.this, "Insertion failed.", Toast.LENGTH_SHORT).show();
                 }
             });
         }

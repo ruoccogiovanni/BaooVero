@@ -132,7 +132,7 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                                 new AlertDialog.Builder(mContext)
                                         .setMessage("Are you sure you want to delete " + mData.get(position).getName() +"?")
                                         .setCancelable(true)
-                                        .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 myRef.child(mData.get(position).getUid()).setValue(null);
                                                 StorageReference cancella = storage.getReferenceFromUrl(mData.get(position).getThumbnail());
