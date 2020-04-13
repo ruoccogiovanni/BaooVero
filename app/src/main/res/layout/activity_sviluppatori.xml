@@ -36,7 +36,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
         android:gravity="center"
-        android:text="This application is been built by:\nIvan Orefice\nGiovanni Ruocco\nLuCapocchia"
+        android:text="This application is been built by:\nIvan Orefice \nGiovanni Ruocco\nLuCapocchia"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
