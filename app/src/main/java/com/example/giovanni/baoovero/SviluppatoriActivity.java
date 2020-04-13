@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random;
 import com.luolc.emojirain.EmojiRainLayout;
 
 public class SviluppatoriActivity extends AppCompatActivity {
@@ -25,7 +26,26 @@ public class SviluppatoriActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Developers");
-        song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+        Random rand = new Random();
+        int whichsong = rand.nextInt(4);
+        switch (whichsong)
+        {
+            case 0:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+                break;
+            case 1:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.harry_potter_flute);
+                break;
+            case 2:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.wii_flute);
+                break;
+            case 3:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.wiisports_flute);
+                break;
+            default:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+        }
+
         dev1=(TextView)findViewById(R.id.testodeveloper);
         dev2=(TextView)findViewById(R.id.testodeveloper2);
         dev3=(TextView)findViewById(R.id.testodev3);
