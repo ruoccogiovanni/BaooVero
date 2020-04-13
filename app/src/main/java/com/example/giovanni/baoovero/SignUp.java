@@ -35,7 +35,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        setTitle("Registrati");
+        setTitle("Sign up");
         mDatabase=FirebaseDatabase.getInstance().getReference();
         btnSignup = (Button)findViewById(R.id.signup_btn_register);
         btnLogin = (TextView)findViewById(R.id.signup_btn_login);
@@ -74,7 +74,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             closeKeyboard();
             if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_pass.getText().toString().isEmpty()||input_pass.getText().toString().length()<6)
             {
-                Snackbar snackBar = Snackbar.make(activity_sign_up, "C'è qualcosa che non va. Sei sicuro di aver inserito correttamente email e password?", Snackbar.LENGTH_LONG);
+                Snackbar snackBar = Snackbar.make(activity_sign_up, "Something goes wrong. Are you sure you entered your email and password correctly?", Snackbar.LENGTH_LONG);
                 snackBar.show();
             }
             else {
@@ -90,7 +90,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful())
                         {
-                            snackbar = Snackbar.make(activity_sign_up,"Errore nella creazione del tuo account, riprova di nuovo.",Snackbar.LENGTH_SHORT);
+                            snackbar = Snackbar.make(activity_sign_up,"Error nella creating your account, retry.",Snackbar.LENGTH_SHORT);
                             snackbar.show();
                         }
                         else{

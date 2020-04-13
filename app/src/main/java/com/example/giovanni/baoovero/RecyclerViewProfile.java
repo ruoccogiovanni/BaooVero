@@ -54,15 +54,15 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         Dog currentdog= mData.get(position);
         holder.tv_dog_name.setText(mData.get(position).getName());
         holder.tv_dog_breed.setText(mData.get(position).getBreed());
-        String eig="anni";
-        String eta="Età: ";
+        String eig="years";
+        String eta="Age: ";
         uid=mData.get(position).getUid();
         auth=FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null) {
             Utente = auth.getCurrentUser().getUid();
         }
         if (Integer.parseInt(mData.get(position).getAge())==1)
-            eig="anno";
+            eig="year";
         holder.tv_dog_age.setText(eta+mData.get(position).getAge()+" " + eig);
         Picasso.get()
                 .load(currentdog.getThumbnail())
@@ -101,14 +101,14 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v) {
-                    final CharSequence[] items={"Modifica il tuo cane", "Elimina il tuo cane","Torna indietro"};
+                    final CharSequence[] items={"Edit dog", "Delete dog","Back"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                    builder.setTitle("Cosa vuoi fare?");
+                    builder.setTitle("What do you want to do?");
                     builder.setItems(items, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if (items[i].equals("Modifica il tuo cane")) {
+                            if (items[i].equals("Edit dog")) {
                                 Intent intento = new Intent(mContext,EditActivity.class);
                                 intento.putExtra("Name",mData.get(position).getName());
                                 intento.putExtra("Breed",mData.get(position).getBreed());
@@ -122,15 +122,15 @@ public class RecyclerViewProfile extends RecyclerView.Adapter<RecyclerViewProfil
                                 intento.putExtra("Uid",mData.get(position).getUid());
                                 mContext.startActivity(intento);
                                 dialogInterface.dismiss();
-                            }else if (items[i].equals("Indietro")) {
+                            }else if (items[i].equals("Back")) {
                                 dialogInterface.dismiss();
                             }
-                            else if (items[i].equals("Elimina il tuo cane"))
+                            else if (items[i].equals("Delete dog"))
                             {
                                 dialogInterface.dismiss();
 
                                 new AlertDialog.Builder(mContext)
-                                        .setMessage("Sei sicuro di voler eliminare " + mData.get(position).getName() +"?")
+                                        .setMessage("Are you sure you want to delete " + mData.get(position).getName() +"?")
                                         .setCancelable(true)
                                         .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {

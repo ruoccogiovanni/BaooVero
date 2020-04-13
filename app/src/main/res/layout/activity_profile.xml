@@ -26,25 +26,10 @@
     </android.support.v7.widget.RecyclerView>
 
     <Button
-        android:id="@+id/profile_add"
+        android:id="@+id/profile_logout"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="15dp"
-        android:background="#49b675"
-        android:fontFamily="@font/productsansbold"
-        android:text="AGGIUNGI"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profile_logout" />
-
-    <Button
-        android:id="@+id/profile_logout"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="186dp"
-        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="15dp"
@@ -52,7 +37,22 @@
         android:fontFamily="@font/productsansbold"
         android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/profile_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_add" />
+
+    <Button
+        android:id="@+id/profile_add"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="186dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
+        android:background="#49b675"
+        android:fontFamily="@font/productsansbold"
+        android:text="ADD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile_logout"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/productsansregular"
-        android:text="Benvenuto"
+        android:text="Welcome"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

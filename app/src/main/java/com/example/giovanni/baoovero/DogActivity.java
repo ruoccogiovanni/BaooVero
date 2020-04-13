@@ -76,18 +76,18 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
         likeButton = findViewById(R.id.heart_button);
         likeButton.setOnLikeListener(this);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        String annio=" anni";
+        String annio=" years";
         // Ricezione dei dati
         Intent intent = getIntent();
         String Name = intent.getExtras().getString("Name");
         String Breed =  intent.getExtras().getString("Breed");
-        String Description = "Descrizione di " + Name + ": \n" + intent.getExtras().getString("Description");
+        String Description = Name + "'s description:\n" + intent.getExtras().getString("Description");
         String Gender = intent.getExtras().getString("Gender");
-        String City = "Città: " + intent.getExtras().getString("City");
+        String City = "City: " + intent.getExtras().getString("City");
         String eig = intent.getExtras().getString("Age");
         uid = intent.getExtras().getString("Uid");
-        if(Integer.parseInt(eig)==1)  annio=" anno";
-        String Age = "Età: " + eig + annio;
+        if(Integer.parseInt(eig)==1)  annio=" year";
+        String Age = "Age: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         final String image = intent.getExtras().getString("Thumbnail");
@@ -319,7 +319,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
                     Intent chooser = Intent.createChooser(intent, "Invia email");
                     startActivity(chooser);
                 } else
-                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You must be logged in.", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -362,10 +362,10 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
             chiavecorrente =myRef.child("Utenti").child(utentecorrente).child("Preferiti").push().getKey();
             setChiavecorrente(chiavecorrente);
             myRef.child("Utenti").child(utentecorrente).child("Preferiti").child(chiavecorrente).setValue(uid);
-            Toast.makeText(this, "Aggiunto nei preferiti!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must be logged in.", Toast.LENGTH_SHORT).show();
             likeButton.setLiked(false);
         }
     }
@@ -374,7 +374,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
     public void unLiked(LikeButton likeButton) {
         if(auth.getCurrentUser() != null) {
             chiavecorrente = getChiavecorrente();
-            Toast.makeText(this, "Tolto dai preferiti!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Removed from favorites!", Toast.LENGTH_SHORT).show();
             //Ci prendiamo tutti i preferiti e li mettiamo nell'array preferiti
             myRef2.addValueEventListener(new ValueEventListener() {
                 @Override

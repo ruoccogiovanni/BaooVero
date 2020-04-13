@@ -69,7 +69,7 @@
         android:lines="1"
         android:ellipsize="end"
         android:onClick="Clicckino"
-        android:text="Accedi"
+        android:text="Login"
         android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16dp"

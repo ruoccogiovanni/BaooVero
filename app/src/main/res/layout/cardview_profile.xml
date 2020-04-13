@@ -28,7 +28,7 @@
             android:maxLines="3"
             android:ellipsize="end"
             android:gravity="center|start"
-            android:text="Età:"
+            android:text="Age:"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="#2d2d2d"
             android:textSize="18dp"

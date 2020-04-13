@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-        android:hint="Inserire nome"
+        android:hint="Name"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
@@ -28,7 +28,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
-        android:text="Telefono*"
+        android:text="Phone*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-        android:hint="Inserire numero di telefono"
+        android:hint="Add your telephone number"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -57,7 +57,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
-        android:text="Provincia*"
+        android:text="City*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:completionThreshold="1"
-        android:hint="Inserire provincia"
+        android:hint="Add city"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
-        android:text="Descrizione"
+        android:text="Description"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-        android:hint="Scrivi qui una breve descrizione."
+        android:hint="Write a short description"
         android:inputType="textLongMessage|textMultiLine|textCapSentences"
         android:lines="3"
         android:maxLines="5"
@@ -155,7 +155,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/ubunturegular"
-        android:text="Età"
+        android:text="Age"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
             android:checked="false"
             android:fontFamily="@font/productsansbold"
             android:onClick="rbclick"
-            android:text="Maschio" />
+            android:text="Male" />
 
         <RadioButton
             android:id="@+id/button_female"
@@ -192,7 +192,7 @@
             android:checked="false"
             android:fontFamily="@font/productsansbold"
             android:onClick="rbclick"
-            android:text="Femmina" />
+            android:text="Female" />
     </RadioGroup>
 
 
@@ -205,7 +205,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:completionThreshold="1"
-        android:hint="Selezionare razza"
+        android:hint="Breed"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
@@ -221,7 +221,7 @@
         android:layout_marginBottom="15dp"
         android:background="#49b675"
         android:fontFamily="@font/productsansbold"
-        android:text="AGGIUNGI"
+        android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_back" />
@@ -236,7 +236,7 @@
         android:layout_marginBottom="15dp"
         android:background="@color/Rosso"
         android:fontFamily="@font/productsansbold"
-        android:text="INDIETRO"
+        android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_button"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -250,7 +250,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:fontFamily="@font/productsansregular"
-        android:text="* (Campi obbligatori)"
+        android:text="* (Required Fields)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
         app:layout_constraintTop_toBottomOf="@+id/group_gender" />

@@ -219,14 +219,10 @@ public class MainActivity extends AppCompatActivity {
                         String urlString = "http://paypal.me/baooincontri";
                         Intent intento = new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
                         intento.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intento.setPackage("com.android.chrome");
-                        try {
-                            startActivity(intento);
-                        } catch (ActivityNotFoundException ex) {
-                            // Chrome browser presumably not installed so allow user to choose instead
+
                             intento.setPackage(null);
                             startActivity(intento);
-                        }
+
                         break;
                 }
                 return true;
@@ -322,9 +318,9 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.ordina)
         {
             new AlertDialog.Builder(this)
-                    .setMessage("Ordina per:")
+                    .setMessage("Sort by")
                     .setCancelable(true)
-                    .setPositiveButton("Ordine alfabetico", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Alphabetical order", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             conto++;
                             ordine=true;
@@ -335,20 +331,20 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                             if (conto%2!=0){
-                                Snackbar snackBar = Snackbar.make(activity_main, "Ordine alfabetico crescente.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Alphabetical ascending order", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             else
                             {
                                 reverse(cani);
-                                Snackbar snackBar = Snackbar.make(activity_main, "Ordine alfabetico decrescente.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Alphabetical descending order.", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             myAdapter=new RecyclerViewAdapter( MainActivity.this,cani);
                             myrv.setAdapter(myAdapter);
                         }
                     })
-                    .setNegativeButton("Ordine temporale", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Temporal order", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             conta++;
@@ -360,12 +356,12 @@ public class MainActivity extends AppCompatActivity {
                             myrv.setAdapter(myAdapter);
                             if(conta%2==0) {
                                 //item.setIcon(R.drawable.ic_discendant_sort);
-                                Snackbar snackBar = Snackbar.make(activity_main, "Dal cane più recente.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "From the most recent post", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             else {
                                 //item.setIcon(R.drawable.ic_ascendant_sort);
-                                Snackbar snackBar = Snackbar.make(activity_main, "Dal cane meno recente.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "From the oldest post ", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                         }
@@ -382,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             new AlertDialog.Builder(this)
-                    .setMessage("Sei sicuro di voler chiudere Baoo?")
+                    .setMessage("Are you sure you want to close Baoo?")
                     .setCancelable(false)
                     .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

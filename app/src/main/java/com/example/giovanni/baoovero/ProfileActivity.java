@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         welcome=(TextView)findViewById(R.id.profile_welcome);
         immagine=(ImageView)findViewById(R.id.profile_image);
         immagine.setVisibility(View.INVISIBLE);
-        setTitle("Profilo");
+        setTitle("Profile");
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {
@@ -126,11 +126,11 @@ public class ProfileActivity extends AppCompatActivity {
                 Utente user=snap.getValue(Utente.class);
                 if (listacani.isEmpty())
                 {
-                    welcome.setText("Benvenuto, " + user.getNome() + " " + user.getCognome() +"\nNon hai ancora aggiunto cani.");
+                    welcome.setText("Welcome, " + user.getNome() + " " + user.getCognome() +"\nAdd some puppies.");
                     immagine.setVisibility(View.VISIBLE);
                 }
                 else
-                welcome.setText("Benvenuto, " + user.getNome() + " " + user.getCognome() +"\nQuesti sono i tuoi cani.");
+                welcome.setText("Welcome, " + user.getNome() + " " + user.getCognome() +"\nThese are your dogs.");
             }
         }
 

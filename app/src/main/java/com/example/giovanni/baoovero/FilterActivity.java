@@ -47,7 +47,7 @@ public class FilterActivity extends AppCompatActivity {
         myrv = (RecyclerView) findViewById(R.id.recyclerview_filter);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         if(provenienza){
-            setTitle("Cerca");
+            setTitle("Search");
             name =intent.getExtras().getString("Name");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -81,7 +81,7 @@ public class FilterActivity extends AppCompatActivity {
             });
         }
         else {
-            setTitle("Filtra");
+            setTitle("Filter");
             Query query = myRef.orderByChild("gender").equalTo(ftgender);
             query.addListenerForSingleValueEvent(valueEventListener);
         }

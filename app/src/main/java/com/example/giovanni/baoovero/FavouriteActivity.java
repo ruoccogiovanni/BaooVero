@@ -35,7 +35,7 @@ public class FavouriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
-        setTitle("Preferiti");
+        setTitle("Favorites");
         auth = FirebaseAuth.getInstance();
         utente = auth.getCurrentUser().getUid();
         listacani=new ArrayList<>();
@@ -82,7 +82,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 catch (NullPointerException e)
                 {
                     errore.setVisibility(View.VISIBLE);
-                    errore.setText("Non hai ancora nessun preferito.");
+                    errore.setText("You don't have favorite dogs.");
                     immagine.setVisibility(View.VISIBLE);
                 }
         }
@@ -144,7 +144,7 @@ protected void onResume(){
             catch (NullPointerException e)
             {
                 errore.setVisibility(View.VISIBLE);
-                errore.setText("Non hai ancora nessun preferito.");
+                errore.setText("You don't have favorite dogs.");
                 immagine.setVisibility(View.VISIBLE);
             }
         }

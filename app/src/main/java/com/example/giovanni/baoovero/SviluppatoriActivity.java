@@ -24,7 +24,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sviluppatori);
-        setTitle("Sviluppatori");
+        setTitle("Developers");
         song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
         dev1=(TextView)findViewById(R.id.testodeveloper);
         dev2=(TextView)findViewById(R.id.testodeveloper2);

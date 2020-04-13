@@ -80,11 +80,11 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        setTitle("Aggiungi il tuo cane");
+        setTitle("Add your dog");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         v = findViewById(android.R.id.content);
-        Snackbar.make(v,"Clicca sull'immagine per inserire una foto.",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(v,"Click on the image to add a photo.",Snackbar.LENGTH_LONG).show();
         mDatabase= FirebaseDatabase.getInstance().getReference();
        //serve a prendere l'uid utente
         auth = FirebaseAuth.getInstance();
@@ -119,7 +119,7 @@ public class AddActivity extends AppCompatActivity {
         etcity.setDropDownVerticalOffset(-100);
         final int agemax = 20;
         sbage.setMax(agemax);
-        tvage.setText("Età: " + sbage.getProgress());
+        tvage.setText("Age: " + sbage.getProgress());
         sbage.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     int progress_value;
@@ -127,7 +127,7 @@ public class AddActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         progress_value = progress;
-                        tvage.setText("Età: " + progress);
+                        tvage.setText("Age: " + progress);
                     }
 
                     @Override
@@ -136,7 +136,7 @@ public class AddActivity extends AppCompatActivity {
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        tvage.setText("Età: " + progress_value);
+                        tvage.setText("Age: " + progress_value);
                     }
                 }
         );
@@ -163,7 +163,7 @@ public class AddActivity extends AppCompatActivity {
                 String addage = String.valueOf(intage);
                 int idbutton = rgroup.getCheckedRadioButtonId();
                 rbutton = findViewById(idbutton);
-                String addgender = "Maschio";
+                String addgender = "Male";
                 try {
                     addgender = rbutton.getText().toString();
                 } catch (NullPointerException e) {
@@ -197,7 +197,7 @@ public class AddActivity extends AppCompatActivity {
                     etphone.setText("");
                 }
                 if (adddescription.isEmpty()) {
-                    adddescription = "Il mio padroncino non vuole aggiungere la mia descrizione :(";
+                    adddescription = "No description for me :(";
                 }
                 if (getUrlimmagine()==null)
                 {
@@ -211,11 +211,11 @@ public class AddActivity extends AppCompatActivity {
                     String uid = mDatabase.child("Cani").push().getKey();
                     cane.setUid(uid);
                     mDatabase.child("Cani").child(uid).setValue(cane);
-                    Toast.makeText(AddActivity.this, "Complimenti, hai aggiunto il tuo nuovo cane!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddActivity.this, "Congratulations, you've added your new dog!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddActivity.this, ProfileActivity.class));
                 } else
                     {
-                    Toast.makeText(AddActivity.this, "C'è qualcosa che non va. Sicuro di aver inserito bene le informazioni?", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddActivity.this, "There is something wrong. Are you sure you entered the information correctly?", Toast.LENGTH_LONG).show();
                         if (!provincia)
                         {
                             etcity.setHintTextColor(getResources().getColor(R.color.error_color));
@@ -300,21 +300,21 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private void SelectImage(){
-        final CharSequence[] items={"Fotocamera","Galleria", "Indietro"};
+        final CharSequence[] items={"Camera","Album", "Back"};
         AlertDialog.Builder builder = new AlertDialog.Builder(AddActivity.this);
-        builder.setTitle("Seleziona Foto");
+        builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (items[i].equals("Fotocamera")) {
+                if (items[i].equals("Camera")) {
                     captureimage();
-                } else if (items[i].equals("Galleria")) {
+                } else if (items[i].equals("Album")) {
                     if (ContextCompat.checkSelfPermission(AddActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
                         selectimage();
                     else
                         requeststorage();
-                } else if (items[i].equals("Indietro")) {
+                } else if (items[i].equals("Back")) {
                     dialogInterface.dismiss();
                 }
             }
@@ -357,7 +357,7 @@ public class AddActivity extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(this, "ERRORE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -414,7 +414,7 @@ public class AddActivity extends AppCompatActivity {
 
     private void uploadImage() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Caricamento in corso ");
+        progressDialog.setTitle("Loading ");
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
@@ -425,7 +425,7 @@ public class AddActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Upload completed", Toast.LENGTH_SHORT).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
@@ -436,7 +436,7 @@ public class AddActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Upload failed, retry.", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -444,14 +444,14 @@ public class AddActivity extends AppCompatActivity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Caricamento in corso: " + (int) progress + "%");
+                            progressDialog.setMessage("Loading: " + (int) progress + "%");
                         }
                     });
         }
     }
 private void uploadCamera(){
     final ProgressDialog progressDialog = new ProgressDialog(this);
-    progressDialog.setTitle("Caricamento in corso ");
+    progressDialog.setTitle("Loading ");
     progressDialog.setCancelable(false);
     progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     progressDialog.show();
@@ -465,7 +465,7 @@ private void uploadCamera(){
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 progressDialog.dismiss();
-                                Snackbar.make(v, "Caricamento completato", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Upload completed", Toast.LENGTH_SHORT).show();
                                 Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                                 while (!urlTask.isSuccessful());
                                 Uri downloadUrl = urlTask.getResult();
@@ -476,7 +476,7 @@ private void uploadCamera(){
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 progressDialog.dismiss();
-                                Snackbar.make(v, "Caricamento fallito, riprova.", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Upload failed, retry.", Toast.LENGTH_SHORT).show();
                            }
                       })
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -484,7 +484,7 @@ private void uploadCamera(){
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                         .getTotalByteCount());
-                                progressDialog.setMessage("Caricamento in corso: "+(int)progress+"%");
+                                progressDialog.setMessage("Loading: "+(int)progress+"%");
                         }
                     });
         }

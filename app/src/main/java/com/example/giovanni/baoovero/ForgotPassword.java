@@ -30,7 +30,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-        setTitle("Password dimenticata");
+        setTitle("Password forgotten");
         input_email = (EditText)findViewById(R.id.forgot_email);
         btnResetPass = (Button)findViewById(R.id.forgot_btn_reset);
         btnBack = (TextView)findViewById(R.id.forgot_btn_back);
@@ -60,7 +60,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
             closeKeyboard();
             if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@"))
             {
-                Snackbar snackBar = Snackbar.make(activity_forgot,"C'è qualcosa che non va. Sicuro di aver inserito correttamente la tua email?",Snackbar.LENGTH_LONG);
+                Snackbar snackBar = Snackbar.make(activity_forgot,"There is something wrong. Are you sure you entered your email correctly?",Snackbar.LENGTH_LONG);
                 snackBar.show();
                 input_email.setHintTextColor(getResources().getColor(R.color.error_color));
                 input_email.setText("");
@@ -77,11 +77,11 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Abbiamo mandato le istruzioni per il recupero della password all'email: "+email,Snackbar.LENGTH_LONG);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"We've sent the password recovery instructions to your email: "+email,Snackbar.LENGTH_LONG);
                             snackBar.show();
                         }
                         else{
-                            Snackbar snackBar = Snackbar.make(activity_forgot,"Riprova di nuovo, non siamo riusciti a mandare le istruzioni all'email inserita.",Snackbar.LENGTH_SHORT);
+                            Snackbar snackBar = Snackbar.make(activity_forgot,"Retry, we were unable to send the instructions to the email you entered.",Snackbar.LENGTH_SHORT);
                             snackBar.show();
                         }
                     }

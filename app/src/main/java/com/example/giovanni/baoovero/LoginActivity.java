@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             closeKeyboard();
             if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_password.getText().toString().isEmpty())
             {
-                Snackbar snackBar = Snackbar.make(activity_main, "C'è qualcosa che non va. Sicuro di aver inserito correttamente email e password?", Snackbar.LENGTH_LONG);
+                Snackbar snackBar = Snackbar.make(activity_main, "Something goes wrong. Are you sure you entered your email and password correctly?", Snackbar.LENGTH_LONG);
                 snackBar.show();
             }
             else
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful())
                         {
-                                Snackbar snackBar = Snackbar.make(activity_main,"L'email o la password sono errati.",Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main,"Email or password are wrong.",Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                         }
                         else{

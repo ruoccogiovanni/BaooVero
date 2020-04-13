@@ -3,24 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/profilo"
-        android:title="Profilo"
+        android:title="Profile"
         android:icon="@drawable/ic_profiledog">
     </item>
     <item
         android:id="@+id/navpreferiti"
-        android:title="Preferiti"
+        android:title="Favorites"
         android:icon="@drawable/ic_heart">
     </item>
     <item
         android:id="@+id/about"
-        android:title="Guida"
+        android:title="Guide"
         android:icon="@drawable/ic_info">
     </item>
-    <item android:title="Parla con noi">
+    <item android:title="About us..">
         <menu>
             <item
                 android:id="@+id/feedback"
-                android:title="Invia Feedback"
+                android:title="Send Feedback"
                 android:icon="@drawable/ic_feedback">
             </item>
 
@@ -32,7 +32,7 @@
 
             <item
                 android:id="@+id/info"
-                android:title="Sviluppatori"
+                android:title="Developers"
                 android:icon="@drawable/ic_developer">
             </item>
         </menu>

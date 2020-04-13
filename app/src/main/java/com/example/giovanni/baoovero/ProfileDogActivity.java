@@ -60,18 +60,18 @@ public class ProfileDogActivity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.profiledogimg);
         imag = (ImageView) findViewById(R.id.profiledogimg2);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        String annio=" anni";
+        String annio=" years";
         final Intent intent = getIntent();
         final String Name = intent.getExtras().getString("Name");
         final String Breed =  intent.getExtras().getString("Breed");
         final String Description = intent.getExtras().getString("Description");
-        String descrizione="Descrizione di " + Name + ": \n" + Description;
+        String descrizione= Name + "'s description:\n"  + Description;
         final String Gender = intent.getExtras().getString("Gender");
         final String City = intent.getExtras().getString("City");
-        String citta= "Città: " + City;
+        String citta= "City: " + City;
         final String eig = intent.getExtras().getString("Age");
-        if(Integer.parseInt(eig)==1)  annio=" anno";
-        final String Age = "Età: " + eig + annio;
+        if(Integer.parseInt(eig)==1)  annio=" year";
+        final String Age = "Age: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
         final String image = intent.getExtras().getString("Thumbnail");
@@ -268,9 +268,9 @@ public class ProfileDogActivity extends AppCompatActivity {
             public void onClick(View v) {
                 myVib.vibrate(25);
                 new AlertDialog.Builder(ProfileDogActivity.this)
-                        .setMessage("Sei sicuro di voler eliminare " + Name +"?")
+                        .setMessage("Are you sure you want delete " + Name +"?")
                         .setCancelable(true)
-                        .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 myRef.child(Uid).setValue(null);
                                 StorageReference cancella = storage.getReferenceFromUrl(image);

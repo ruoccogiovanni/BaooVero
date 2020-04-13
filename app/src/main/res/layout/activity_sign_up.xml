@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Inserisci la tua Email"
+            android:hint="Add your Email"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Inserisci il tuo Nome"
+            android:hint="Add your name"
             android:inputType="textShortMessage|textCapWords"
             android:maxLines="1" />
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Inserisci la tua password (min 6 caratteri)"
+            android:hint="Add yout password (min 6 characters)"
             android:inputType="textPassword"
             android:maxLines="1" />
 
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Inserisci il tuo Cognome"
+            android:hint="Add your family name"
             android:inputType="textShortMessage|textCapWords"
             android:maxLines="1" />
 
@@ -99,7 +99,7 @@
         android:layout_below="@+id/signup_input_password"
         android:background="#263238"
         android:fontFamily="@font/productsansbold"
-        android:text="Registrati" />
+        android:text="Sign up" />
 
     <TextView
         android:id="@+id/signup_btn_forgot_pass"
@@ -110,7 +110,7 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:fontFamily="@font/poppinsregular"
-        android:text="Password dimenticata?"
+        android:text="Password lost?"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansbold"
             android:padding="5dp"
-            android:text="oppure" />
+            android:text="or" />
         <View
             android:layout_width="200dp"
             android:layout_height="1dp"
@@ -151,7 +151,7 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:fontFamily="@font/poppinsregular"
-        android:text="Hai già un account? Effettua il login"
+        android:text="Have you an account? Login"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 

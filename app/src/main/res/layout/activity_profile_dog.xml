@@ -163,7 +163,7 @@
         android:background="#49b675"
 
         android:fontFamily="@font/productsansbold"
-        android:text="Modifica"
+        android:text="Edit"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/elimina"
@@ -179,7 +179,7 @@
         android:layout_marginEnd="8dp"
         android:background="@color/Rosso"
         android:fontFamily="@font/productsansbold"
-        android:text="Elimina"
+        android:text="Delete"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +193,7 @@
         android:alpha="0.7"
         android:fontFamily="@font/productsansitalic"
 
-        android:text="Swipe verso l'alto per maggiori informazioni"
+        android:text="Swipe upwards for more information"
         android:textSize="16dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="@+id/modifica"
