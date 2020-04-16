@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigescionView = (NavigationView) findViewById(R.id.nv);
         View headerView = navigescionView.getHeaderView(0);
         immaginelogin= (ImageView) headerView.findViewById(R.id.immaginelogin);
-        immaginelogin.setImageResource(R.drawable.ic_icona_profilo);
+        immaginelogin.setImageResource(R.drawable.ic_uservect);
         tvnamelogin = (TextView) headerView.findViewById(R.id.navigation_name);
         tvemaillogin = (TextView) headerView.findViewById(R.id.navigation_email);
         tvemaillogin.setPaintFlags(tvemaillogin.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
