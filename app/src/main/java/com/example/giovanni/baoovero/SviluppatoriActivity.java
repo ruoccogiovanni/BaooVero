@@ -27,7 +27,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Developers");
         Random rand = new Random();
-        int whichsong = rand.nextInt(5);
+        int whichsong = rand.nextInt(8);
         rand = null;
         switch (whichsong)
         {
@@ -45,6 +45,15 @@ public class SviluppatoriActivity extends AppCompatActivity {
                 break;
             case 4:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.titanic_flute);
+                break;
+            case 5:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.monster);
+                break;
+            case 6:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smario64);
+                break;
+            case 7:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smariotheme);
                 break;
             default:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
@@ -70,7 +79,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     contenitore.stopDropping();
                     Random rand = new Random();
-                    int whichsong = rand.nextInt(5);
+                    int whichsong = rand.nextInt(8);
                     dev1.setVisibility(View.VISIBLE);
                     //dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
@@ -95,6 +104,15 @@ public class SviluppatoriActivity extends AppCompatActivity {
                                 break;
                             case 4:
                                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.titanic_flute);
+                                break;
+                            case 5:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.monster);
+                                break;
+                            case 6:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smario64);
+                                break;
+                            case 7:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smariotheme);
                                 break;
                             default:
                                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
