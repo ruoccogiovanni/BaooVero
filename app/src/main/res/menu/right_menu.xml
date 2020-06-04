@@ -11,13 +11,13 @@
     <item
         android:id="@+id/filtra"
         android:title="Filtra"
-        android:icon="@drawable/ic_filter"
+        android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom">
     </item>
     <item
-        android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search"
+        android:id="@+id/app_bar_profile"
+        android:icon="@drawable/ic_photo_filter"
         android:title="Search"
         app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
+        />
 </menu>

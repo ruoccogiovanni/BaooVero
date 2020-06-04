@@ -269,11 +269,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    public boolean onCreateOptionsMenu(final Menu menu)
-    {
+    public boolean onCreateOptionsMenu(final Menu menu) {
 
         MenuInflater inflauto = getMenuInflater();
-        inflauto.inflate(R.menu.right_menu,menu);
+        inflauto.inflate(R.menu.right_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+        /*
         MenuItem cerca=menu.findItem(R.id.app_bar_search);
         cerca.setIcon(R.drawable.ic_search);
         searchView = (SearchView)cerca.getActionView();
@@ -296,16 +298,16 @@ public class MainActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+     @Override
+   public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem searchViewMenuItem = menu.findItem(R.id.app_bar_search);
         searchView = (SearchView) searchViewMenuItem.getActionView();
         int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
-        v.setImageResource(R.drawable.ic_search);
+        v.setImageResource(R.drawable.ic_photo_filter);
         return super.onPrepareOptionsMenu(menu);
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(t.onOptionsItemSelected(item))
@@ -314,6 +316,11 @@ public class MainActivity extends AppCompatActivity {
         {
                 startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
                 return true;
+        }
+        if (item.getItemId()==R.id.app_bar_profile)
+        {
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            return true;
         }
         if (item.getItemId()==R.id.ordina)
         {
