@@ -7,11 +7,14 @@
     android:layout_height="180dp"
     android:gravity="bottom"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.3"
-        android:background="@drawable/ic_doglove"/>
+        android:background="@drawable/ic_doglove"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/immaginelogin"
@@ -69,7 +72,7 @@
         android:lines="1"
         android:ellipsize="end"
         android:onClick="Clicckino"
-        android:text="Login"
+        android:text=""
         android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16dp"
@@ -77,5 +80,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immaginelogin" />
+
+    <TextView
+        android:id="@+id/navigation_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:onClick="Cliccketto"
+        android:text="Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

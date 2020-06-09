@@ -102,7 +102,7 @@
         android:text="Description"
         android:textSize="24dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/modifica"
+        app:layout_constraintBottom_toTopOf="@+id/elimina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/profile_age"
         app:layout_constraintTop_toBottomOf="@+id/profile_age" />
@@ -120,6 +120,21 @@
 
 
     <Button
+        android:id="@+id/elimina"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/Rosso"
+        android:fontFamily="@font/productsansbold"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modifica"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/modifica"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
@@ -130,23 +145,10 @@
         android:background="#49b675"
         android:fontFamily="@font/productsansbold"
         android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/elimina"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/elimina"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/Rosso"
-        android:fontFamily="@font/productsansbold"
-        android:text="Delete"
-        app:layout_constraintBaseline_toBaselineOf="@+id/modifica"
+        app:layout_constraintBaseline_toBaselineOf="@+id/elimina"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/modifica" />
+        app:layout_constraintStart_toEndOf="@+id/elimina" />
 
 
     <TextView
@@ -160,7 +162,7 @@
         android:textSize="16dp"
         android:textStyle="bold|italic"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/modifica"
+        app:layout_constraintStart_toStartOf="@+id/elimina"
         app:layout_constraintTop_toBottomOf="@+id/profile_breed" />
     />
 </android.support.constraint.ConstraintLayout>

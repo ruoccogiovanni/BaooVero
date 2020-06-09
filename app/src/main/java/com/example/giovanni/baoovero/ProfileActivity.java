@@ -3,6 +3,7 @@ package com.example.giovanni.baoovero;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,8 +28,8 @@ import java.util.List;
 import static java.util.Collections.reverse;
 
 public class ProfileActivity extends AppCompatActivity {
-    private Button logout;
-    private Button adddog;
+
+    private FloatingActionButton adddog;
     private FirebaseAuth auth;
     private TextView welcome;
     private Vibrator myVib;
@@ -52,8 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
             email=auth.getCurrentUser().getEmail();
         }
         else startActivity(loginact);
-        logout=(Button)findViewById(R.id.profile_logout);
-        adddog=(Button)findViewById(R.id.profile_add);
+        adddog=(FloatingActionButton)findViewById(R.id.profile_add);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
@@ -68,23 +68,15 @@ public class ProfileActivity extends AppCompatActivity {
         adddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myVib.vibrate(25);
-                startActivity(new Intent(ProfileActivity.this, AddActivity.class));
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myVib.vibrate(250);
-                Toast.makeText(getApplicationContext(),"Torna presto!",Toast.LENGTH_SHORT).show();
-                auth.signOut();
-                if(auth.getCurrentUser() == null)
-                {
-                    startActivity(new Intent(ProfileActivity.this,MainActivity.class));
-                    finish();
+                if (auth.getCurrentUser()!=null)
+                    startActivity(new Intent(ProfileActivity.this, AddActivity.class));
+                else {
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    Toast.makeText(ProfileActivity.this, "Devi prima aver effettuato il login.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeprofile);
         swipeRefreshLayout.setColorSchemeResources(R.color.prova,R.color.Rosso,R.color.verde);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

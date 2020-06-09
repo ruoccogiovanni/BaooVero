@@ -54,7 +54,7 @@ import java.util.UUID;
 
 public class AddActivity extends AppCompatActivity {
     ImageView immagineviewID;
-    private Button addimmagine,btnavanti,btnindietro;
+    private Button addimmagine,btnavanti;
     private SeekBar sbage;
     private TextView tvage;
     private AutoCompleteTextView actvbreed,etcity;
@@ -73,6 +73,15 @@ public class AddActivity extends AppCompatActivity {
     private View v;
     private String urlimmagine, mCurrentPhotoPath;
     private Bitmap bmp;
+    String addcity ;
+    String addname ;
+    String addphone;
+    String adddescription ;
+    String addbreed ;
+    String addgender;
+    int intage  ;
+    String addage ;
+    int idbutton ;
     File photoFile = null;
     private static final String IMAGE_DIRECTORY_NAME = "BAOO";
     public final static String[] provincine = {"Agrigento", "Alessandria", "Ancona", "Aosta", "L'Aquila", "Arezzo", "Ascoli-Piceno", "Asti", "Avellino", "Bari", "Barletta-Andria-Trani", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Cagliari", "Caltanissetta", "Campobasso", "Carbonia Iglesias", "Caserta", "Catania", "Catanzaro", "Chieti", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo", "Enna", "Fermo", "Ferrara", "Firenze", "Foggia", "Forli-Cesena", "Frosinone", "Genova", "Gorizia", "Grosseto", "Imperia", "Isernia", "La-Spezia", "Latina", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca", "Macerata", "Mantova", "Massa-Carrara", "Matera", "Medio Campidano", "Messina", "Milano", "Modena", "Monza-Brianza", "Napoli", "Novara", "Nuoro", "Ogliastra", "Olbia Tempio", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro-Urbino", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato", "Ragusa", "Ravenna", "Reggio-Calabria", "Reggio-Emilia", "Rieti", "Rimini", "Roma", "Rovigo", "Salerno", "Sassari", "Savona", "Siena", "Siracusa", "Sondrio", "Taranto", "Teramo", "Terni", "Torino", "Trapani", "Trento", "Treviso", "Trieste", "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo-Valentia", "Vicenza", "Viterbo"};
@@ -107,7 +116,7 @@ public class AddActivity extends AppCompatActivity {
             }
         });
         btnavanti = (Button) findViewById(R.id.add_button);
-        btnindietro = (Button) findViewById(R.id.add_back);
+
         tvage = (TextView) findViewById(R.id.textAge);
         sbage = (SeekBar) findViewById(R.id.seekAge);
         etname = (EditText) findViewById(R.id.add_dog_name);
@@ -145,6 +154,7 @@ public class AddActivity extends AppCompatActivity {
         AutoCompleteBreed adapter = new AutoCompleteBreed(this, dogList);
         actvbreed.setAdapter(adapter);
         btnavanti.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 int grandezza = dogList.size();
@@ -154,16 +164,16 @@ public class AddActivity extends AppCompatActivity {
                 for (PortraitDog s : a) {
                     razze.add(s.getDogName());
                 }
-                String addcity = etcity.getText().toString().trim();
-                String addname = etname.getText().toString().trim();
-                String addphone = etphone.getText().toString().trim();
-                String adddescription = etdescription.getText().toString().trim();
-                String addbreed = actvbreed.getText().toString().trim();
-                int intage = sbage.getProgress();
-                String addage = String.valueOf(intage);
-                int idbutton = rgroup.getCheckedRadioButtonId();
+                addcity = etcity.getText().toString().trim();
+                addname = etname.getText().toString().trim();
+                 addphone = etphone.getText().toString().trim();
+                 adddescription = etdescription.getText().toString().trim();
+                 addbreed = actvbreed.getText().toString().trim();
+                 intage = sbage.getProgress();
+                 addage = String.valueOf(intage);
+                 idbutton = rgroup.getCheckedRadioButtonId();
                 rbutton = findViewById(idbutton);
-                String addgender = "Male";
+                 addgender = "Male";
                 try {
                     addgender = rbutton.getText().toString();
                 } catch (NullPointerException e) {
@@ -205,14 +215,24 @@ public class AddActivity extends AppCompatActivity {
                 }
 
                 if (provincia && nome && phone && razza&&immagine) {
-                    getUrlimmagine();
-                    Dog cane = new Dog(addname, addbreed, adddescription, addgender, addcity, addage, addphone, email, urlimmagine);
-                    cane.setUtente(utente);
-                    String uid = mDatabase.child("Cani").push().getKey();
-                    cane.setUid(uid);
-                    mDatabase.child("Cani").child(uid).setValue(cane);
-                    Toast.makeText(AddActivity.this, "Congratulations, you've added your new dog!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddActivity.this, ProfileActivity.class));
+                    new AlertDialog.Builder(AddActivity.this)
+                            .setMessage("Are you sure you entered the data correctly?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes, go ahead", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    getUrlimmagine();
+                                    Dog cane = new Dog(addname, addbreed, adddescription, addgender, addcity, addage, addphone, email, urlimmagine);
+                                    cane.setUtente(utente);
+                                    String uid = mDatabase.child("Cani").push().getKey();
+                                    cane.setUid(uid);
+                                    mDatabase.child("Cani").child(uid).setValue(cane);
+                                    Toast.makeText(AddActivity.this, "Congratulations, you've added your new dog!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(AddActivity.this, ProfileActivity.class));
+                                }
+                            })
+                            .setNegativeButton("No, let me check", null)
+                            .show();
+
                 } else
                     {
                     Toast.makeText(AddActivity.this, "There is something wrong. Are you sure you entered the information correctly?", Toast.LENGTH_LONG).show();
@@ -229,28 +249,14 @@ public class AddActivity extends AppCompatActivity {
                     }
             }
         });
-        btnindietro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getUrlimmagine()!=null)
-                {
-                    StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
-                    cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                        }
-                    });
-                }
-                Toast.makeText(AddActivity.this,"Insertion failed.",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddActivity.this,ProfileActivity.class));
-            }
-        });
+
     }
 
     private void fillDogList() {
         dogList = new ArrayList<>();
         dogList.add(new PortraitDog("Akita Inu", R.drawable.image_akita));
         dogList.add(new PortraitDog("Alano", R.drawable.image_alano));
+        dogList.add(new PortraitDog("Corgi", R.drawable.image_corgi));
         dogList.add(new PortraitDog("Bassotto", R.drawable.image_bassotto));
         dogList.add(new PortraitDog("Cane da Pastore Maremmano Abruzzese", R.drawable.image_maremmano));
         dogList.add(new PortraitDog("American Staffordshire Terrier", R.drawable.image_american_terrier));

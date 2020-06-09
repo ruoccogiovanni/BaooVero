@@ -120,7 +120,7 @@
 
         android:text="Description"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/chiama"
+        app:layout_constraintBottom_toTopOf="@+id/contatta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtAge"
         app:layout_constraintTop_toBottomOf="@+id/txtAge" />
@@ -138,7 +138,23 @@
 
 
     <Button
+        android:id="@+id/contatta"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/Rosso"
+        android:fontFamily="@font/productsansbold"
+        android:text="Email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chiama"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/chiama"
+
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -148,23 +164,9 @@
         android:background="#49b675"
         android:fontFamily="@font/productsansbold"
         android:text="Call"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/contatta"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/contatta"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/Rosso"
-        android:fontFamily="@font/productsansbold"
-        android:text="Email"
-        app:layout_constraintBaseline_toBaselineOf="@+id/chiama"
+        app:layout_constraintBaseline_toBaselineOf="@+id/contatta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chiama" />
+        app:layout_constraintStart_toEndOf="@+id/contatta" />
 
 
     <TextView
@@ -178,7 +180,7 @@
         android:textSize="16dp"
         android:textStyle="bold|italic"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/chiama"
+        app:layout_constraintStart_toStartOf="@+id/contatta"
         app:layout_constraintTop_toBottomOf="@+id/textBreed" />
 
     />

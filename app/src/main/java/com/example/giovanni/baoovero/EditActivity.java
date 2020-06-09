@@ -58,7 +58,7 @@ public class EditActivity extends AppCompatActivity {
     ImageView immagineviewID;
     private Button addimmagine;
     private Button btnedit;
-    private Button btnindietro;
+
     private SeekBar sbage;
     private TextView tvage;
     private AutoCompleteTextView actvbreed,etcity;
@@ -116,7 +116,7 @@ public class EditActivity extends AppCompatActivity {
             }
         });
         btnedit = (Button) findViewById(R.id.edit_button);
-        btnindietro = (Button) findViewById(R.id.edit_back);
+
         tvage = (TextView) findViewById(R.id.texteditAge);
         sbage = (SeekBar) findViewById(R.id.edit_Age);
         etname = (EditText) findViewById(R.id.edit_dog_name);
@@ -290,28 +290,13 @@ public class EditActivity extends AppCompatActivity {
                 }
             }
         });
-        btnindietro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(EditActivity.this,"Edit not made.",Toast.LENGTH_SHORT).show();
-                if (getUrlimmagine()!=null)
-                {
-                    StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
-                    cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                        }
-                    });
-                }
-                startActivity(new Intent(EditActivity.this,ProfileActivity.class));
-            }
-        });
     }
 
     private void fillDogList() {
         dogList = new ArrayList<>();
         dogList.add(new PortraitDog("Akita Inu", R.drawable.image_akita));
         dogList.add(new PortraitDog("Alano", R.drawable.image_alano));
+        dogList.add(new PortraitDog("Corgi", R.drawable.image_corgi));
         dogList.add(new PortraitDog("Bassotto", R.drawable.image_bassotto));
         dogList.add(new PortraitDog("Cane da Pastore Maremmano Abruzzese", R.drawable.image_maremmano));
         dogList.add(new PortraitDog("American Staffordshire Terrier", R.drawable.image_american_terrier));

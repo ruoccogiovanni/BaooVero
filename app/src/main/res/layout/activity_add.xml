@@ -6,17 +6,45 @@
     android:layout_height="match_parent"
     android:id="@+id/addlayout">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Breed*"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/immagineviewID"
+        app:layout_constraintTop_toBottomOf="@+id/add_dog_name" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Name*"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/immagineviewID"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/add_dog_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-        android:hint="Name"
+        android:hint="Add name"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,10 +141,10 @@
     <ImageView
         android:id="@+id/immagineviewID"
         android:layout_width="170dp"
-        android:layout_height="226dp"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/ic_addog"
+        android:background="@drawable/aggiungifoto"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -124,8 +152,8 @@
 
     <Button
         android:id="@+id/immaginepiuID"
-        android:layout_width="170dp"
-        android:layout_height="226dp"
+        android:layout_width="174dp"
+        android:layout_height="204dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:alpha="0"
@@ -201,59 +229,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/productsansregular"
         android:completionThreshold="1"
-        android:hint="Breed"
+        android:fontFamily="@font/productsansregular"
+        android:hint="Add Breed"
         android:inputType="textShortMessage|textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
-        app:layout_constraintTop_toBottomOf="@+id/add_dog_name" />
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <Button
         android:id="@+id/add_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
         android:background="#49b675"
         android:fontFamily="@font/productsansbold"
         android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_back" />
-
-    <Button
-        android:id="@+id/add_back"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="15dp"
-        android:background="@color/Rosso"
-        android:fontFamily="@font/productsansbold"
-        android:text="BACK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_button"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/campiobbligatori"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/productsansregular"
         android:text="* (Required Fields)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
-        app:layout_constraintTop_toBottomOf="@+id/group_gender" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_description" />
 
 </android.support.constraint.ConstraintLayout>
 

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private FloatingActionButton aggiungi;
     private int numero,conta=0,conto=0;
-    private TextView tvnamelogin, tvemaillogin;
+    private TextView tvnamelogin, tvemaillogin, tvemaillogout;
     private ImageView immaginelogin;
     private String utente,url;
     private DrawerLayout activity_main;
@@ -75,7 +75,10 @@ public class MainActivity extends AppCompatActivity {
         immaginelogin.setImageResource(R.drawable.ic_uservect);
         tvnamelogin = (TextView) headerView.findViewById(R.id.navigation_name);
         tvemaillogin = (TextView) headerView.findViewById(R.id.navigation_email);
+        tvemaillogout = (TextView) headerView.findViewById(R.id.navigation_logout);
+
         tvemaillogin.setPaintFlags(tvemaillogin.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        tvemaillogout.setPaintFlags(tvemaillogout.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         activity_main = (DrawerLayout) findViewById(R.id.dl);
         numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
@@ -171,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser()!=null){
             utente=auth.getCurrentUser().getUid();
             tvemaillogin.setText(auth.getCurrentUser().getEmail());
+            tvemaillogout.setText("Logout");
+
             Query query = myRef.orderByChild("utente").equalTo(utente).limitToFirst(1);
             query.addListenerForSingleValueEvent(valueEventListener);
             Query nome = myRef2.orderByChild("email").equalTo(auth.getCurrentUser().getEmail());
@@ -378,12 +383,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onBackPressed() {
-        if (!searchView.isIconified())
-            searchView.onActionViewCollapsed();
-        else if (dl.isDrawerOpen(GravityCompat.START)) {
-        dl.closeDrawer(GravityCompat.START);
-        }
-        else {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to close Baoo?")
                     .setCancelable(false)
@@ -394,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .setNegativeButton("No", null)
                     .show();
-        }
+
 
     }
     public void Clicckino(View v){
@@ -402,5 +401,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         else
             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+    }
+    public void Cliccketto(View v){
+        if (auth.getCurrentUser()==null)
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        else
+            auth.signOut();
     }
 }
