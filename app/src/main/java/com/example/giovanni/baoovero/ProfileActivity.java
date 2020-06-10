@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
                     startActivity(new Intent(ProfileActivity.this, AddActivity.class));
                 else {
                     startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-                    Toast.makeText(ProfileActivity.this, "Devi prima aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "You must be logged in", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -12,17 +12,17 @@
         android:icon="@drawable/ic_heart">
     </item>
     <item
-        android:id="@+id/about"
-        android:title="Guide"
-        android:icon="@drawable/ic_info">
-    </item>
-    <item
         android:id="@+id/registrazione"
         android:title="Login"
         android:icon="@drawable/ic_login">
     </item>
     <item android:title="About us..">
         <menu>
+            <item
+                android:id="@+id/about"
+                android:title="Guide"
+                android:icon="@drawable/ic_info">
+            </item>
             <item
                 android:id="@+id/feedback"
                 android:title="Send Feedback"

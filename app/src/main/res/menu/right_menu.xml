@@ -14,10 +14,5 @@
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom">
     </item>
-    <item
-        android:id="@+id/app_bar_profile"
-        android:icon="@drawable/ic_mypug"
-        android:title="My Dogs"
-        app:showAsAction="ifRoom"
-        />
+
 </menu>

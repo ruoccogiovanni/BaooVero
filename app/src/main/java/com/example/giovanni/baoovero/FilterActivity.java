@@ -81,7 +81,7 @@ public class FilterActivity extends AppCompatActivity {
             });
         }
         else {
-            setTitle("Filter");
+            setTitle("Search");
             Query query = myRef.orderByChild("gender").equalTo(ftgender);
             query.addListenerForSingleValueEvent(valueEventListener);
         }

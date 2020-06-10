@@ -298,7 +298,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
                     startActivity(intent);
 
                 } else
-                    Toast.makeText(context, "Devi aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You must be logged in.", Toast.LENGTH_SHORT).show();
             }
 
         });

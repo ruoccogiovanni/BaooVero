@@ -383,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,FilterSearchActivity.class));
                 return true;
         }
+        /*
         if (item.getItemId()==R.id.app_bar_profile)
         {
             if(auth.getCurrentUser() != null)
@@ -400,6 +401,8 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             return true;
         }
+
+         */
         if (item.getItemId()==R.id.ordina)
         {
             new AlertDialog.Builder(this)
