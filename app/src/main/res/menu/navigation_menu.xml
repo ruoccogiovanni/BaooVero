@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/profilo"
-        android:title="Profile"
-        android:icon="@drawable/ic_profiledog">
+        android:title="My Dogs"
+        android:icon="@drawable/ic_mypug">
     </item>
     <item
         android:id="@+id/navpreferiti"
@@ -15,6 +15,11 @@
         android:id="@+id/about"
         android:title="Guide"
         android:icon="@drawable/ic_info">
+    </item>
+    <item
+        android:id="@+id/registrazione"
+        android:title="Login"
+        android:icon="@drawable/ic_login">
     </item>
     <item android:title="About us..">
         <menu>

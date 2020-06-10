@@ -21,13 +21,13 @@ public class SlideAdapter extends PagerAdapter {
     };
     public String[] lst_title = {
             "MEETING",
-            "DIRTY THINGS",
+            "LOVE IS IN THE AIR",
             "DEPRESSION",
             "PUPPIES INCOMING"
     };
     public String[] lst_description = {
             "The goal of our application is to make our puppies fall in love.",
-            "This puppies are sun of a beach, just like us.",
+            "Baoo is the perfect way to find a partner for our dogs",
             "Eventually is time to think about they found love and we're still single.",
             "Stay tuned. We've much more features cooking."
     };

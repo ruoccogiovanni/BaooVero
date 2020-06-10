@@ -45,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         welcome=(TextView)findViewById(R.id.profile_welcome);
         immagine=(ImageView)findViewById(R.id.profile_image);
         immagine.setVisibility(View.INVISIBLE);
-        setTitle("Profile");
+        setTitle("My Dogs");
         auth = FirebaseAuth.getInstance();
         final Intent loginact = new Intent(ProfileActivity.this,LoginActivity.class);
         if(auth.getCurrentUser() != null) {
@@ -132,23 +132,7 @@ public class ProfileActivity extends AppCompatActivity {
     };
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflauto = getMenuInflater();
-        inflauto.inflate(R.menu.profilefav_menu,menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId()==R.id.preferiti)
-        {
-            startActivity(new Intent(ProfileActivity.this,FavouriteActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(ProfileActivity.this,MainActivity.class));

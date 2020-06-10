@@ -29,7 +29,7 @@ public class FilterSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_search);
-        setTitle("Filter");
+        setTitle("Search");
         groupgender=(RadioGroup)findViewById(R.id.filter_gender);
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
@@ -51,9 +51,9 @@ public class FilterSearchActivity extends AppCompatActivity {
                         if(progress==0)
                             fttextage.setText("Age: whatever");
                         else if (progress==1)
-                            fttextage.setText("Age: from " + progress + " year onwards");
+                            fttextage.setText("Age: up to " + progress + " year old");
                         else
-                            fttextage.setText("Age: from " + progress + " years onwards");
+                            fttextage.setText("Age: up to " + progress + " years old");
                     }
 
                     @Override
@@ -65,9 +65,9 @@ public class FilterSearchActivity extends AppCompatActivity {
                         if (progress_value==0)
                             fttextage.setText("Age: whatever");
                         else if (progress_value==1)
-                            fttextage.setText("Age: from " + progress_value + " year onwards");
+                            fttextage.setText("Age: up to " + progress_value + " year old");
                         else
-                            fttextage.setText("Age: from " + progress_value + " years onwards");
+                            fttextage.setText("Age: up to " + progress_value + " years old");
                     }
                 }
         );

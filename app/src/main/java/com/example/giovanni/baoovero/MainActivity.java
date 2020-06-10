@@ -3,9 +3,11 @@ package com.example.giovanni.baoovero;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private FloatingActionButton aggiungi;
     private int numero,conta=0,conto=0;
-    private TextView tvnamelogin, tvemaillogin, tvemaillogout;
+    private TextView tvnamelogin, tvemaillogin;
     private ImageView immaginelogin;
     private String utente,url;
     private DrawerLayout activity_main;
@@ -67,6 +69,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final String PREFS_NAME = "MyPrefsFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if (settings.getBoolean("my_first_time", true)) {
+            //the app is being launched for first time, do something
+            startActivity(new Intent(MainActivity.this, SliderActivity.class));
+            // first time task
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("my_first_time", false).commit();
+        }
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
         NavigationView navigescionView = (NavigationView) findViewById(R.id.nv);
@@ -75,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
         immaginelogin.setImageResource(R.drawable.ic_uservect);
         tvnamelogin = (TextView) headerView.findViewById(R.id.navigation_name);
         tvemaillogin = (TextView) headerView.findViewById(R.id.navigation_email);
-        tvemaillogout = (TextView) headerView.findViewById(R.id.navigation_logout);
+
 
         tvemaillogin.setPaintFlags(tvemaillogin.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
-        tvemaillogout.setPaintFlags(tvemaillogout.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+
         activity_main = (DrawerLayout) findViewById(R.id.dl);
         numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
@@ -89,8 +103,16 @@ public class MainActivity extends AppCompatActivity {
                 if (auth.getCurrentUser()!=null)
                     startActivity(new Intent(MainActivity.this, AddActivity.class));
                 else {
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    Toast.makeText(MainActivity.this, "Devi prima aver effettuato il login.", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage("You must be logged in")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok, let's go", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                }
+                            })
+                            .setNegativeButton("No, thanks", null)
+                            .show();
                 }
                 }
         });
@@ -166,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         caricamento.setVisibility(View.INVISIBLE);
-                        Toast.makeText(MainActivity.this, "ERRORE DATABASE", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "DATABASE ERROR", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -174,7 +196,16 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser()!=null){
             utente=auth.getCurrentUser().getUid();
             tvemaillogin.setText(auth.getCurrentUser().getEmail());
-            tvemaillogout.setText("Logout");
+
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nv);
+
+            Menu menu = navigationView.getMenu();
+
+            MenuItem registrazione = menu.findItem(R.id.registrazione);
+
+            registrazione.setTitle("Logout");
+            registrazione.setIcon(R.drawable.ic_logout);
 
             Query query = myRef.orderByChild("utente").equalTo(utente).limitToFirst(1);
             query.addListenerForSingleValueEvent(valueEventListener);
@@ -195,19 +226,49 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.profilo:
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        if(auth.getCurrentUser() != null)
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        else
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setMessage("You must be logged in")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok, let's go", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                        }
+                                    })
+                                    .setNegativeButton("No, thanks", null)
+                                    .show();
                         break;
                     case R.id.navpreferiti:
                         if(auth.getCurrentUser() != null)
                             startActivity(new Intent(MainActivity.this,FavouriteActivity.class));
                         else
-                            Toast.makeText(MainActivity.this, "You must be logged in.", Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setMessage("You must be logged in")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok, let's go", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                        }
+                                    })
+                                    .setNegativeButton("No, thanks", null)
+                                    .show();
                         break;
                     case R.id.about:
                         startActivity(new Intent(MainActivity.this, SliderActivity.class));
                         break;
                     case R.id.info:
                         startActivity(new Intent(MainActivity.this,SviluppatoriActivity.class));
+                        break;
+                    case R.id.registrazione:
+                        if(auth.getCurrentUser() != null){
+                            auth.signOut();
+                            startActivity(new Intent(MainActivity.this, MainActivity.class));
+
+                        }
+                        else
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
                     case R.id.feedback:
                         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -324,7 +385,19 @@ public class MainActivity extends AppCompatActivity {
         }
         if (item.getItemId()==R.id.app_bar_profile)
         {
-            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            if(auth.getCurrentUser() != null)
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            else
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("You must be logged in")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok, let's go", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                            }
+                        })
+                        .setNegativeButton("No, thanks", null)
+                        .show();
             return true;
         }
         if (item.getItemId()==R.id.ordina)
@@ -396,16 +469,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void Clicckino(View v){
+   /* public void Clicckino(View v){
         if (auth.getCurrentUser()==null)
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         else
             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
     }
-    public void Cliccketto(View v){
-        if (auth.getCurrentUser()==null)
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        else
-            auth.signOut();
-    }
+    */
+
 }

@@ -44,7 +44,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/productsansregular"
         android:paddingTop="8dp"
-        android:text=""
+        android:text="Baoo"
         android:maxLines="1"
         android:lines="1"
         android:ellipsize="end"
@@ -71,7 +71,7 @@
         android:maxLines="1"
         android:lines="1"
         android:ellipsize="end"
-        android:onClick="Clicckino"
+
         android:text=""
         android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -81,18 +81,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immaginelogin" />
 
-    <TextView
-        android:id="@+id/navigation_logout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:onClick="Cliccketto"
-        android:text="Login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#000000"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

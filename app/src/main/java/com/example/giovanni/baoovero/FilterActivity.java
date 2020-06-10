@@ -111,7 +111,7 @@ public class FilterActivity extends AppCompatActivity {
                     }
                     if (!ftage.isEmpty()) {
                         for (Dog a : listacani) {
-                            if (Integer.parseInt(a.getAge())<Integer.parseInt(ftage)) {
+                            if (Integer.parseInt(a.getAge())>Integer.parseInt(ftage) && Integer.parseInt((ftage)) != 0){
                                 listacani.remove(a);
                             }
                         }
