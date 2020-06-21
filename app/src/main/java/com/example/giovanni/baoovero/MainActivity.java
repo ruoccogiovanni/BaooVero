@@ -420,13 +420,13 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                             if (conto%2!=0){
-                                Snackbar snackBar = Snackbar.make(activity_main, "Age ascending order", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Age descending order", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             else
                             {
                                 reverse(cani);
-                                Snackbar snackBar = Snackbar.make(activity_main, "Age descending order.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Age ascending order.", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             myAdapter=new RecyclerViewAdapter( MainActivity.this,cani);
