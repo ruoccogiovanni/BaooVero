@@ -27,7 +27,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Developers");
         Random rand = new Random();
-        int whichsong = rand.nextInt(1);
+        int whichsong = rand.nextInt(8;
         rand = null;
         switch (whichsong)
         {
