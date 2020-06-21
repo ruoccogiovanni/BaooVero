@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,13 +36,35 @@ public class FavouriteActivity extends AppCompatActivity {
     private String[] preferiti;
     private TextView errore;
     private ImageView immagine;
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
         setTitle("Favorites");
         auth = FirebaseAuth.getInstance();
-        utente = auth.getCurrentUser().getUid();
+
+
+            utente = auth.getCurrentUser().getUid();
+
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(FavouriteActivity.this);
+        if (acct != null) {
+            utente = acct.getId();
+        }
+
+
+
+
+
         listacani=new ArrayList<>();
         uid = new HashMap();
         errore = (TextView)findViewById(R.id.favourite_error);
@@ -97,8 +124,27 @@ public class FavouriteActivity extends AppCompatActivity {
 protected void onResume(){
         super.onResume();
     setContentView(R.layout.activity_favourite);
-        auth = FirebaseAuth.getInstance();
+
+    auth = FirebaseAuth.getInstance();
+
+    if(auth.getCurrentUser() != null) {
         utente = auth.getCurrentUser().getUid();
+    }
+
+    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build();
+
+    // Build a GoogleSignInClient with the options specified by gso.
+    mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(FavouriteActivity.this);
+    if (acct != null) {
+        utente = acct.getId();
+    }
+
+
+
         listacani=new ArrayList<>();
         uid = new HashMap();
         errore = (TextView)findViewById(R.id.favourite_error);

@@ -173,7 +173,7 @@ public class AddActivity extends AppCompatActivity {
                  addphone = etphone.getText().toString().trim();
                  adddescription = etdescription.getText().toString().trim();
                  addbreed = actvbreed.getText().toString().trim();
-                 intage = (year - sbage.getProgress());
+                 intage = (sbage.getProgress());
                  addage = String.valueOf(intage);
                  idbutton = rgroup.getCheckedRadioButtonId();
                 rbutton = findViewById(idbutton);

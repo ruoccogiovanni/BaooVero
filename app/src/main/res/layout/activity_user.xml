@@ -1,40 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/constraint_svil"
     android:layout_height="match_parent"
-    tools:context=".SviluppatoriActivity">
+    tools:context=".UserActivity">
 
-    <ImageView
-        android:id="@+id/developerimage"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="developerclick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_westiedeveloper" />
-
-    <TextView
-        android:id="@+id/testodeveloper"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/productsansregular"
-        android:gravity="center"
-        android:text="Sei tu"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/developerimage" />
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_westiedeveloper"
+            android:layout_gravity="center"
+            android:id="@+id/photo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:text="Name: NAME HERE"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:text="Email: EMAIL HERE"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id"
+            android:text="ID: ID HERE"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/log_out"
+        android:text="Sign out"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"/>
+
+</RelativeLayout>

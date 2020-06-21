@@ -30,6 +30,10 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private String utente,url;
     private DrawerLayout activity_main;
     private boolean ordine=false;
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
             // record the fact that the app has been started at least once
             settings.edit().putBoolean("my_first_time", false).commit();
         }
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         auth = FirebaseAuth.getInstance();
         listacani = new ArrayList<>();
         NavigationView navigescionView = (NavigationView) findViewById(R.id.nv);
@@ -265,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.registrazione:
                         if(auth.getCurrentUser() != null){
                             auth.signOut();
+                            mGoogleSignInClient.signOut();
                             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
                         }

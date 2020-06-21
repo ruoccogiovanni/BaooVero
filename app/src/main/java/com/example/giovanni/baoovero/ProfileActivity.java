@@ -1,6 +1,7 @@
 package com.example.giovanni.baoovero;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +17,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,9 +46,48 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference myRef,myRef2;
     private String utente,email;
     private ImageView immagine;
+    private DatabaseReference mDatabase;
+    GoogleSignInClient mGoogleSignInClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(ProfileActivity.this);
+        if (acct != null) {
+            String personName = acct.getDisplayName();
+            String personGivenName = acct.getGivenName();
+            String personFamilyName = acct.getFamilyName();
+            String personEmail = acct.getEmail();
+            String personId = acct.getId();
+            Uri personPhoto = acct.getPhotoUrl();
+
+            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+            mDatabase.child("Utenti").child(personId).child("email").setValue(personEmail);
+            mDatabase.child("Utenti").child(personId).child("nome").setValue(personGivenName);
+            mDatabase.child("Utenti").child(personId).child("cognome").setValue(personFamilyName);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         welcome=(TextView)findViewById(R.id.profile_welcome);
         immagine=(ImageView)findViewById(R.id.profile_image);
         immagine.setVisibility(View.INVISIBLE);

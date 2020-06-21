@@ -64,7 +64,7 @@ public class FilterActivity extends AppCompatActivity {
         myrv = (RecyclerView) findViewById(R.id.recyclerview_filter);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         if(provenienza){
-            setTitle("Search");
+            setTitle("Find your dog's partner");
             name =intent.getExtras().getString("Name");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override

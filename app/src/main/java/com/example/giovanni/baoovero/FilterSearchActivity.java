@@ -29,7 +29,7 @@ public class FilterSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_search);
-        setTitle("Search");
+        setTitle("Find your dog's partner");
         groupgender=(RadioGroup)findViewById(R.id.filter_gender);
         ftage = (SeekBar) findViewById(R.id.ft_seek_age);
         fttextage = (TextView) findViewById(R.id.ft_age);
