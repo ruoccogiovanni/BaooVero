@@ -1,6 +1,8 @@
 package com.example.giovanni.baoovero;
 
 
+import java.util.Date;
+
 public class Dog {
 
     private String Name;
@@ -28,6 +30,9 @@ public class Dog {
         Email = email;
         Thumbnail=thumbnail;
     }
+    Date d=new Date();
+    final int year=d.getYear() + 1900; //anno attuale
+
 
     public String getName() {
         return Name;
@@ -55,7 +60,7 @@ public class Dog {
         return City;
     }
     public String getAge() {
-        return Age;
+        return Integer.toString(year - Integer.parseInt(Age));
     }
     public String getTel() {
         return Tel;

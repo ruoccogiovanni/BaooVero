@@ -61,6 +61,8 @@
         android:id="@+id/signup_input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent"
         >
 
         <EditText
@@ -68,7 +70,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsansregular"
-            android:hint="Add yout password (min 6 characters)"
+            android:hint="Add your password (min 6 characters)"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/signup_input_password"
+        android:id="@+id/signup_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent"
+        >
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansregular"
+            android:hint="Confirm password"
             android:inputType="textPassword"
             android:maxLines="1" />
 
@@ -96,27 +118,16 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signup_input_password"
+        android:layout_below="@+id/signup_confirm_password"
         android:background="#263238"
         android:fontFamily="@font/productsansbold"
         android:text="Sign up" />
 
-    <TextView
-        android:id="@+id/signup_btn_forgot_pass"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/signup_btn_register"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:fontFamily="@font/poppinsregular"
-        android:text="Password lost?"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
+
 
     <LinearLayout
         android:id="@+id/signup_layout_or"
-        android:layout_below="@+id/signup_btn_forgot_pass"
+        android:layout_below="@+id/signup_btn_register"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -151,7 +162,7 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:fontFamily="@font/poppinsregular"
-        android:text="Have you an account? Login"
+        android:text="Do you have an account? Login"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 

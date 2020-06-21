@@ -161,16 +161,18 @@ public class EditActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(immagineviewID);
         final int agemax = 20;
+        Date d=new Date();
+        final int year=d.getYear() + 1900; //anno attuale
         sbage.setMax(agemax);
-        tvage.setText("Age: " + sbage.getProgress());
+        tvage.setText("Year of birth: " + (year - sbage.getProgress()));
         sbage.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     int progress_value;
 
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        progress_value = progress;
-                        tvage.setText("Age: " + progress);
+                        progress_value = year - progress;
+                        tvage.setText("Year of birth: " + (year - progress));
                     }
 
                     @Override
@@ -179,7 +181,7 @@ public class EditActivity extends AppCompatActivity {
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        tvage.setText("Age: " + progress_value);
+                        tvage.setText("Year of birth: " + progress_value);
                     }
                 }
         );

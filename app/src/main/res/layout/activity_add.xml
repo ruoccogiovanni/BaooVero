@@ -7,6 +7,33 @@
     android:id="@+id/addlayout">
 
     <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Dog Info"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/immagineviewID"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Name*"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/immagineviewID"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -21,24 +48,26 @@
         app:layout_constraintTop_toBottomOf="@+id/add_dog_name" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/productsansregular"
-        android:text="Name*"
+        android:text="Gender*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/immagineviewID"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/add_dog_name" />
+
 
     <EditText
         android:id="@+id/add_dog_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
         android:hint="Add name"
@@ -53,14 +82,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
         android:text="Phone*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekAge" />
+        app:layout_constraintTop_toBottomOf="@+id/add_city" />
 
     <EditText
         android:id="@+id/add_phone"
@@ -70,7 +99,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/productsansregular"
-        android:hint="Add your telephone number"
+        android:hint="Add telephone number"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -89,7 +118,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <AutoCompleteTextView
         android:id="@+id/add_city"
@@ -111,14 +140,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/productsansregular"
         android:text="Description"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_city" />
+        app:layout_constraintTop_toBottomOf="@+id/seekAge" />
 
     <EditText
         android:id="@+id/add_description"
@@ -137,14 +167,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textdescr" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="Your Info"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_description" />
 
     <ImageView
         android:id="@+id/immagineviewID"
         android:layout_width="170dp"
-        android:layout_height="200dp"
+        android:layout_height="204dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/aggiungifoto"
+        android:background="@drawable/ic_aggiungicane"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -183,11 +226,14 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/ubunturegular"
-        android:text="Age"
+        android:text="Age*"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/immaginepiuID" />
+
+
+
 
 
     <RadioGroup
@@ -196,7 +242,8 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
 
-        android:layout_marginTop="15dp"
+        android:orientation='horizontal'
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/immaginepiuID"
@@ -265,7 +312,7 @@
         android:fontFamily="@font/productsansregular"
         android:text="* (Required Fields)"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_description" />
+        app:layout_constraintTop_toBottomOf="@+id/add_phone" />
 
 </android.support.constraint.ConstraintLayout>
 

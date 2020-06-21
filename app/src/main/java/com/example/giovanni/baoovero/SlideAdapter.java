@@ -16,26 +16,30 @@ public class SlideAdapter extends PagerAdapter {
     public int[] lst_images = {
             R.drawable.ic_about,
             R.drawable.ic_icona_profilo,
-            R.drawable.ic_icona_baoo,
-            R.drawable.image_meticcio
+            R.drawable.guide_search,
+            R.drawable.guide_lookfor,
+            R.drawable.guide_contact
     };
     public String[] lst_title = {
             "MEETING",
             "LOVE IS IN THE AIR",
-            "DEPRESSION",
-            "PUPPIES INCOMING"
+            "LOOK FOR DOGS",
+            "ADD YOUR PREFERENCES",
+            "CONTACT THE OWNER"
     };
     public String[] lst_description = {
             "The goal of our application is to make our puppies fall in love.",
             "Baoo is the perfect way to find a partner for our dogs",
-            "Eventually is time to think about they found love and we're still single.",
-            "Stay tuned. We've much more features cooking."
+            "With a simple tap you can go to search function",
+            "You can choose gender, breed, age and city to be sure to find the perfect match for your dog",
+            "After choosing the dog you can contact the owner via email or telephone"
     };
     public int[]  lst_backgroundcolor = {
             Color.rgb(55,55,55),
             Color.rgb(239,85,85),
-            Color.rgb(110,49,89),
-            Color.rgb(75,150,75)
+            Color.rgb(52,89,149),
+            Color.rgb(75,150,75),
+            Color.rgb(29,45,73)
     };
 
     public SlideAdapter(Context context) {

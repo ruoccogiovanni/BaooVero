@@ -317,7 +317,7 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
                     String[] contatto = {Email};
                     intent.putExtra(Intent.EXTRA_EMAIL, contatto);
                     intent.putExtra(Intent.EXTRA_SUBJECT, "BAOO:Let's meet!");
-                    intent.putExtra(Intent.EXTRA_TEXT, "My dog wants to meet your dog. Let's meet and have fun together. XOXO :**");
+                    intent.putExtra(Intent.EXTRA_TEXT, "My dog wants to meet your dog. Let's meet and have fun together.");
                     intent.setType("message/rfc822");
                     Intent chooser = Intent.createChooser(intent, "Send Email");
                     startActivity(chooser);

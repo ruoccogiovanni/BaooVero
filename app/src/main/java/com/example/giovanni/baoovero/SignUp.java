@@ -23,8 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
     Button btnSignup;
-    TextView btnLogin,btnForgotPass;
-    EditText input_email,input_pass,nome,cognome;
+    TextView btnLogin;
+    EditText input_email,input_pass,nome,cognome, confirm_pass;
     RelativeLayout activity_sign_up;
     private Vibrator myVib;
     private FirebaseAuth auth;
@@ -39,16 +39,16 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         mDatabase=FirebaseDatabase.getInstance().getReference();
         btnSignup = (Button)findViewById(R.id.signup_btn_register);
         btnLogin = (TextView)findViewById(R.id.signup_btn_login);
-        btnForgotPass = (TextView)findViewById(R.id.signup_btn_forgot_pass);
+
         input_email = (EditText)findViewById(R.id.signup_email);
         input_pass = (EditText)findViewById(R.id.signup_password);
+        confirm_pass = (EditText)findViewById(R.id.confirm_password);
         nome = (EditText)findViewById(R.id.signup_username);
         cognome = (EditText)findViewById(R.id.signup_surname);
         activity_sign_up = (RelativeLayout)findViewById(R.id.activity_sign_up);
         myVib=(Vibrator)this.getSystemService(VIBRATOR_SERVICE);
         btnSignup.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
-        btnForgotPass.setOnClickListener(this);
         auth = FirebaseAuth.getInstance();
     }
     @Override
@@ -64,17 +64,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             startActivity(new Intent(SignUp.this,LoginActivity.class));
             finish();
         }
-        else if(view.getId() == R.id.signup_btn_forgot_pass){
-            myVib.vibrate(25);
-            startActivity(new Intent(SignUp.this,ForgotPassword.class));
-            finish();
-        }
         else if(view.getId() == R.id.signup_btn_register){
             myVib.vibrate(25);
             closeKeyboard();
-            if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_pass.getText().toString().isEmpty()||input_pass.getText().toString().length()<6)
+            if (input_email.getText().toString().isEmpty()||!input_email.getText().toString().contains("@")||input_pass.getText().toString().isEmpty()||input_pass.getText().toString().length()<6 || !input_pass.getText().toString().equals(confirm_pass.getText().toString()) )
             {
-                Snackbar snackBar = Snackbar.make(activity_sign_up, "Something goes wrong. Are you sure you entered your email and password correctly?", Snackbar.LENGTH_LONG);
+                Snackbar snackBar = Snackbar.make(activity_sign_up, "Something went wrong. Are you sure you entered your email and password correctly?", Snackbar.LENGTH_LONG);
                 snackBar.show();
             }
             else {
@@ -90,7 +85,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful())
                         {
-                            snackbar = Snackbar.make(activity_sign_up,"Error nella creating your account, retry.",Snackbar.LENGTH_SHORT);
+                            snackbar = Snackbar.make(activity_sign_up,"Error creating your account, retry.",Snackbar.LENGTH_SHORT);
                             snackbar.show();
                         }
                         else{

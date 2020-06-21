@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
+                    
                     case R.id.profilo:
                         if(auth.getCurrentUser() != null)
                             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
@@ -408,31 +409,31 @@ public class MainActivity extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setMessage("Sort by")
                     .setCancelable(true)
-                    .setPositiveButton("Alphabetical order", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Age", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             conto++;
                             ordine=true;
                             Collections.sort(cani, new Comparator<Dog>() {
                                 @Override
                                 public int compare(Dog o1, Dog o2) {
-                                    return o1.getName().compareTo(o2.getName());
+                                    return o1.getAge().compareTo(o2.getAge());
                                 }
                             });
                             if (conto%2!=0){
-                                Snackbar snackBar = Snackbar.make(activity_main, "Alphabetical ascending order", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Age ascending order", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             else
                             {
                                 reverse(cani);
-                                Snackbar snackBar = Snackbar.make(activity_main, "Alphabetical descending order.", Snackbar.LENGTH_SHORT);
+                                Snackbar snackBar = Snackbar.make(activity_main, "Age descending order.", Snackbar.LENGTH_SHORT);
                                 snackBar.show();
                             }
                             myAdapter=new RecyclerViewAdapter( MainActivity.this,cani);
                             myrv.setAdapter(myAdapter);
                         }
                     })
-                    .setNegativeButton("Temporal order", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Publication date", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             conta++;

@@ -43,6 +43,10 @@
             android:name=".FilterSearchActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SliderActivity" />
         <activity
             android:name=".FilterActivity"

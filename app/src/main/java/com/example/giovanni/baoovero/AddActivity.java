@@ -128,15 +128,19 @@ public class AddActivity extends AppCompatActivity {
         etcity.setDropDownVerticalOffset(-100);
         final int agemax = 20;
         sbage.setMax(agemax);
-        tvage.setText("Age: " + sbage.getProgress());
+
+        //int finale = (sbage.getProgress() + 2000);
+        Date d=new Date();
+        final int year=d.getYear() + 1900; //anno attuale
+        tvage.setText("Year of birth* " + (year - sbage.getProgress()));
         sbage.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     int progress_value;
 
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        progress_value = progress;
-                        tvage.setText("Age: " + progress);
+                        progress_value = year - progress;
+                        tvage.setText("Year of birth* " + (year - progress));
                     }
 
                     @Override
@@ -145,7 +149,7 @@ public class AddActivity extends AppCompatActivity {
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        tvage.setText("Age: " + progress_value);
+                        tvage.setText("Year of birth* " + (progress_value));
                     }
                 }
         );
@@ -169,7 +173,7 @@ public class AddActivity extends AppCompatActivity {
                  addphone = etphone.getText().toString().trim();
                  adddescription = etdescription.getText().toString().trim();
                  addbreed = actvbreed.getText().toString().trim();
-                 intage = sbage.getProgress();
+                 intage = (year - sbage.getProgress());
                  addage = String.valueOf(intage);
                  idbutton = rgroup.getCheckedRadioButtonId();
                 rbutton = findViewById(idbutton);
