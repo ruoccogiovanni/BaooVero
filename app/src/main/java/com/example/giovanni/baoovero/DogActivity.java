@@ -70,12 +70,12 @@ public class DogActivity extends AppCompatActivity implements OnLikeListener {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        if (utentecorrente == null) {
+
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(DogActivity.this);
             if (acct != null) {
                 utentecorrente = acct.getId();
             }
-        }
+        
         getSupportActionBar().hide();
         myRef= FirebaseDatabase.getInstance().getReference();
         myRef2 = FirebaseDatabase.getInstance().getReference("Utenti");

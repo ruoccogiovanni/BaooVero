@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         mDatabase=FirebaseDatabase.getInstance().getReference();
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(ProfileActivity.this);
-        if (acct != null) {
+        if (acct != null && mDatabase.child("Utenti").child(acct.getId()).child("email").toString() != acct.getEmail())  {
             String personName = acct.getDisplayName();
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();

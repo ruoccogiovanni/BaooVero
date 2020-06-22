@@ -60,11 +60,12 @@
         android:layout_below="@+id/login_input_password"
         android:background="#263238"
         android:fontFamily="@font/productsansbold"
-        android:text="Login" />
+        android:text="LOGIN WITH EMAIL AND PASSWORD" />
 
     <com.google.android.gms.common.SignInButton
 
         android:id="@+id/googlelogin_btn"
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_btn_login"

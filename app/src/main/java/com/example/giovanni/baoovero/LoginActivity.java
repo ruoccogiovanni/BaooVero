@@ -63,6 +63,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         setTitle("Login");
         btnGoogleLogin = findViewById(R.id.googlelogin_btn);
+
+        TextView textGOOGLE = (TextView) btnGoogleLogin.getChildAt(0);
+        textGOOGLE.setText("LOGIN WITH GOOGLE          ");
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
