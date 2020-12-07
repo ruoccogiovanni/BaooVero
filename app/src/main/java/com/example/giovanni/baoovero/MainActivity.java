@@ -303,6 +303,15 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intento);
 
                         break;
+                    case R.id.darkmode:
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setMessage("EEEEEEE VOLEEEEVI")
+                                .setCancelable(false)
+                                .setPositiveButton("NON SE L'ASPETTAVA", null)
+                                .setNegativeButton("GUARDA CHE FACCIA", null)
+                                .show();
+                        break;
+
                 }
                 return true;
             }
@@ -485,12 +494,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-   /* public void Clicckino(View v){
+   public void Clicckino(View v){
         if (auth.getCurrentUser()==null)
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         else
             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
     }
-    */
+
 
 }

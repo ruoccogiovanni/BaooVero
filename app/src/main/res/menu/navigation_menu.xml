@@ -43,4 +43,16 @@
             </item>
         </menu>
     </item>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/darkmode"
+                android:title="Dark Mode"
+                android:icon="@drawable/ic_darkmode">
+            </item>
+
+        </menu>
+    </item>
+
 </menu>
