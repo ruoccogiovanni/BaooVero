@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.design.animation.MotionSpec;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -76,18 +77,6 @@ public class ProfileActivity extends AppCompatActivity {
             mDatabase.child("Utenti").child(personId).child("cognome").setValue(personFamilyName);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         welcome=(TextView)findViewById(R.id.profile_welcome);
         immagine=(ImageView)findViewById(R.id.profile_image);
         immagine.setVisibility(View.INVISIBLE);
@@ -100,6 +89,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         else startActivity(loginact);
         adddog=(FloatingActionButton)findViewById(R.id.profile_add);
+        MotionSpec hide_spec = MotionSpec.createFromResource(ProfileActivity.this , R.animator.hide_spec);
+        adddog.setHideMotionSpec(hide_spec);
         myVib=(Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         listacani = new ArrayList<>();
         myRef= FirebaseDatabase.getInstance().getReference("Cani");
@@ -110,6 +101,22 @@ public class ProfileActivity extends AppCompatActivity {
         profilo.addListenerForSingleValueEvent(evento);
         myrv = (RecyclerView) findViewById(R.id.profile_recyclerview);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
+        myrv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) {
+                /*ObjectAnimator animation = ObjectAnimator.ofFloat(addbutton, "translationY", 260f);
+                animation.setDuration(60);
+                animation.start();*/
+                    adddog.hide();
+                } else if (dy < 0) {
+                /*ObjectAnimator animation = ObjectAnimator.ofFloat(addbutton, "translationY", -9.5f);
+                animation.setDuration(60);
+                animation.start();*/
+                    adddog.show();
+                }
+            }
+        });
         final Intent intentmain = new Intent(this, MainActivity.class);
         adddog.setOnClickListener(new View.OnClickListener() {
             @Override

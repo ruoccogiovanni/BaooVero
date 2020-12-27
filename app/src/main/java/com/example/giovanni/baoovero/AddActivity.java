@@ -360,7 +360,7 @@ public class AddActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(AddActivity.this, "Permesso concesso", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(AddActivity.this, "Permesso concesso", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -389,7 +389,7 @@ public class AddActivity extends AppCompatActivity {
         }
 
 
-        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE}, 2);
 
         try {
 
@@ -599,6 +599,11 @@ private void uploadCamera(){
         {
             if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
                 selectimage();
+        }
+        if (requestCode==2)
+        {
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                AddGPS();
         }
     }
     public void setUrlimmagine(Uri prova)

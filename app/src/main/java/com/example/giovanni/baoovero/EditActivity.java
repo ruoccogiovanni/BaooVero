@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -78,9 +79,10 @@ public class EditActivity extends AppCompatActivity {
     private Uri selectedImageUri;
     private View v;
     private String urlimmagine;
+    private String imagetobedeleted;
     private Bitmap bmp;
     File photoFile = null;
-    private String mCurrentPhotoPath;
+    private String mCurrentPhotoPath, image;
     private static final String IMAGE_DIRECTORY_NAME = "BAOO";
     static final int CAPTURE_IMAGE_REQUEST = 1;
     private ConstraintLayout layout;
@@ -141,7 +143,7 @@ public class EditActivity extends AppCompatActivity {
         final String Age = "Age: " + eig + annio;
         final String Tel = intent.getExtras().getString("Tel");
         final String Email = intent.getExtras().getString("Email");
-        final String image = intent.getExtras().getString("Image");
+        image = intent.getExtras().getString("Image");
         final String Uid = intent.getExtras().getString("Uid");
         final String utente=auth.getCurrentUser().getUid();
         if(Gender.equals("Male"))
@@ -164,6 +166,8 @@ public class EditActivity extends AppCompatActivity {
         Date d=new Date();
         final int year=d.getYear() + 1900; //anno attuale
         sbage.setMax(agemax);
+        sbage.setProgress(Integer.parseInt(eig));
+        Toast.makeText(EditActivity.this, eig, Toast.LENGTH_LONG).show();
         tvage.setText("Year of birth: " + (year - sbage.getProgress()));
         sbage.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
@@ -262,12 +266,13 @@ public class EditActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        StorageReference cancella = storage.getReferenceFromUrl(image);
+                        deleteImage(image);
+                        /*StorageReference cancella = storage.getReferenceFromUrl(image);
                         cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                             }
-                        });
+                        });*/
                     }
                     Dog cane = new Dog(addname,addbreed,adddescription,addgender,addcity,addage,addphone,email,urlimmagine);
                     cane.setUtente(utente);
@@ -349,6 +354,7 @@ public class EditActivity extends AppCompatActivity {
 
     private void SelectImage(){
         final CharSequence[] items={"Camera","Album", "Back"};
+        setImagetobedeleted(image);
         AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
         builder.setTitle("Select photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -457,6 +463,8 @@ public class EditActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (getUrlimmagine()!=null)
+            deleteImage(getUrlimmagine());
+        /*if (getUrlimmagine()!=null)
         {
             StorageReference cancella = storage.getReferenceFromUrl(getUrlimmagine());
             cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -464,9 +472,19 @@ public class EditActivity extends AppCompatActivity {
                 public void onSuccess(Void aVoid) {
                 }
             });
-        }
+        }*/
         startActivity(new Intent(EditActivity.this,ProfileActivity.class));
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
+
 
     private void uploadImage() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -486,6 +504,7 @@ public class EditActivity extends AppCompatActivity {
                             while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
                             setUrlimmagine(downloadUrl);
+                            //deleteImage(imagetobedeleted);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -526,6 +545,7 @@ public class EditActivity extends AppCompatActivity {
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
                             setUrlimmagine(downloadUrl);
+                            //deleteImage(imagetobedeleted);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -566,6 +586,25 @@ public class EditActivity extends AppCompatActivity {
     {
         return urlimmagine;
     }
+    public String getImagetobedeleted()
+    {
+        return imagetobedeleted;
+    }
+
+    public void setImagetobedeleted(String imagetobedeleted)
+    {
+        this.imagetobedeleted = imagetobedeleted;
+    }
+    private void deleteImage(String immagine)
+    {
+        StorageReference cancella = storage.getReferenceFromUrl(immagine);
+        cancella.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+            }
+        });
+    }
+
     private void closeKeyboard(){
         View vista = this.getCurrentFocus();
         if (vista!=null){

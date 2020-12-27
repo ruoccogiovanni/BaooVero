@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.design.animation.MotionSpec;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         numero=0;
         caricamento = (ProgressBar) findViewById(R.id.caricamento);
         aggiungi=(FloatingActionButton)findViewById(R.id.main_add);
+        MotionSpec hide_spec = MotionSpec.createFromResource(MainActivity.this , R.animator.hide_spec);
+        aggiungi.setHideMotionSpec(hide_spec);
         aggiungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +146,22 @@ public class MainActivity extends AppCompatActivity {
         myRef2=FirebaseDatabase.getInstance().getReference("Utenti");
         myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
+        myrv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) {
+                /*ObjectAnimator animation = ObjectAnimator.ofFloat(addbutton, "translationY", 260f);
+                animation.setDuration(60);
+                animation.start();*/
+                    aggiungi.hide();
+                } else if (dy < 0) {
+                /*ObjectAnimator animation = ObjectAnimator.ofFloat(addbutton, "translationY", -9.5f);
+                animation.setDuration(60);
+                animation.start();*/
+                    aggiungi.show();
+                }
+            }
+        });
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
