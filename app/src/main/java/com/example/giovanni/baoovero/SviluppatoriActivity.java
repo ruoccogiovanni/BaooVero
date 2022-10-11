@@ -27,7 +27,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sviluppatori);
         setTitle("Developers");
         Random rand = new Random();
-        int whichsong = rand.nextInt(8);
+        int whichsong = rand.nextInt(10);
         rand = null;
         switch (whichsong)
         {
@@ -55,8 +55,14 @@ public class SviluppatoriActivity extends AppCompatActivity {
             case 7:
                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smariotheme);
                 break;
+            case 8:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.take_on_me);
+                break;
+            case 9:
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.sium);
+                break;
             default:
-                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.monster);
         }
         dev1=(TextView)findViewById(R.id.testodeveloper);
         //dev2=(TextView)findViewById(R.id.testodeveloper2);
@@ -74,12 +80,12 @@ public class SviluppatoriActivity extends AppCompatActivity {
         if (numero % 3 == 0 )
         {
             song.start();
-            Snackbar.make(v,"WHAT IS HAPPENING AAA",19000).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("STOP NOW PLIS", new View.OnClickListener() {
+            Snackbar.make(v,"WHAT IS HAPPENING AAA",20000).setActionTextColor(getResources().getColor(R.color.error_color)).setAction("STOP NOW PLIS", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     contenitore.stopDropping();
                     Random rand = new Random();
-                    int whichsong = rand.nextInt(8);
+                    int whichsong = rand.nextInt(10);
                     dev1.setVisibility(View.VISIBLE);
                     //dev2.setVisibility(View.VISIBLE);
                     dev3.setVisibility(View.VISIBLE);
@@ -114,8 +120,14 @@ public class SviluppatoriActivity extends AppCompatActivity {
                             case 7:
                                 song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.smariotheme);
                                 break;
+                            case 8:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.take_on_me);
+                                break;
+                            case 9:
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.sium);
+                                break;
                             default:
-                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.shooting_stars);
+                                song = MediaPlayer.create(SviluppatoriActivity.this, R.raw.monster);
                         }
                     }
                 }
@@ -192,7 +204,7 @@ public class SviluppatoriActivity extends AppCompatActivity {
             dev3.setVisibility(View.INVISIBLE);
             immagine.setVisibility(View.INVISIBLE);
             contenitore.setPer(15);
-            contenitore.setDuration(18000);
+            contenitore.setDuration(20000);
             contenitore.setDropDuration(2400);
             contenitore.setDropFrequency(300);
             contenitore.startDropping();
